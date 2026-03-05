@@ -1,0 +1,97 @@
+# SELCS Quiz — Mentor Success Academy
+
+**© Mentor Success Academy. All rights reserved.**  
+**Co-Founders: Mary Wardlaw & Rebecca Munlyn**  
+The SELCS (Social Emotional Leadership Communication Style) instrument is the exclusive intellectual property of Mentor Success Academy. Unauthorized reproduction or distribution is strictly prohibited.
+
+---
+
+## What this is
+A Node.js/Express web app for the Social Emotional Leadership Communication Style assessment.
+Results are stored server-side in a JSON file that persists across sessions.
+All quiz takers share the same database regardless of what device or browser they use.
+
+---
+
+## Files
+```
+selcs-app/
+├── server.js          ← Express backend + all API routes
+├── package.json       ← Dependencies
+├── render.yaml        ← Render deployment config
+├── data/
+│   └── results.json   ← Created automatically on first run
+└── public/
+    └── index.html     ← Full frontend (quiz, results, admin)
+```
+
+---
+
+## Deploy to Render (same as TCC Master Organizer)
+
+### Step 1 — Push to GitHub
+1. Create a new GitHub repo: `selcs-quiz`
+2. Upload all files from this folder into the repo root
+3. Make sure `public/index.html` and `server.js` are at the root level
+
+### Step 2 — Create Render Web Service
+1. Go to https://dashboard.render.com → New → Web Service
+2. Connect your GitHub repo `selcs-quiz`
+3. Settings:
+   - **Name:** selcs-quiz
+   - **Build Command:** `npm install`
+   - **Start Command:** `node server.js`
+   - **Instance Type:** Free (or Starter for always-on)
+
+### Step 3 — Add a Persistent Disk (IMPORTANT)
+Without this, results.json resets every time Render restarts.
+1. In your Render service → Disks → Add Disk
+2. **Name:** selcs-data
+3. **Mount Path:** `/opt/render/project/src/data`
+4. **Size:** 1 GB (free tier)
+
+### Step 4 — Set Environment Variable
+1. In your Render service → Environment
+2. Add: `ADMIN_PASSWORD` = (choose your own secure password)
+
+### Step 5 — Deploy
+Hit "Deploy". Your app will be live at:
+`https://selcs-quiz.onrender.com`
+
+Share that URL with Rebecca and your team — anyone with the link can take the quiz.
+
+---
+
+## Admin Access
+- Go to the **All Records** tab
+- Enter your admin password (set in Render environment variables)
+- View all results grouped by organization
+- Filter by organization
+- Export all results as a CSV spreadsheet
+- Delete individual records if needed
+
+---
+
+## Changing the Admin Password
+1. Go to Render dashboard → Your service → Environment
+2. Update `ADMIN_PASSWORD`
+3. Redeploy
+
+---
+
+## Future: Multi-School Admin Accounts
+When you're ready to add organization-level admin accounts (so each school 
+only sees their own staff's results), let Mary know and we'll add:
+- An `admins.json` with org-specific credentials
+- A filtered view that only shows records matching the admin's org
+- Optional: a separate admin login page
+
+---
+
+## Local Development
+```bash
+cd selcs-app
+npm install
+node server.js
+# Open http://localhost:3000
+```
