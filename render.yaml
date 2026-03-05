@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: selcs-quiz
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: ADMIN_PASSWORD
+        generateValue: false
+        value: selcs2025
+    disk:
+      name: selcs-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
