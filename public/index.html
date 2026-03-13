@@ -2,585 +2,678 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SELCS — Mentor Success Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SELCS Assessment — Mentor Success Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #F7F3EE;
-    --warm-white: #FDFAF6;
-    --ink: #1C1810;
-    --ink-light: #3D3830;
-    --gold: #B8904A;
-    --gold-light: #D4B070;
-    --sage: #6B7C6A;
-    --rose: #A85C5C;
-    --sky: #4A6B7C;
-    --terra: #8B5E3C;
-    --border: rgba(184,144,74,0.25);
-    --shadow: rgba(28,24,16,0.08);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; font-weight: 300; }
+:root {
+  --bg:#FDFBF7; --bg2:#F5F0E8; --ink:#1C1810; --ink-light:#6B6456; --ink-faint:#A89F90;
+  --gold:#C5A55A; --gold-dark:#9E833A; --gold-light:#E8D5A8;
+  --driver:#C14B3F; --driver-bg:#FDF0EE;
+  --inspirer:#D4943A; --inspirer-bg:#FDF5EC;
+  --sustainer:#5A8F6E; --sustainer-bg:#EFF6F1;
+  --cultivator:#4A7A9B; --cultivator-bg:#EDF3F7;
+  --card-shadow:0 2px 12px rgba(28,24,16,.06);
+  --radius:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.2}
 
-  header { background: var(--ink); color: var(--cream); padding: 2.5rem 2rem 2rem; text-align: center; position: relative; overflow: hidden; }
-  header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(184,144,74,0.04) 40px, rgba(184,144,74,0.04) 80px); }
-  header .eyebrow { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; position: relative; }
-  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.1; position: relative; }
-  header h1 span { color: var(--gold-light); font-style: italic; }
-  header .subtitle { margin-top: 0.75rem; font-size: 0.8rem; letter-spacing: 0.1em; opacity: 0.6; position: relative; }
-  .gold-bar { width: 60px; height: 2px; background: var(--gold); margin: 1.25rem auto 0; position: relative; }
+/* ── HEADER ── */
+header{background:var(--ink);color:var(--gold-light);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100}
+header .logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+header .logo em{font-style:italic;font-weight:400;color:var(--gold)}
 
-  .nav-tabs { display: flex; background: var(--ink-light); border-bottom: 2px solid var(--gold); }
-  .nav-tabs button { flex: 1; padding: 0.85rem 1rem; background: none; border: none; color: rgba(247,243,238,0.5); font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; position: relative; }
-  .nav-tabs button.active { color: var(--gold-light); }
-  .nav-tabs button.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--gold-light); }
-  .nav-tabs button:hover:not(.active) { color: var(--cream); }
+/* ── NAV ── */
+.nav-tabs{display:flex;gap:0;background:var(--ink);padding:0 1.5rem;border-bottom:1px solid rgba(197,165,90,.15)}
+.nav-tabs button{background:none;border:none;color:var(--ink-faint);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;padding:.7rem 1.1rem;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;position:relative;transition:color .2s}
+.nav-tabs button:hover{color:var(--gold-light)}
+.nav-tabs button.active{color:var(--gold)}
+.nav-tabs button.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
 
-  .panel { display: none; padding: 2rem 1.5rem; max-width: 720px; margin: 0 auto; }
-  .panel.active { display: block; }
+/* ── PANELS ── */
+.panel{display:none;max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.panel.active{display:block}
 
-  .card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; margin-bottom: 1.25rem; box-shadow: 0 2px 12px var(--shadow); }
+/* ── CARDS ── */
+.card{background:#fff;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);margin-bottom:1.25rem}
+.section-head{margin-bottom:1.5rem}
+.section-head .eyebrow{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.25rem}
+.section-head h2{font-size:1.65rem;color:var(--ink)}
 
-  label { display: block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; font-weight: 500; }
-  input, select { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); background: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.95rem; color: var(--ink); border-radius: 2px; outline: none; transition: border-color 0.2s; margin-bottom: 1rem; }
-  input:focus, select:focus { border-color: var(--gold); }
+/* ── FORMS ── */
+label{display:block;font-size:.82rem;font-weight:600;color:var(--ink-light);margin-bottom:.35rem;letter-spacing:.02em}
+input[type="text"],input[type="email"],input[type="password"],select{
+  width:100%;padding:.65rem .85rem;border:1.5px solid var(--bg2);border-radius:8px;font-size:.9rem;
+  font-family:'DM Sans',sans-serif;background:var(--bg);transition:border-color .2s;margin-bottom:1rem}
+input:focus,select:focus{outline:none;border-color:var(--gold)}
+.btn{display:inline-block;padding:.7rem 1.6rem;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:var(--gold-dark)}
+.btn-outline{background:none;border:1.5px solid var(--gold);color:var(--gold-dark)}
+.btn-outline:hover{background:var(--gold);color:#fff}
+.btn-sm{padding:.45rem 1rem;font-size:.78rem}
+.btn:disabled{opacity:.5;cursor:default}
+.error-msg{color:var(--driver);font-size:.82rem;margin-bottom:1rem;display:none}
+.flex-gap{display:flex;gap:.75rem;flex-wrap:wrap}
+.mt-1{margin-top:.75rem}.mt-2{margin-top:1.5rem}
 
-  .btn { display: inline-block; padding: 0.85rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s; font-weight: 500; }
-  .btn-primary { background: var(--gold); color: var(--ink); }
-  .btn-primary:hover { background: var(--gold-light); }
-  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-  .btn-secondary { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
-  .btn-secondary:hover { background: var(--gold); color: var(--ink); }
-  .btn-danger { background: var(--rose); color: white; }
-  .btn-danger:hover { opacity: 0.85; }
+/* ── QUIZ STEP: PROGRESS ── */
+.progress-wrap{margin-bottom:1.75rem}
+.progress-bar-outer{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
+.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));border-radius:3px;transition:width .4s ease}
+.progress-text{font-size:.75rem;color:var(--ink-faint);text-align:right}
 
-  .progress-wrap { margin-bottom: 1.5rem; }
-  .progress-label { display: flex; justify-content: space-between; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; }
-  .progress-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; transition: width 0.4s ease; }
+/* ── QUIZ STEP: QUESTION ── */
+.question-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--card-shadow);animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.question-num{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.6rem}
+.question-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;line-height:1.45;margin-bottom:1.75rem;color:var(--ink)}
+.likert-row{display:flex;align-items:stretch;gap:0;margin-bottom:.5rem}
+.likert-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--ink-faint);padding:0 .25rem;margin-bottom:1.5rem}
+.likert-option{flex:1;display:flex;flex-direction:column;align-items:center;padding:.85rem .25rem;cursor:pointer;border:1.5px solid transparent;border-radius:8px;transition:all .2s;gap:.35rem}
+.likert-option:hover{background:var(--bg2)}
+.likert-option.selected{border-color:var(--gold);background:rgba(197,165,90,.08)}
+.likert-dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--ink-faint);transition:all .2s;display:flex;align-items:center;justify-content:center}
+.likert-option.selected .likert-dot{border-color:var(--gold);background:var(--gold)}
+.likert-option.selected .likert-dot::after{content:'';width:10px;height:10px;border-radius:50%;background:#fff}
+.likert-val{font-size:.72rem;font-weight:500;color:var(--ink-faint)}
+.likert-option.selected .likert-val{color:var(--gold-dark);font-weight:600}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
 
-  .question-num { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-  .question-text { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; line-height: 1.4; margin-bottom: 1.5rem; color: var(--ink); }
-  .options { display: flex; flex-direction: column; gap: 0.6rem; }
-  .option-btn { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem; border: 1px solid var(--border); background: var(--cream); border-radius: 3px; cursor: pointer; transition: all 0.2s; text-align: left; font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--ink-light); width: 100%; }
-  .option-btn:hover { border-color: var(--gold); background: var(--warm-white); color: var(--ink); }
-  .option-btn.selected { border-color: var(--gold); background: rgba(184,144,74,0.08); color: var(--ink); }
-  .option-letter { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); flex-shrink: 0; font-weight: 500; }
-  .option-btn.selected .option-letter { background: var(--gold); color: var(--ink); }
+/* ── RESULTS ── */
+.results-header{text-align:center;padding:2rem 0 1rem}
+.results-header h2{font-size:2rem;margin-bottom:.35rem}
+.results-header p{color:var(--ink-light);font-size:.9rem}
+.type-rank{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--bg2)}
+.type-rank:last-child{border-bottom:none}
+.rank-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ink-faint);width:2rem;text-align:center}
+.rank-label{font-weight:600;font-size:.95rem;min-width:120px}
+.rank-bar-outer{flex:1;height:10px;background:var(--bg2);border-radius:5px;overflow:hidden}
+.rank-bar-inner{height:100%;border-radius:5px;transition:width 1s ease}
+.rank-pct{font-size:.82rem;font-weight:600;width:3rem;text-align:right}
 
-  .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; gap: 1rem; }
+.spotlight{border-left:4px solid;padding:1.5rem;margin-top:1.25rem}
+.spotlight h3{font-size:1.35rem;margin-bottom:.5rem}
+.spotlight .tagline{font-style:italic;color:var(--ink-light);margin-bottom:.75rem;font-size:.9rem;display:block}
+.spotlight p{font-size:.88rem;line-height:1.7;color:var(--ink);margin-bottom:.65rem}
 
-  .results-header { text-align: center; padding: 2rem 0 1.5rem; }
-  .results-header .eyebrow { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-  .results-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
-  .results-name { font-style: italic; color: var(--gold); }
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+@media(max-width:600px){.type-grid{grid-template-columns:1fr}}
+.type-mini{padding:1rem;border-radius:var(--radius);border:1px solid var(--bg2)}
+.type-mini h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:.25rem}
+.type-mini p{font-size:.78rem;line-height:1.6;color:var(--ink-light)}
 
-  .selcs-rank { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
-  .rank-badge { padding: 0.5rem 1rem; border-radius: 2px; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; }
-  .rank-1 { background: var(--gold); color: var(--ink); }
-  .rank-2 { background: rgba(184,144,74,0.3); color: var(--ink); border: 1px solid var(--gold); }
-  .rank-3 { background: transparent; border: 1px solid var(--border); color: var(--ink-light); }
-  .rank-4 { background: transparent; border: 1px dashed var(--border); color: var(--ink-light); opacity: 0.7; }
+/* ── RECORDS TABLE ── */
+.records-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:1rem}
+.records-table th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);padding:.5rem;border-bottom:2px solid var(--bg2)}
+.records-table td{padding:.55rem .5rem;border-bottom:1px solid var(--bg2);vertical-align:top}
+.records-table tr:hover td{background:var(--bg2)}
 
-  .score-bars { margin: 1rem 0; }
-  .score-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
-  .score-label { width: 60px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
-  .score-bar-wrap { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
-  .score-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
-  .score-val { width: 30px; text-align: right; font-size: 0.8rem; font-weight: 500; }
+/* ── ABOUT TYPE CARDS ── */
+.about-type{border-left:4px solid;border-radius:var(--radius);padding:1.5rem;margin-bottom:1.25rem;background:#fff;box-shadow:var(--card-shadow)}
+.about-type h3{font-size:1.2rem;margin-bottom:.2rem}
+.about-type .tagline{font-style:italic;color:var(--ink-light);display:block;margin-bottom:.75rem;font-size:.88rem}
+.about-type p{font-size:.85rem;line-height:1.7;margin-bottom:.5rem}
 
-  .type-D .score-bar-fill { background: var(--rose); }
-  .type-I .score-bar-fill { background: var(--gold); }
-  .type-S .score-bar-fill { background: var(--sage); }
-  .type-C .score-bar-fill { background: var(--sky); }
+/* ── PRINT ── */
+@media print{
+  header,.nav-tabs{display:none}
+  .panel{display:block!important;max-width:100%}
+  #tab-quiz #step-register,#tab-quiz #step-quiz{display:none!important}
+  #tab-quiz #step-results{display:block!important}
+  #tab-review,#tab-records{display:none!important}
+  .btn{display:none}
+}
 
-  .type-card { border-left: 3px solid var(--gold); padding-left: 1.25rem; margin-bottom: 1.5rem; }
-  .type-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 0.25rem; }
-  .type-card .type-tag { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
-  .type-card p { font-size: 0.9rem; line-height: 1.7; color: var(--ink-light); margin-bottom: 0.6rem; }
-  .type-card ul { margin: 0.5rem 0 0.5rem 1rem; font-size: 0.88rem; line-height: 1.8; color: var(--ink-light); }
-
-  .primary-callout { background: var(--ink); color: var(--cream); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; position: relative; overflow: hidden; }
-  .primary-callout::before { content: ''; position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; border-radius: 50%; background: rgba(184,144,74,0.1); }
-  .primary-callout .eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-  .primary-callout h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 0.75rem; }
-  .primary-callout p { font-size: 0.88rem; line-height: 1.7; opacity: 0.85; }
-
-  .records-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  .records-table th { text-align: left; padding: 0.6rem 0.75rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--border); font-weight: 500; }
-  .records-table td { padding: 0.75rem; border-bottom: 1px solid rgba(184,144,74,0.1); vertical-align: middle; color: var(--ink-light); }
-  .records-table tr:hover td { background: rgba(184,144,74,0.04); }
-  .type-pill { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 2px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; }
-  .pill-D { background: rgba(168,92,92,0.15); color: var(--rose); }
-  .pill-I { background: rgba(184,144,74,0.15); color: var(--gold); }
-  .pill-S { background: rgba(107,124,106,0.15); color: var(--sage); }
-  .pill-C { background: rgba(74,107,124,0.15); color: var(--sky); }
-
-  .section-head { margin-bottom: 1.5rem; }
-  .section-head .eyebrow { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
-  .section-head h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 300; }
-
-  .alert { padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.85rem; margin-bottom: 1rem; }
-  .alert-success { background: rgba(107,124,106,0.15); border-left: 3px solid var(--sage); color: var(--sage); }
-  .alert-error { background: rgba(168,92,92,0.12); border-left: 3px solid var(--rose); color: var(--rose); }
-  .alert-info { background: rgba(184,144,74,0.1); border-left: 3px solid var(--gold); color: var(--terra); }
-
-  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 0.5rem; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .type-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; }
-  .legend-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-
-  .flex-gap { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-  .mt-2 { margin-top: 1rem; }
-  .mt-3 { margin-top: 1.5rem; }
-  .empty-state { text-align: center; padding: 3rem 1rem; color: var(--gold); opacity: 0.6; }
-  .empty-state p { font-size: 0.85rem; margin-top: 0.5rem; }
-  .intro-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.75; color: var(--ink-light); font-style: italic; }
-
-  @media (max-width: 520px) {
-    .nav-tabs button { font-size: 0.6rem; padding: 0.75rem 0.5rem; letter-spacing: 0.1em; }
-    .type-legend { grid-template-columns: 1fr; }
-    .quiz-nav { flex-direction: column; }
-    .quiz-nav button { width: 100%; }
-  }
-  @media print {
-    header { background: #1C1810 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .nav-tabs, .quiz-nav, .btn { display: none !important; }
-    .panel { display: block !important; padding: 0; }
-    #tab-review, #tab-records, #tab-about { display: none !important; }
-    #step-register, #step-quiz { display: none !important; }
-    #step-results { display: block !important; }
-  }
+/* ── RESPONSIVE ── */
+@media(max-width:500px){
+  .likert-option{padding:.6rem .15rem}
+  .likert-dot{width:24px;height:24px}
+  .likert-val{font-size:.65rem}
+  .question-text{font-size:1.15rem}
+  header .logo{font-size:1rem}
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="eyebrow">Assessment Instrument</div>
-  <h1>SELCS<br><span>Social Emotional Leadership<br>Communication Style</span></h1>
-  <div class="subtitle">Mentor Success Academy</div>
-  <div class="gold-bar"></div>
+  <div class="logo">Mentor Success <em>Academy</em></div>
 </header>
 
 <nav class="nav-tabs">
-  <button class="active" onclick="showTab('quiz', this)">Take Quiz</button>
-  <button onclick="showTab('review', this)">My Results</button>
-  <button onclick="showTab('records', this)">All Records</button>
-  <button onclick="showTab('about', this)">About SELCS</button>
+  <button class="active" onclick="showTab('quiz',this)">Assessment</button>
+  <button onclick="showTab('review',this)">My Results</button>
+  <button onclick="showTab('records',this)">Records</button>
+  <button onclick="showTab('about',this)">About SELCS</button>
 </nav>
 
-<!-- ══════════════ QUIZ TAB ══════════════ -->
+<!-- ══════════ ASSESSMENT TAB ══════════ -->
 <div id="tab-quiz" class="panel active">
 
+  <!-- REGISTER -->
   <div id="step-register">
     <div class="section-head mt-2">
-      <div class="eyebrow">Step 1 of 2</div>
-      <h2>Tell us who you are</h2>
+      <div class="eyebrow">Self-Assessment</div>
+      <h2>Social Emotional Leadership<br>Communication Style</h2>
     </div>
-    <p class="intro-text" style="margin-bottom:1.5rem">This assessment reveals your Social Emotional Leadership Communication Style — a framework for understanding how you connect, lead, and grow as a mentor.</p>
     <div class="card">
-      <label for="reg-name">Full Name</label>
+      <p style="font-size:.88rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">
+        Discover your unique SELCS profile — how you communicate, lead, and build relationships in early childhood settings. This assessment contains 72 statements. For each, indicate how strongly you agree or disagree. There are no right or wrong answers.
+      </p>
+      <label for="reg-name">Full Name *</label>
       <input type="text" id="reg-name" placeholder="Your full name">
-      <label for="reg-email">Email Address</label>
-      <input type="email" id="reg-email" placeholder="your@email.com">
-      <label for="reg-org">Organization / School</label>
-      <input type="text" id="reg-org" placeholder="e.g. Peace Boulevard Center">
+      <label for="reg-email">Email Address *</label>
+      <input type="email" id="reg-email" placeholder="you@example.com">
+      <label for="reg-org">Organization</label>
+      <input type="text" id="reg-org" placeholder="Your school or center name">
       <label for="reg-role">Role</label>
       <select id="reg-role">
         <option value="">Select your role…</option>
+        <option>Teacher</option>
         <option>Lead Teacher</option>
         <option>Assistant Teacher</option>
-        <option>Center Director</option>
-        <option>Coach / Mentor</option>
-        <option>Administrator</option>
+        <option>Director</option>
+        <option>Assistant Director</option>
+        <option>Mentor</option>
+        <option>Coach</option>
+        <option>Owner/Operator</option>
         <option>Other</option>
       </select>
-      <div id="reg-error" class="alert alert-error" style="display:none"></div>
-      <button class="btn btn-primary" onclick="startQuiz()">Begin Assessment →</button>
+      <div class="error-msg" id="reg-error"></div>
+      <button class="btn btn-gold" onclick="startQuiz()">Begin Assessment</button>
     </div>
   </div>
 
+  <!-- QUIZ -->
   <div id="step-quiz" style="display:none">
-    <div class="progress-wrap mt-2">
-      <div class="progress-label">
-        <span id="q-counter">Question 1 of 40</span>
-        <span id="q-pct">0%</span>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-wrap">
+      <div class="progress-bar-outer"><div class="progress-bar-inner" id="prog-bar" style="width:0%"></div></div>
+      <div class="progress-text" id="prog-text">Question 1 of 72</div>
     </div>
-    <div class="card">
-      <div class="question-num" id="q-num">Question 1</div>
-      <div class="question-text" id="q-text"></div>
-      <div class="options" id="q-options"></div>
-      <div class="quiz-nav">
-        <button class="btn btn-secondary" id="btn-prev" onclick="prevQ()">← Previous</button>
-        <button class="btn btn-primary" id="btn-next" onclick="nextQ()">Next →</button>
-      </div>
+    <div id="question-area"></div>
+    <div class="quiz-nav">
+      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="prevQ()" disabled>← Previous</button>
+      <button class="btn btn-gold btn-sm" id="btn-next" onclick="nextQ()">Next →</button>
     </div>
   </div>
 
-  <div id="step-results" style="display:none">
-    <div id="result-output"></div>
-  </div>
+  <!-- RESULTS -->
+  <div id="step-results" style="display:none"></div>
 </div>
 
-<!-- ══════════════ REVIEW TAB ══════════════ -->
+<!-- ══════════ REVIEW TAB ══════════ -->
 <div id="tab-review" class="panel">
   <div class="section-head mt-2">
-    <div class="eyebrow">Personal History</div>
-    <h2>Review My Results</h2>
+    <div class="eyebrow">Your History</div>
+    <h2>Review Past Results</h2>
   </div>
   <div class="card">
-    <label for="review-email">Enter your email to retrieve your results</label>
-    <input type="email" id="review-email" placeholder="your@email.com">
-    <button class="btn btn-primary" onclick="reviewResults()">Look Up Results</button>
+    <label for="review-email">Enter Your Email</label>
+    <input type="email" id="review-email" placeholder="you@example.com">
+    <button class="btn btn-gold btn-sm" onclick="reviewResults()">Look Up Results</button>
   </div>
   <div id="review-output"></div>
 </div>
 
-<!-- ══════════════ RECORDS TAB ══════════════ -->
+<!-- ══════════ RECORDS TAB ══════════ -->
 <div id="tab-records" class="panel">
   <div class="section-head mt-2">
-    <div class="eyebrow">Administrator View</div>
+    <div class="eyebrow">Administrator</div>
     <h2>All Records</h2>
   </div>
   <div class="card">
     <label for="admin-pass">Administrator Password</label>
     <input type="password" id="admin-pass" placeholder="Enter password">
-    <label for="admin-org-filter">Filter by Organization (optional)</label>
-    <select id="admin-org-filter"><option value="">All Organizations</option></select>
+    <label for="admin-org-filter">Filter by Organization</label>
+    <input type="text" id="admin-org-filter" placeholder="Leave blank for all">
     <div class="flex-gap">
-      <button class="btn btn-primary" onclick="viewRecords()">View Records</button>
-      <button class="btn btn-secondary" onclick="exportCSV()">Export CSV</button>
+      <button class="btn btn-gold btn-sm" onclick="viewRecords()">View Records</button>
+      <button class="btn btn-outline btn-sm" onclick="exportCSV()">Export CSV</button>
     </div>
   </div>
   <div id="records-output"></div>
 </div>
 
-<!-- ══════════════ ABOUT TAB ══════════════ -->
+<!-- ══════════ ABOUT TAB ══════════ -->
 <div id="tab-about" class="panel">
   <div class="section-head mt-2">
     <div class="eyebrow">Framework</div>
     <h2>Understanding SELCS</h2>
   </div>
   <div class="card">
-    <p class="intro-text" style="margin-bottom:1.25rem">The Social Emotional Leadership Communication Style (SELCS) framework identifies four distinct temperament orientations that shape how individuals communicate, lead, and build relationships in early childhood settings.</p>
-    <p style="font-size:0.88rem;line-height:1.75;color:var(--ink-light)">Every person carries elements of all four styles — the SELCS assessment reveals your unique blend and identifies which orientations are most and least dominant. Understanding your profile empowers you to mentor more effectively by appreciating the diverse styles of those you lead.</p>
-    <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)">
-      <div style="font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Instrument Ownership</div>
-      <p style="font-size:0.85rem;line-height:1.7;color:var(--ink-light)">The SELCS (Social Emotional Leadership Communication Style) assessment instrument is the intellectual property of <strong>Mentor Success Academy</strong>, developed by co-founders <strong>Mary Wardlaw</strong> and <strong>Rebecca Munlyn</strong>. All rights reserved. Reproduction or distribution of this instrument without written permission from Mentor Success Academy is prohibited.</p>
-    </div>
-    <div class="type-legend mt-2">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--rose)"></div><strong>D</strong> — The Director</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div><strong>I</strong> — The Inspirer</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--sage)"></div><strong>S</strong> — The Sustainer</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--sky)"></div><strong>C</strong> — The Cultivator</div>
-    </div>
+    <p style="font-size:.88rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">
+      The Social Emotional Leadership Communication Style (SELCS) framework identifies four distinct orientations that shape how individuals communicate, lead, and build relationships in early childhood education settings.
+    </p>
+    <p style="font-size:.85rem;line-height:1.75;color:var(--ink-light)">
+      Every person carries elements of all four styles. The SELCS assessment reveals your unique blend and identifies which orientations are most and least dominant. Understanding your profile empowers you to mentor more effectively by appreciating the diverse styles of those you lead.
+    </p>
   </div>
   <div id="about-types"></div>
 </div>
 
 <script>
-// ═══════════════════════════════════════
-// CONFIG — update this when deployed
-// ═══════════════════════════════════════
-const API_BASE = window.location.origin;
-
-// ═══════════════════════════════════════
-// QUESTIONS
-// ═══════════════════════════════════════
-const QUESTIONS = [
-  { q:"Which describes you best?", opts:[{t:"Ready to jump into new tasks, energized by challenges",type:"D"},{t:"Agreeable and easy to get along with",type:"I"},{t:"Sensitive to the emotions of others",type:"S"},{t:"Excitable, passionate, and quick to say yes",type:"C"}]},
-  { q:"Which describes you best?", opts:[{t:"Motivated to achieve goals and eager to lead",type:"D"},{t:"Energetic and lively; shows love and affection openly",type:"I"},{t:"Logical, gathers facts and data, likes detailed records",type:"C"},{t:"Flexible and calm, able to adjust to new conditions even in chaos",type:"S"}]},
-  { q:"Which describes you best?", opts:[{t:"Avoids conflict and drama; level-headed",type:"D"},{t:"Fun to be around — a good storyteller with a sense of humor",type:"I"},{t:"Self-motivated and usually right",type:"S"},{t:"Careful and thoughtful; doesn't rush into things",type:"C"}]},
-  { q:"Which describes you best?", opts:[{t:"Upbeat; always sees the best in people and situations",type:"D"},{t:"Detail-oriented, orderly, and tidy",type:"I"},{t:"Confident and assertive with opinions and ideas",type:"C"},{t:"Cooperative and open to others' needs and ideas",type:"S"}]},
-  { q:"Which describes you best?", opts:[{t:"A determined problem solver who finds a way to get it done",type:"D"},{t:"Playful, spontaneous, lives in the moment",type:"I"},{t:"Considerate, kind, and polite",type:"S"},{t:"Serious, avoids being impulsive or flashy",type:"C"}]},
-  { q:"Which describes you best?", opts:[{t:"Friendly, outgoing, and talkative",type:"D"},{t:"Efficient and effective with time and effort",type:"I"},{t:"Precise, thorough, and holds very high standards",type:"C"},{t:"Relaxed and hard to provoke or annoy",type:"S"}]},
-  { q:"Which describes you best — even if it's a challenge?", opts:[{t:"Not always confident in social situations",type:"D"},{t:"Can be quick-tempered",type:"I"},{t:"Struggles to make decisions quickly",type:"S"},{t:"Can dominate conversations",type:"C"}]},
-  { q:"Which describes you best — even if it's a challenge?", opts:[{t:"Unafraid to disagree with others; can come across as bossy",type:"D"},{t:"Uncomfortable with solitude; afraid of missing out",type:"I"},{t:"Sometimes feels isolated or too introspective",type:"C"},{t:"Rarely sets goals for self; unclear on purpose or direction",type:"S"}]},
-  { q:"Which describes you best — even if it's a challenge?", opts:[{t:"Can be overbearing and prefers to be in control",type:"D"},{t:"Unsure of myself; reluctant to jump into conversations or activities",type:"I"},{t:"Seeks diversions from tasks; can waste time or daydream",type:"S"},{t:"Prone to feeling sad or gloomy; gets stuck on bad news",type:"C"}]},
-  { q:"Which describes you best — even if it's a challenge?", opts:[{t:"Persuades others to do things my way; believes the end justifies the means",type:"D"},{t:"Often exaggerates stories; can be a compulsive talker",type:"I"},{t:"Struggles to express enthusiasm",type:"C"},{t:"Uses sarcasm or the silent treatment when upset",type:"S"}]},
-  { q:"Which describes you best — even if it's a challenge?", opts:[{t:"No sense of urgency; resents being pushed",type:"D"},{t:"Skeptical; focuses on obstacles and worst-case scenarios",type:"I"},{t:"Fickle, forgetful, makes excuses, and repeats stories",type:"S"},{t:"Reluctant to admit mistakes or say sorry; rarely compliments others",type:"C"}]},
-  { q:"Which describes you best — even if it's a challenge?", opts:[{t:"Struggles with follow-through, especially when things stop being fun",type:"D"},{t:"Slow to get moving; a procrastinator",type:"I"},{t:"Hard to please and can be critical",type:"C"},{t:"Dislikes tears and emotions in others; can be unsympathetic",type:"S"}]},
-  { q:"Which reflects you best in decision-making?", opts:[{t:"I like to talk through my decisions out loud with others",type:"D"},{t:"I am decisive and my decisions are usually right",type:"I"},{t:"I want all the information before I make a decision",type:"S"},{t:"I sometimes just want someone else to make the decision for me",type:"C"}]},
-  { q:"Which reflects your preferences best?", opts:[{t:"I like knowing a little about a lot, and a lot about what truly interests me",type:"D"},{t:"I like to stick to the schedule",type:"I"},{t:"I like accomplishing things and feeling productive",type:"C"},{t:"I like coming up with creative ideas that people will enjoy",type:"S"}]},
-  { q:"Which reflects your tendencies best?", opts:[{t:"I tend to notice imperfections and mistakes",type:"D"},{t:"I tend to forget or disregard things I'm not interested in",type:"I"},{t:"I tend to not even think about bad or sad things",type:"S"},{t:"I tend not to show my emotions",type:"C"}]},
-  { q:"Which reflects how you communicate best?", opts:[{t:"I frequently tell stories about my personal experiences",type:"D"},{t:"I consider every thought in detail before communicating",type:"I"},{t:"I cut to the chase in conversations — I don't need every last detail",type:"C"},{t:"I hesitate to speak up and advocate for myself when I disagree with the group",type:"S"}]},
-  { q:"Which reflects what you want in projects?", opts:[{t:"I want the freedom to do projects in my own time frame",type:"D"},{t:"I want time to process my thoughts so I know my answers are correct",type:"I"},{t:"I want to know the 'why' behind a project so I know it's worth my time",type:"S"},{t:"I want variety and spontaneity with projects",type:"C"}]},
-  { q:"Which reflects your greatest strength?", opts:[{t:"I am good at delegating to others",type:"D"},{t:"I am good at teaching others",type:"I"},{t:"I am good at inspiring others",type:"C"},{t:"I am good at caring for others",type:"S"}]},
-  { q:"What stresses you most?", opts:[{t:"I get stressed when I feel like I am not liked",type:"D"},{t:"I get stressed when I feel like I am not understood",type:"I"},{t:"I get stressed when I feel like I am not in control",type:"S"},{t:"I get stressed when I feel like I am being pulled into conflict",type:"C"}]},
-  { q:"Which would you most likely think or say about a party or event?", opts:[{t:"Who else is going to be there?",type:"D"},{t:"What will we be doing?",type:"I"},{t:"You go. I have better things to do.",type:"C"},{t:"Do I have to go?",type:"S"}]},
-  { q:"Which would you most likely think or say?", opts:[{t:"Are you sure that's safe?",type:"D"},{t:"Hurry up! We're late.",type:"I"},{t:"That sounds like fun!",type:"S"},{t:"I'm good with whatever.",type:"C"}]},
-  { q:"Which would you most likely say about a task that needs to be done?", opts:[{t:"It's done. I took care of it.",type:"D"},{t:"I'll do it, if someone will do it with me.",type:"I"},{t:"I've been giving it some thought.",type:"C"},{t:"No worries, it will all work out.",type:"S"}]},
-  { q:"Which would you most likely say?", opts:[{t:"No thanks, I'll just watch.",type:"D"},{t:"I didn't mean it that way.",type:"I"},{t:"I'd be happy to help!",type:"S"},{t:"I'm not sure I trust them.",type:"C"}]},
-  { q:"Which would you most likely say?", opts:[{t:"I totally forgot about that — I'm sorry.",type:"D"},{t:"I don't really care. You decide.",type:"I"},{t:"Just give me the bottom line.",type:"C"},{t:"That won't work. I've already planned to…",type:"S"}]},
-  { q:"Which single word describes you best?", opts:[{t:"Easy-going",type:"D"},{t:"Ambitious",type:"I"},{t:"Energetic",type:"S"},{t:"Analytical",type:"C"}]},
-  { q:"Which single word describes you best?", opts:[{t:"Enthusiastic",type:"D"},{t:"Fearless",type:"I"},{t:"Empathetic",type:"C"},{t:"Agreeable",type:"S"}]},
-  { q:"Which single word describes you best?", opts:[{t:"Cautious",type:"D"},{t:"Capable",type:"I"},{t:"Calm",type:"S"},{t:"Charming",type:"C"}]},
-  { q:"Which single word describes you best?", opts:[{t:"Positive",type:"D"},{t:"Organized",type:"I"},{t:"Assertive",type:"C"},{t:"Content",type:"S"}]},
-  { q:"Which single word describes you best?", opts:[{t:"Resourceful",type:"D"},{t:"Considerate",type:"I"},{t:"Light-hearted",type:"S"},{t:"Reserved",type:"C"}]},
-  { q:"Which single word describes you best?", opts:[{t:"Productive",type:"D"},{t:"Patient",type:"I"},{t:"Detail-oriented",type:"C"},{t:"People-oriented",type:"S"}]},
-  { q:"Which challenge word reflects you most honestly?", opts:[{t:"Pessimistic",type:"D"},{t:"Bossy",type:"I"},{t:"Indifferent",type:"S"},{t:"Distractible",type:"C"}]},
-  { q:"Which challenge word reflects you most honestly?", opts:[{t:"Demanding",type:"D"},{t:"Detached",type:"I"},{t:"Moody",type:"C"},{t:"Naïve",type:"S"}]},
-  { q:"Which challenge word reflects you most honestly?", opts:[{t:"Self-centered",type:"D"},{t:"Sluggish",type:"I"},{t:"Scatterbrained",type:"S"},{t:"Suspicious",type:"C"}]},
-  { q:"Which challenge word reflects you most honestly?", opts:[{t:"Undisciplined",type:"D"},{t:"Unmotivated",type:"I"},{t:"Unforgiving",type:"C"},{t:"Unsympathetic",type:"S"}]},
-  { q:"Which challenge word reflects you most honestly?", opts:[{t:"Indecisive",type:"D"},{t:"Dramatic",type:"I"},{t:"Impatient",type:"S"},{t:"Insecure",type:"C"}]},
-  { q:"Which challenge word reflects you most honestly?", opts:[{t:"Blunt",type:"D"},{t:"Judgmental",type:"I"},{t:"Restless",type:"C"},{t:"Apathetic",type:"S"}]},
-  { q:"Which single word describes you best?", opts:[{t:"Driven",type:"D"},{t:"Imaginative",type:"I"},{t:"Compassionate",type:"S"},{t:"Even-keeled",type:"C"}]},
-  { q:"Which describes you best?", opts:[{t:"Well-balanced",type:"D"},{t:"Enjoys working hard",type:"I"},{t:"Turns crisis into comedy",type:"C"},{t:"Musical or artistic",type:"S"}]},
-  { q:"Which describes you best?", opts:[{t:"Methodical",type:"D"},{t:"Loud laugh",type:"I"},{t:"Quiet but witty",type:"S"},{t:"Brave",type:"C"}]},
-  { q:"Which describes you best?", opts:[{t:"Patient leader",type:"D"},{t:"Curious",type:"I"},{t:"Delegates well",type:"C"},{t:"Deep and thoughtful",type:"S"}]}
-];
-
+// ═══════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════
 const TYPES = {
-  D: { label:"The Director", color:"var(--rose)", pill:"pill-D", tagline:"Bold · Goal-Driven · Decisive",
-    overview:"Directors are natural leaders who thrive on results. They are confident, direct, and driven by outcomes. In a mentoring context, Directors set clear expectations and move with purpose — they are not afraid to make the hard call.",
-    communication:"Directors communicate directly and prefer concise, bottom-line messaging. They may be blunt, so they grow most when they learn to slow down, invite others' perspectives, and recognize that the path matters as much as the destination.",
-    values:"Achievement, autonomy, control, efficiency, challenge, and respect.",
-    leadership:["Sets high standards and models determination","Excellent at delegating when trust is established","May need to practice patience and active listening with more reflective mentees","Motivates through challenge and goal-setting","Growth edge: softening tone without softening standards"]},
-  I: { label:"The Inspirer", color:"var(--gold)", pill:"pill-I", tagline:"Energetic · Enthusiastic · Relational",
-    overview:"Inspirers light up every room they enter. They are charismatic, optimistic, and gifted at rallying others around a vision. As mentors, Inspirers create warmth and excitement — their mentees feel seen, valued, and enthusiastic about growth.",
-    communication:"Inspirers communicate with energy and story. They love conversation and connection, and they express ideas through narrative and emotion. Their growth edge is learning to ground enthusiasm with structure and follow-through.",
-    values:"Recognition, relationships, fun, creativity, optimism, and connection.",
-    leadership:["Creates a joyful, encouraging learning environment","Excellent at motivating reluctant learners","May need support with detail management and consistency","Naturally collaborative — builds team culture intuitively","Growth edge: turning inspiration into sustained action"]},
-  S: { label:"The Sustainer", color:"var(--sage)", pill:"pill-S", tagline:"Steady · Empathetic · Collaborative",
-    overview:"Sustainers are the anchors of any team. They are calm, deeply caring, and committed to harmony. As mentors, Sustainers create psychologically safe relationships where mentees feel truly supported. Their patience is a superpower.",
-    communication:"Sustainers communicate gently and thoughtfully. They listen before they speak, prefer collaborative dialogue, and may struggle to assert disagreement — even when they have important insight to offer.",
-    values:"Harmony, loyalty, relationships, security, sincerity, and belonging.",
-    leadership:["Creates deep trust and safety in mentoring relationships","Highly attuned to the emotional needs of mentees","May need encouragement to set boundaries and give candid feedback","Excellent at consistency and follow-through","Growth edge: speaking up with confidence when it matters"]},
-  C: { label:"The Cultivator", color:"var(--sky)", pill:"pill-C", tagline:"Analytical · Precise · Principled",
-    overview:"Cultivators bring rigor and depth to everything they do. They are thoughtful, detail-oriented, and committed to quality and accuracy. As mentors, Cultivators provide thorough, well-reasoned guidance and hold high standards for both themselves and their mentees.",
-    communication:"Cultivators communicate with precision and prefer data, evidence, and clear rationale. They may appear reserved or critical, but this stems from genuine care for correctness and quality — not indifference.",
-    values:"Accuracy, quality, fairness, competence, logic, and integrity.",
-    leadership:["Models thoroughness and reflective practice","Excellent at creating systems, frameworks, and clear expectations","May need to balance high standards with grace and encouragement","Gives the most honest, grounded feedback of any type","Growth edge: embracing emotional expression and spontaneity"]}
+  D: {
+    label:"The Driver", color:"var(--driver)", bg:"var(--driver-bg)",
+    tagline:"Bold visionary who leads with decisive action and forward momentum",
+    overview:"Drivers are natural leaders who thrive on challenge, decisiveness, and results. They see the big picture, move quickly toward goals, and are unafraid to make tough calls. In mentoring relationships, Drivers bring clarity of direction, high expectations, and an energizing sense of purpose that inspires teams to aim higher.",
+    communication:"Drivers communicate directly and efficiently. They prefer getting to the point quickly, value logic and evidence, and may challenge ideas vigorously to test their strength. Their directness can sometimes be perceived as blunt, but it stems from a genuine desire for excellence and truth.",
+    values:"Achievement, competence, efficiency, truth, innovation, and forward progress.",
+    mentoring:[
+      "Sets clear, ambitious goals and holds mentees accountable",
+      "Excellent at cutting through ambiguity to find actionable solutions",
+      "Models courage in decision-making and willingness to take calculated risks",
+      "Growth edge: slowing down to listen fully and prioritizing relationships alongside results",
+      "Brings transformative energy that pushes teams beyond incremental improvement"
+    ]
+  },
+  I: {
+    label:"The Inspirer", color:"var(--inspirer)", bg:"var(--inspirer-bg)",
+    tagline:"Enthusiastic connector who leads through energy, optimism, and relationships",
+    overview:"Inspirers light up every room they enter. They are energetic, socially gifted, and naturally optimistic — seeing the best in people and situations. In mentoring relationships, Inspirers create warmth and excitement that make people feel valued and motivated to grow. Their gift for storytelling and spontaneity makes learning feel like an adventure.",
+    communication:"Inspirers communicate with enthusiasm and warmth. They prefer talking things through, thrive in collaborative conversation, and often think out loud. They may need to work at consistency in messaging and follow-through, but their ability to connect with others is unmatched.",
+    values:"Connection, fun, optimism, spontaneity, collaboration, and social harmony.",
+    mentoring:[
+      "Creates an energizing, positive atmosphere where mentees feel safe to take risks",
+      "Excellent at building rapport quickly and making people feel seen",
+      "Models enthusiasm and creativity that is contagious across teams",
+      "Growth edge: maintaining focus and follow-through when initial excitement fades",
+      "Brings the gift of turning tense moments into lighter, more productive ones"
+    ]
+  },
+  S: {
+    label:"The Sustainer", color:"var(--sustainer)", bg:"var(--sustainer-bg)",
+    tagline:"Empathetic anchor who leads through deep care, patience, and relational harmony",
+    overview:"Sustainers are the steady heart of any team. They lead with empathy, patience, and a deep commitment to understanding others. In mentoring relationships, Sustainers create the psychological safety that allows honest growth. They listen deeply, value every person's dignity, and prioritize relational harmony — building the trust that makes transformation possible.",
+    communication:"Sustainers communicate with warmth and attentiveness. They ask thoughtful questions to understand emotions, seek common ground in disagreements, and always acknowledge the person before evaluating the idea. Their gentleness can sometimes make it hard to deliver tough feedback, but it builds extraordinary trust.",
+    values:"Empathy, harmony, authenticity, compassion, loyalty, and mutual understanding.",
+    mentoring:[
+      "Creates deep psychological safety where mentees feel truly known and valued",
+      "Excellent at reading emotional undercurrents and responding with care",
+      "Models the kind of genuine human connection that transforms professional relationships",
+      "Growth edge: building confidence to deliver direct feedback and embrace healthy conflict",
+      "Brings the gift of making every person feel that who they are matters more than what they produce"
+    ]
+  },
+  C: {
+    label:"The Cultivator", color:"var(--cultivator)", bg:"var(--cultivator-bg)",
+    tagline:"Thoughtful analyst who leads through precision, depth, and careful stewardship",
+    overview:"Cultivators are the careful thinkers and system builders of any team. They approach everything with thoroughness, precision, and a deep respect for doing things right. In mentoring relationships, Cultivators provide the most grounded, well-reasoned guidance — holding high standards while creating structured pathways for growth. They see patterns others miss and build frameworks that endure.",
+    communication:"Cultivators communicate with precision and deliberation. They prefer to think before speaking, often favor written communication for its ability to be refined, and value data and evidence in decision-making. They may appear reserved, but this stems from genuine care for quality and accuracy — not indifference.",
+    values:"Accuracy, quality, structure, depth, integrity, and continuous improvement.",
+    mentoring:[
+      "Models thoroughness and reflective practice that elevates professional standards",
+      "Excellent at creating systems, frameworks, and clear expectations for growth",
+      "Provides the most honest, carefully considered feedback of any type",
+      "Growth edge: embracing imperfection and sharing ideas before they feel fully formed",
+      "Brings the gift of seeing the deeper patterns and building structures that support lasting change"
+    ]
+  }
 };
 
-// ═══════════════════════════════════════
+const QUESTIONS = [
+  {t:"When faced with challenges and new tasks, I am eager to jump in and find solutions.",type:"D"},
+  {t:"When I believe in a goal, I am driven to accomplish it and ready to take charge.",type:"D"},
+  {t:"When problem-solving, I am determined to find a way to get it done no matter the obstacles.",type:"D"},
+  {t:"When I have an opinion, I express it with confidence and assertiveness.",type:"D"},
+  {t:"When something needs doing, I am efficient and effective with my time and effort.",type:"D"},
+  {t:"When the situation calls for it, I have no trouble disagreeing with others to defend my position.",type:"D"},
+  {t:"When decisions need to be made, I make them quickly and they are usually right.",type:"D"},
+  {t:"When under pressure, I can remain objective and make difficult, unpopular decisions if needed.",type:"D"},
+  {t:"When I envision the future, I look for bold, transformative ways to dramatically improve things rather than settle for small gains.",type:"D"},
+  {t:"When working with my team, I naturally take the lead and map out how we will reach our goals.",type:"D"},
+  {t:"When evaluating ideas, I apply sharp analytical thinking to test their strength before committing.",type:"D"},
+  {t:"When I reach a conclusion, I compile structured points to support and articulate my decision.",type:"D"},
+  {t:"When someone presents an idea, I tend to evaluate the argument before acknowledging the person who offered it.",type:"D"},
+  {t:"When others share problems, I sometimes find it perplexing if they raise issues unrelated to the core challenge.",type:"D"},
+  {t:"When new information becomes available, I am comfortable revising my position on decisions I have already made.",type:"D"},
+  {t:"When trying to be a good leader, I often feel I need to be more assertive and direct.",type:"D"},
+  {t:"When I delegate tasks to others, I do so naturally and effectively.",type:"D"},
+  {t:"When I feel out of control of a situation, I become stressed and need to regain my footing.",type:"D"},
+
+  {t:"When I am around others, I am energetic, lively, and show affection openly.",type:"I"},
+  {t:"When I enter a room, people tend to find me fun to be around because of my humor and storytelling.",type:"I"},
+  {t:"When I look at people and situations, I naturally see the best in them.",type:"I"},
+  {t:"When life gets serious, I have a gift for turning tense moments into lighter ones.",type:"I"},
+  {t:"When making decisions, I prefer to talk them through out loud with others rather than think alone.",type:"I"},
+  {t:"When I hear about a social event, my first thought is about who else will be there.",type:"I"},
+  {t:"When something sounds exciting, I am quick to say yes and jump in enthusiastically.",type:"I"},
+  {t:"When I spend too much time alone, I become uncomfortable and feel like I am missing out.",type:"I"},
+  {t:"When working on projects, I thrive on spontaneity and produce my best work in energetic bursts of creativity.",type:"I"},
+  {t:"When there is silence in a conversation, I feel compelled to bridge the gap and keep things flowing.",type:"I"},
+  {t:"When juggling multiple tasks at once, I am genuinely more effective than when focused on just one thing.",type:"I"},
+  {t:"When communicating with others, I must work hard to stay consistent and disciplined in my messaging.",type:"I"},
+  {t:"When routine sets in, I view it as an unavoidable burden and continuously wrestle to stay focused.",type:"I"},
+  {t:"When I think out loud, I sometimes realize later that people interpreted my brainstorming as a concrete plan.",type:"I"},
+  {t:"When a deadline approaches, I almost always need that pressure before I will commit to a final decision.",type:"I"},
+  {t:"When I go off on tangents in conversation, I sometimes lose people along the way.",type:"I"},
+  {t:"When I feel that others do not like me, I become stressed and unsettled.",type:"I"},
+  {t:"When I have a personal experience worth sharing, I frequently tell stories about it to connect with others.",type:"I"},
+
+  {t:"When working with others, I am agreeable, cooperative, and easy to get along with.",type:"S"},
+  {t:"When situations become chaotic, I remain adaptable, flexible, and calm.",type:"S"},
+  {t:"When conflict arises, I instinctively avoid drama and approach the situation with a level head.",type:"S"},
+  {t:"When interacting with others, I am consistently considerate, kind, and polite.",type:"S"},
+  {t:"When someone tries to provoke me, I remain relaxed and am very hard to irritate.",type:"S"},
+  {t:"When people share their needs and ideas, I am genuinely open and receptive to them.",type:"S"},
+  {t:"When I care for others, it comes naturally and is one of my strongest qualities.",type:"S"},
+  {t:"When I am being pulled into conflict, I feel stressed and want to find a way out of the tension.",type:"S"},
+  {t:"When someone presents an idea, I always strive to acknowledge the person first before evaluating the idea itself.",type:"S"},
+  {t:"When making decisions, I strive to understand how each individual involved will be impacted.",type:"S"},
+  {t:"When I am in relationships, my deepest desire is to truly understand others and be deeply understood in return.",type:"S"},
+  {t:"When I disagree with someone, I find it challenging to push back because I fear it will disrupt relational harmony.",type:"S"},
+  {t:"When I seek emotional clarity through questions, it is so I can arrive at the most compassionate resolution.",type:"S"},
+  {t:"When someone challenges my ideas or viewpoints, it often feels deeply personal to me.",type:"S"},
+  {t:"When there is an argument, I actively seek common ground because relational harmony is a core value for me.",type:"S"},
+  {t:"When I want to be appreciated, it is for who I am as a person rather than merely for what I accomplish.",type:"S"},
+  {t:"When I choose my friendships, I prefer cultivating a small circle of close, meaningful relationships.",type:"S"},
+  {t:"When the group disagrees with me, I hesitate to speak up and advocate for my own position.",type:"S"},
+
+  {t:"When gathering information, I am rational, thorough, and partial to keeping detailed records.",type:"C"},
+  {t:"When approaching a task, I am cautious, attentive, and resist rushing into things.",type:"C"},
+  {t:"When organizing my environment, I am meticulous, orderly, and maintain high standards.",type:"C"},
+  {t:"When I notice imperfections and mistakes, it is because my eye is naturally drawn to what can be improved.",type:"C"},
+  {t:"When I need to make a decision, I want all available information before I commit to a choice.",type:"C"},
+  {t:"When learning something new, I prefer a step-by-step, methodical approach that builds carefully on what I already know.",type:"C"},
+  {t:"When I have a schedule, I prefer to stick to it and feel uncomfortable when plans change midway.",type:"C"},
+  {t:"When I have thoughts to share, I consider every detail before communicating them to others.",type:"C"},
+  {t:"When I need to process my thoughts, I require time to ensure my answers are well-reasoned and correct.",type:"C"},
+  {t:"When evaluating a vision or plan, I need assurance that it is grounded and carefully considered before I commit my time and resources.",type:"C"},
+  {t:"When tackling problems, I prioritize realism, common sense, and tangible, practical solutions.",type:"C"},
+  {t:"When others get swept up in excitement, I often find myself raising the difficult, grounding questions.",type:"C"},
+  {t:"When working on a project, I bring the same level of structure and intentionality to both my personal and professional life.",type:"C"},
+  {t:"When I develop ideas, I prefer to brainstorm collaboratively at first, then step away to refine the details on my own.",type:"C"},
+  {t:"When I work without interruption or distraction, I am significantly more productive and effective.",type:"C"},
+  {t:"When I have ideas that feel incomplete, I withhold them until they are close to the standard I hold for myself.",type:"C"},
+  {t:"When I encounter data, I naturally assume there is always a deeper pattern or significance waiting to be uncovered.",type:"C"},
+  {t:"When sharing my thoughts, I favor written communication because it can be revised, polished, and perfected.",type:"C"}
+];
+
+const ADMIN_PASS = "selcs2025";
+const TYPE_ORDER = ['D','I','S','C'];
+const TYPE_COLORS = {D:'var(--driver)',I:'var(--inspirer)',S:'var(--sustainer)',C:'var(--cultivator)'};
+
+// ═══════════════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 let currentUser = null;
 let currentQ = 0;
 let answers = {};
 let shuffledOrder = [];
 
-// ═══════════════════════════════════════
+function getRecords(){ try{return JSON.parse(localStorage.getItem('selcs2_records')||'[]')}catch(e){return[]} }
+function saveRecords(r){ localStorage.setItem('selcs2_records',JSON.stringify(r)) }
+
+// ═══════════════════════════════════════════════════
 // TABS
-// ═══════════════════════════════════════
-function showTab(name, btn) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+// ═══════════════════════════════════════════════════
+function showTab(name, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tabs button').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  btn.classList.add('active');
-  if (name === 'about') renderAbout();
+  if(btn) btn.classList.add('active');
+  if(name==='about') renderAbout();
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // QUIZ
-// ═══════════════════════════════════════
-function startQuiz() {
-  const name = document.getElementById('reg-name').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  const errEl = document.getElementById('reg-error');
-  if (!name || !email) { errEl.textContent='Please enter your name and email.'; errEl.style.display='block'; return; }
-  if (!/\S+@\S+\.\S+/.test(email)) { errEl.textContent='Please enter a valid email address.'; errEl.style.display='block'; return; }
-  errEl.style.display='none';
-  currentUser = { name, email, org: document.getElementById('reg-org').value.trim(), role: document.getElementById('reg-role').value };
-  answers = {}; currentQ = 0;
-  shuffledOrder = [...Array(QUESTIONS.length).keys()].sort(() => Math.random() - 0.5);
+// ═══════════════════════════════════════════════════
+function startQuiz(){
+  const name=document.getElementById('reg-name').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const org=document.getElementById('reg-org').value.trim();
+  const role=document.getElementById('reg-role').value;
+  const err=document.getElementById('reg-error');
+  if(!name||!email){err.textContent='Please enter your name and email.';err.style.display='block';return}
+  if(!/\S+@\S+\.\S+/.test(email)){err.textContent='Please enter a valid email address.';err.style.display='block';return}
+  err.style.display='none';
+  currentUser={name,email,org,role};
+  answers={};
+  currentQ=0;
+  // Shuffle question order
+  shuffledOrder=QUESTIONS.map((_,i)=>i);
+  for(let i=shuffledOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffledOrder[i],shuffledOrder[j]]=[shuffledOrder[j],shuffledOrder[i]]}
   document.getElementById('step-register').style.display='none';
   document.getElementById('step-quiz').style.display='block';
   renderQuestion();
 }
 
-function renderQuestion() {
-  const idx = shuffledOrder[currentQ];
-  const q = QUESTIONS[idx];
-  const total = QUESTIONS.length;
-  const pct = Math.round((currentQ/total)*100);
-  document.getElementById('q-counter').textContent=`Question ${currentQ+1} of ${total}`;
-  document.getElementById('q-pct').textContent=pct+'%';
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('q-num').textContent=`Question ${currentQ+1}`;
-  document.getElementById('q-text').textContent=q.q;
-  const shuffledOpts = [...q.opts].sort(() => Math.random()-0.5);
-  const optionsEl = document.getElementById('q-options');
-  optionsEl.innerHTML='';
-  ['A','B','C','D'].forEach((letter, i) => {
-    const opt = shuffledOpts[i];
-    const btn = document.createElement('button');
-    btn.className='option-btn'+(answers[idx]===opt.type&&answers[idx+'_t']===opt.t?' selected':'');
-    btn.innerHTML=`<span class="option-letter">${letter}</span><span>${opt.t}</span>`;
-    btn.onclick=()=>{ answers[idx]=opt.type; answers[idx+'_t']=opt.t; document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected')); btn.classList.add('selected'); };
-    optionsEl.appendChild(btn);
+function renderQuestion(){
+  const idx=shuffledOrder[currentQ];
+  const q=QUESTIONS[idx];
+  const selected=answers[idx];
+  const pct=Math.round((currentQ/QUESTIONS.length)*100);
+  document.getElementById('prog-bar').style.width=pct+'%';
+  document.getElementById('prog-text').textContent=`Question ${currentQ+1} of ${QUESTIONS.length}`;
+  document.getElementById('btn-prev').disabled=currentQ===0;
+  const isLast=currentQ===QUESTIONS.length-1;
+  document.getElementById('btn-next').textContent=isLast?'See Results →':'Next →';
+
+  const labels=['Strongly Disagree','Disagree','Neutral','Agree','Strongly Agree'];
+  const vals=[1,2,3,4,5];
+  let html=`<div class="question-card">
+    <div class="question-num">Question ${currentQ+1} of ${QUESTIONS.length}</div>
+    <div class="question-text">${q.t}</div>
+    <div class="likert-row">`;
+  vals.forEach((v,i)=>{
+    const sel=selected===v?'selected':'';
+    html+=`<div class="likert-option ${sel}" onclick="selectAnswer(${idx},${v})">
+      <div class="likert-dot"></div>
+      <div class="likert-val">${labels[i]}</div>
+    </div>`;
   });
-  document.getElementById('btn-prev').style.visibility=currentQ===0?'hidden':'visible';
-  document.getElementById('btn-next').textContent=currentQ===total-1?'See My Results →':'Next →';
+  html+=`</div></div>`;
+  document.getElementById('question-area').innerHTML=html;
 }
 
-function nextQ() {
-  const idx = shuffledOrder[currentQ];
-  if (!answers[idx]) { const o=document.getElementById('q-options'); o.style.outline='2px solid var(--rose)'; o.style.borderRadius='4px'; setTimeout(()=>{o.style.outline='';},800); return; }
-  if (currentQ < QUESTIONS.length-1) { currentQ++; renderQuestion(); }
-  else submitResults();
+function selectAnswer(qIdx,val){
+  answers[qIdx]=val;
+  renderQuestion();
 }
 
-function prevQ() { if (currentQ>0) { currentQ--; renderQuestion(); } }
+function prevQ(){
+  if(currentQ>0){currentQ--;renderQuestion()}
+}
 
-// ═══════════════════════════════════════
-// SCORING & SUBMIT
-// ═══════════════════════════════════════
-async function submitResults() {
-  const scores = { D:0, I:0, S:0, C:0 };
-  QUESTIONS.forEach((_,idx) => { if (answers[idx]) scores[answers[idx]]++; });
-  const ranked = Object.entries(scores).sort((a,b)=>b[1]-a[1]).map(r=>r[0]);
-
-  const btn = document.getElementById('btn-next');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>Saving…';
-
-  try {
-    const res = await fetch(`${API_BASE}/api/results`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ ...currentUser, scores, ranked })
-    });
-    const record = await res.json();
-    document.getElementById('step-quiz').style.display='none';
-    document.getElementById('step-results').style.display='block';
-    document.getElementById('result-output').innerHTML = renderResultHTML(record.record || record, 40, true);
-  } catch(e) {
-    btn.disabled=false; btn.textContent='See My Results →';
-    alert('There was a problem saving your results. Please check your connection and try again.');
+function nextQ(){
+  const idx=shuffledOrder[currentQ];
+  if(answers[idx]===undefined){
+    // Highlight that selection is needed
+    const card=document.querySelector('.question-card');
+    card.style.borderColor='var(--driver)';
+    setTimeout(()=>card.style.borderColor='transparent',600);
+    return;
   }
+  if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion()}
+  else{calculateResults()}
 }
 
-function resetQuiz() {
+// ═══════════════════════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════════════════════
+function calculateResults(){
+  const scores={D:0,I:0,S:0,C:0};
+  const maxPerType=18*5; // 18 questions × max 5
+  QUESTIONS.forEach((q,i)=>{
+    if(answers[i]!==undefined) scores[q.type]+=answers[i];
+  });
+  const pcts={};
+  TYPE_ORDER.forEach(t=>{ pcts[t]=Math.round((scores[t]/maxPerType)*100) });
+  const ranked=TYPE_ORDER.slice().sort((a,b)=>pcts[b]-pcts[a]);
+  const primary=ranked[0];
+
+  // Save record
+  const record={
+    name:currentUser.name,
+    email:currentUser.email,
+    org:currentUser.org,
+    role:currentUser.role,
+    date:new Date().toISOString(),
+    scores,pcts,ranked,primary
+  };
+  const records=getRecords();
+  records.push(record);
+  saveRecords(records);
+
+  renderResults(record);
+}
+
+function renderResults(r){
+  const tp=TYPES[r.primary];
+  let html=`
+    <div class="results-header">
+      <div class="eyebrow" style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.5rem">Assessment Complete</div>
+      <h2>Your SELCS Profile</h2>
+      <p>${r.name}</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1.1rem;margin-bottom:1rem;color:var(--ink-light)">Your Ranked Profile</h3>`;
+  r.ranked.forEach((t,i)=>{
+    const info=TYPES[t];
+    html+=`<div class="type-rank">
+      <div class="rank-num">${i+1}</div>
+      <div class="rank-label" style="color:${info.color}">${info.label}</div>
+      <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${info.color}"></div></div>
+      <div class="rank-pct">${r.pcts[t]}%</div>
+    </div>`;
+  });
+  html+=`</div>`;
+
+  // Spotlight
+  html+=`<div class="spotlight card" style="border-left-color:${tp.color};background:${tp.bg}">
+    <h3 style="color:${tp.color}">Your Primary Style: ${tp.label}</h3>
+    <span class="tagline">${tp.tagline}</span>
+    <p>${tp.overview}</p>
+    <p><strong>Communication Style:</strong> ${tp.communication}</p>
+    <p><strong>Core Values:</strong> ${tp.values}</p>
+    <p style="font-weight:600;margin-top:.5rem">As a Mentor:</p>`;
+  tp.mentoring.forEach(m=>{html+=`<p style="padding-left:1rem;font-size:.85rem">• ${m}</p>`});
+  html+=`</div>`;
+
+  // All 4 mini cards
+  html+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:1rem">All Four SELCS Styles</h3><div class="type-grid">`;
+  TYPE_ORDER.forEach(t=>{
+    const info=TYPES[t];
+    const isPrimary=t===r.primary?' (Your Primary)':'';
+    html+=`<div class="type-mini" style="border-color:${info.color}20;background:${info.bg}">
+      <h4 style="color:${info.color}">${info.label}${isPrimary}</h4>
+      <p>${info.tagline}</p>
+    </div>`;
+  });
+  html+=`</div></div>`;
+
+  html+=`<div class="flex-gap mt-2">
+    <button class="btn btn-gold btn-sm" onclick="window.print()">Print Results</button>
+    <button class="btn btn-outline btn-sm" onclick="retakeQuiz()">Retake Assessment</button>
+  </div>`;
+
+  document.getElementById('step-quiz').style.display='none';
+  document.getElementById('step-results').style.display='block';
+  document.getElementById('step-results').innerHTML=html;
+}
+
+function retakeQuiz(){
   document.getElementById('step-results').style.display='none';
   document.getElementById('step-register').style.display='block';
-  document.getElementById('result-output').innerHTML='';
-  answers={}; currentQ=0; currentUser=null;
 }
 
-// ═══════════════════════════════════════
-// RENDER RESULTS
-// ═══════════════════════════════════════
-function renderResultHTML(record, totalQ, isPrimary) {
-  const { ranked, scores, name, role, org, date } = record;
-  const rankLabels=['Primary','Secondary','Third','Fourth'];
-  const primary=TYPES[ranked[0]];
-  const rankBadges=ranked.map((t,i)=>`<span class="rank-badge rank-${i+1}">${rankLabels[i]}: ${TYPES[t].label} (${t})</span>`).join('');
-  const scoreBars=ranked.map(t=>`<div class="score-row type-${t}"><span class="score-label" style="color:${TYPES[t].color}">${t}</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:${(scores[t]/totalQ)*100}%"></div></div><span class="score-val">${scores[t]}</span></div>`).join('');
-  const allCards=ranked.map((t,i)=>{const tp=TYPES[t];return`<div class="type-card" style="border-left-color:${tp.color}"><h3 style="color:${tp.color}">${i===0?'★ ':''}${tp.label} <span style="font-size:0.9rem;opacity:0.6">(${t})</span></h3><span class="type-tag">${rankLabels[i]} Style · ${tp.tagline}</span><p>${tp.overview}</p><p><strong>Communication:</strong> ${tp.communication}</p><p><strong>Values:</strong> ${tp.values}</p><p><strong>As a Mentor:</strong></p><ul>${tp.leadership.map(l=>`<li>${l}</li>`).join('')}</ul></div>`;}).join('');
-  const dateStr=new Date(date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  return `<div class="results-header"><div class="eyebrow">Your SELCS Profile</div><h2>Results for <span class="results-name">${name}</span></h2><p style="font-size:0.8rem;opacity:0.6;margin-top:0.35rem">${role?role+' · ':''}${org||''} · ${dateStr}</p></div>
-  <div class="selcs-rank">${rankBadges}</div>
-  <div class="card"><label>Score Breakdown</label><div class="score-bars">${scoreBars}</div></div>
-  <div class="primary-callout"><div class="eyebrow">Your Dominant Style</div><h3>${primary.label}</h3><p>${primary.tagline}</p><p style="margin-top:0.75rem">${primary.overview}</p></div>
-  <div class="card"><label>Your Full SELCS Profile</label>${allCards}</div>
-  ${isPrimary?`<div class="flex-gap mt-2"><button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button><button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button></div>`:''}
-  <div style="margin-top:1.5rem;padding:1rem;border-top:1px solid var(--border);text-align:center;font-size:0.72rem;color:var(--ink-light);line-height:1.7;opacity:0.7">
-    © ${new Date().getFullYear()} Mentor Success Academy · Mary Wardlaw &amp; Rebecca Munlyn, Co-Founders<br>
-    The SELCS instrument is the exclusive intellectual property of Mentor Success Academy. All rights reserved.
-  </div>`;
-}
-
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // REVIEW
-// ═══════════════════════════════════════
-async function reviewResults() {
-  const email = document.getElementById('review-email').value.trim();
-  const out = document.getElementById('review-output');
-  if (!email) { out.innerHTML='<div class="alert alert-error">Please enter your email address.</div>'; return; }
-  out.innerHTML='<div class="alert alert-info"><span class="spinner"></span>Looking up your results…</div>';
-  try {
-    const res = await fetch(`${API_BASE}/api/results/${encodeURIComponent(email)}`);
-    if (!res.ok) { out.innerHTML='<div class="alert alert-error">No results found for that email. Have you completed the quiz?</div>'; return; }
-    const record = await res.json();
-    out.innerHTML = renderResultHTML(record, 40, false);
-  } catch(e) {
-    out.innerHTML='<div class="alert alert-error">Could not connect to the server. Please try again.</div>';
-  }
-}
-
-// ═══════════════════════════════════════
-// ADMIN RECORDS
-// ═══════════════════════════════════════
-async function viewRecords() {
-  const password = document.getElementById('admin-pass').value;
-  const org = document.getElementById('admin-org-filter').value;
-  const out = document.getElementById('records-output');
-  out.innerHTML='<div class="alert alert-info"><span class="spinner"></span>Loading records…</div>';
-  try {
-    const res = await fetch(`${API_BASE}/api/admin/results`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ password, org })
-    });
-    if (res.status===401) { out.innerHTML='<div class="alert alert-error">Incorrect password.</div>'; return; }
-    const data = await res.json();
-
-    // Populate org filter
-    const filter = document.getElementById('admin-org-filter');
-    filter.innerHTML='<option value="">All Organizations</option>';
-    (data.orgs||[]).sort().forEach(o=>{ const opt=document.createElement('option'); opt.value=o; opt.textContent=o; filter.appendChild(opt); });
-
-    if (!data.results.length) { out.innerHTML='<div class="card"><div class="empty-state"><p>No records yet.</p><p>Results will appear here once participants complete the assessment.</p></div></div>'; return; }
-
-    // Group by org
-    const groups={};
-    data.results.forEach(r=>{ const g=r.org||'Unspecified'; if(!groups[g])groups[g]=[]; groups[g].push(r); });
-
-    let html=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem"><label style="margin:0">${data.total} Participant${data.total!==1?'s':''}</label></div>`;
-    Object.entries(groups).sort().forEach(([grp,recs])=>{
-      html+=`<div style="margin-bottom:1.5rem"><div style="font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">${grp} (${recs.length})</div><table class="records-table"><thead><tr><th>Name</th><th>Role</th><th>Primary</th><th>SELCS Order</th><th>Date</th><th></th></tr></thead><tbody>`;
-      recs.forEach(r=>{
-        const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-        html+=`<tr><td><strong>${r.name}</strong><br><span style="font-size:0.75rem;opacity:0.6">${r.email}</span></td><td style="font-size:0.82rem">${r.role||'—'}</td><td><span class="type-pill ${TYPES[r.ranked[0]].pill}">${r.ranked[0]} · ${TYPES[r.ranked[0]].label}</span></td><td>${r.ranked.map(t=>`<span class="type-pill ${TYPES[t].pill}">${t}</span>`).join(' ')}</td><td style="font-size:0.78rem;opacity:0.7">${d}</td><td><button class="btn btn-danger" style="padding:0.3rem 0.6rem;font-size:0.65rem" onclick="deleteRecord('${r.id}')">✕</button></td></tr>`;
-      });
-      html+=`</tbody></table></div>`;
+// ═══════════════════════════════════════════════════
+function reviewResults(){
+  const email=document.getElementById('review-email').value.trim().toLowerCase();
+  if(!email){return}
+  const records=getRecords().filter(r=>r.email.toLowerCase()===email);
+  const out=document.getElementById('review-output');
+  if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No results found for that email address.</p></div>';return}
+  let html='';
+  records.reverse().forEach(r=>{
+    const d=new Date(r.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+    const tp=TYPES[r.primary];
+    html+=`<div class="card mt-1">
+      <p style="font-size:.75rem;color:var(--ink-faint);margin-bottom:.5rem">${d}</p>
+      <p style="font-weight:600;color:${tp.color};margin-bottom:.5rem">Primary: ${tp.label}</p>`;
+    r.ranked.forEach((t,i)=>{
+      html+=`<div class="type-rank">
+        <div class="rank-num" style="font-size:1.1rem">${i+1}</div>
+        <div class="rank-label" style="color:${TYPES[t].color};font-size:.85rem">${TYPES[t].label}</div>
+        <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${TYPES[t].color}"></div></div>
+        <div class="rank-pct" style="font-size:.78rem">${r.pcts[t]}%</div>
+      </div>`;
     });
     html+=`</div>`;
-    out.innerHTML=html;
-  } catch(e) {
-    out.innerHTML='<div class="alert alert-error">Could not connect to the server.</div>';
-  }
+  });
+  out.innerHTML=html;
 }
 
-async function deleteRecord(id) {
-  if (!confirm('Delete this record permanently?')) return;
-  const password = document.getElementById('admin-pass').value;
-  await fetch(`${API_BASE}/api/admin/results/${id}`, { method:'DELETE', headers:{'Content-Type':'application/json'}, body:JSON.stringify({password}) });
-  viewRecords();
+// ═══════════════════════════════════════════════════
+// RECORDS (ADMIN)
+// ═══════════════════════════════════════════════════
+function viewRecords(){
+  const pass=document.getElementById('admin-pass').value;
+  const out=document.getElementById('records-output');
+  if(pass!==ADMIN_PASS){out.innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Incorrect password.</p></div>';return}
+  const filter=document.getElementById('admin-org-filter').value.trim().toLowerCase();
+  let records=getRecords();
+  if(filter) records=records.filter(r=>(r.org||'').toLowerCase().includes(filter));
+  if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No records found.</p></div>';return}
+
+  let html=`<div class="card mt-1" style="overflow-x:auto">
+    <p style="font-size:.82rem;color:var(--ink-light);margin-bottom:.75rem">${records.length} record${records.length>1?'s':''} found</p>
+    <table class="records-table">
+    <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Primary</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th></tr></thead><tbody>`;
+  records.reverse().forEach(r=>{
+    const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'});
+    html+=`<tr><td>${d}</td><td>${r.name}</td><td>${r.email}</td><td>${r.org||'—'}</td><td>${r.role||'—'}</td>
+      <td style="font-weight:600;color:${TYPES[r.primary].color}">${TYPES[r.primary].label.replace('The ','')}</td>
+      <td>${r.pcts.D}</td><td>${r.pcts.I}</td><td>${r.pcts.S}</td><td>${r.pcts.C}</td></tr>`;
+  });
+  html+=`</tbody></table></div>
+    <div class="mt-1"><button class="btn btn-outline btn-sm" style="color:var(--driver);border-color:var(--driver)" onclick="if(confirm('Clear ALL records? This cannot be undone.')){saveRecords([]);document.getElementById('records-output').innerHTML='<div class=\\'card mt-1\\'><p>All records cleared.</p></div>'}">Clear All Records</button></div>`;
+  out.innerHTML=html;
 }
 
-async function exportCSV() {
-  const password = document.getElementById('admin-pass').value;
-  if (!password) { alert('Enter the admin password first.'); return; }
-  const form = document.createElement('form');
-  form.method='POST'; form.action=`${API_BASE}/api/admin/export`; form.style.display='none';
-  const inp = document.createElement('input'); inp.name='password'; inp.value=password;
-  form.appendChild(inp); document.body.appendChild(form); form.submit(); document.body.removeChild(form);
+function exportCSV(){
+  const pass=document.getElementById('admin-pass').value;
+  if(pass!==ADMIN_PASS){document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Enter admin password first.</p></div>';return}
+  const records=getRecords();
+  if(!records.length){return}
+  let csv='Date,Name,Email,Organization,Role,Primary,Driver%,Inspirer%,Sustainer%,Cultivator%,Ranked Order\n';
+  records.forEach(r=>{
+    const d=new Date(r.date).toLocaleDateString();
+    const ranked=r.ranked.map(t=>TYPES[t].label.replace('The ','')).join(' > ');
+    csv+=`"${d}","${r.name}","${r.email}","${r.org||''}","${r.role||''}","${TYPES[r.primary].label}",${r.pcts.D},${r.pcts.I},${r.pcts.S},${r.pcts.C},"${ranked}"\n`;
+  });
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SELCS_Records.csv';a.click();
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // ABOUT
-// ═══════════════════════════════════════
-function renderAbout() {
+// ═══════════════════════════════════════════════════
+function renderAbout(){
   const el=document.getElementById('about-types');
-  if (el.innerHTML) return;
-  el.innerHTML=Object.entries(TYPES).map(([key,tp])=>`<div class="card type-card" style="border-left-color:${tp.color}"><h3 style="color:${tp.color}">${tp.label} <span style="font-size:0.9rem;opacity:0.5">(${key})</span></h3><span class="type-tag">${tp.tagline}</span><p>${tp.overview}</p><p><strong>Communication Style:</strong> ${tp.communication}</p><p><strong>Core Values:</strong> ${tp.values}</p><p><strong>As a Mentor:</strong></p><ul>${tp.leadership.map(l=>`<li>${l}</li>`).join('')}</ul></div>`).join('');
+  if(el.innerHTML) return;
+  el.innerHTML=TYPE_ORDER.map(key=>{
+    const tp=TYPES[key];
+    return `<div class="about-type" style="border-left-color:${tp.color}">
+      <h3 style="color:${tp.color}">${tp.label}</h3>
+      <span class="tagline">${tp.tagline}</span>
+      <p>${tp.overview}</p>
+      <p><strong>Communication Style:</strong> ${tp.communication}</p>
+      <p><strong>Core Values:</strong> ${tp.values}</p>
+      <p style="font-weight:600;margin-top:.5rem">As a Mentor:</p>
+      ${tp.mentoring.map(m=>`<p style="padding-left:1rem;font-size:.83rem">• ${m}</p>`).join('')}
+    </div>`;
+  }).join('');
 }
 </script>
-
-<footer style="background:var(--ink);color:var(--cream);text-align:center;padding:1.75rem 1rem;margin-top:3rem">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;letter-spacing:0.05em;margin-bottom:0.4rem">Mentor Success Academy</div>
-  <div style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem">Mary Wardlaw &amp; Rebecca Munlyn, Co-Founders</div>
-  <div style="font-size:0.72rem;color:rgba(247,243,238,0.45);line-height:1.6">
-    © <span id="footer-year"></span> Mentor Success Academy. All rights reserved.<br>
-    The SELCS instrument is the exclusive intellectual property of Mentor Success Academy.<br>
-    Unauthorized reproduction or distribution is prohibited.
-  </div>
-</footer>
-<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
