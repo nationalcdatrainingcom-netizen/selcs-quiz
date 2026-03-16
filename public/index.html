@@ -21,58 +21,47 @@ html{font-size:16px;-webkit-text-size-adjust:100%}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh}
 h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.2}
 
-/* ── HEADER ── */
 header{background:var(--ink);color:var(--gold-light);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100}
 header .logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
 header .logo em{font-style:italic;font-weight:400;color:var(--gold)}
 
-/* ── NAV ── */
 .nav-tabs{display:flex;gap:0;background:var(--ink);padding:0 1.5rem;border-bottom:1px solid rgba(197,165,90,.15)}
 .nav-tabs button{background:none;border:none;color:var(--ink-faint);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;padding:.7rem 1.1rem;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;position:relative;transition:color .2s}
 .nav-tabs button:hover{color:var(--gold-light)}
 .nav-tabs button.active{color:var(--gold)}
 .nav-tabs button.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
 
-/* ── PANELS ── */
 .panel{display:none;max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .panel.active{display:block}
-
-/* ── CARDS ── */
 .card{background:#fff;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);margin-bottom:1.25rem}
 .section-head{margin-bottom:1.5rem}
 .section-head .eyebrow{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.25rem}
 .section-head h2{font-size:1.65rem;color:var(--ink)}
 
-/* ── FORMS ── */
 label{display:block;font-size:.82rem;font-weight:600;color:var(--ink-light);margin-bottom:.35rem;letter-spacing:.02em}
 input[type="text"],input[type="email"],input[type="password"],select{
   width:100%;padding:.65rem .85rem;border:1.5px solid var(--bg2);border-radius:8px;font-size:.9rem;
   font-family:'DM Sans',sans-serif;background:var(--bg);transition:border-color .2s;margin-bottom:1rem}
 input:focus,select:focus{outline:none;border-color:var(--gold)}
 .btn{display:inline-block;padding:.7rem 1.6rem;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em}
-.btn-gold{background:var(--gold);color:#fff}
-.btn-gold:hover{background:var(--gold-dark)}
-.btn-outline{background:none;border:1.5px solid var(--gold);color:var(--gold-dark)}
-.btn-outline:hover{background:var(--gold);color:#fff}
+.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:var(--gold-dark)}
+.btn-outline{background:none;border:1.5px solid var(--gold);color:var(--gold-dark)}.btn-outline:hover{background:var(--gold);color:#fff}
 .btn-sm{padding:.45rem 1rem;font-size:.78rem}
 .btn:disabled{opacity:.5;cursor:default}
 .error-msg{color:var(--driver);font-size:.82rem;margin-bottom:1rem;display:none}
 .flex-gap{display:flex;gap:.75rem;flex-wrap:wrap}
 .mt-1{margin-top:.75rem}.mt-2{margin-top:1.5rem}
 
-/* ── QUIZ STEP: PROGRESS ── */
 .progress-wrap{margin-bottom:1.75rem}
 .progress-bar-outer{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
 .progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));border-radius:3px;transition:width .4s ease}
 .progress-text{font-size:.75rem;color:var(--ink-faint);text-align:right}
 
-/* ── QUIZ STEP: QUESTION ── */
 .question-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--card-shadow);animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .question-num{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.6rem}
 .question-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;line-height:1.45;margin-bottom:1.75rem;color:var(--ink)}
 .likert-row{display:flex;align-items:stretch;gap:0;margin-bottom:.5rem}
-.likert-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--ink-faint);padding:0 .25rem;margin-bottom:1.5rem}
 .likert-option{flex:1;display:flex;flex-direction:column;align-items:center;padding:.85rem .25rem;cursor:pointer;border:1.5px solid transparent;border-radius:8px;transition:all .2s;gap:.35rem}
 .likert-option:hover{background:var(--bg2)}
 .likert-option.selected{border-color:var(--gold);background:rgba(197,165,90,.08)}
@@ -83,7 +72,6 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 .likert-option.selected .likert-val{color:var(--gold-dark);font-weight:600}
 .quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
 
-/* ── RESULTS ── */
 .results-header{text-align:center;padding:2rem 0 1rem}
 .results-header h2{font-size:2rem;margin-bottom:.35rem}
 .results-header p{color:var(--ink-light);font-size:.9rem}
@@ -99,6 +87,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 .spotlight h3{font-size:1.35rem;margin-bottom:.5rem}
 .spotlight .tagline{font-style:italic;color:var(--ink-light);margin-bottom:.75rem;font-size:.9rem;display:block}
 .spotlight p{font-size:.88rem;line-height:1.7;color:var(--ink);margin-bottom:.65rem}
+.blend-badge{display:inline-block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:.25rem .75rem;border-radius:20px;margin-bottom:.75rem}
 
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
 @media(max-width:600px){.type-grid{grid-template-columns:1fr}}
@@ -106,19 +95,16 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 .type-mini h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:.25rem}
 .type-mini p{font-size:.78rem;line-height:1.6;color:var(--ink-light)}
 
-/* ── RECORDS TABLE ── */
 .records-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:1rem}
 .records-table th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);padding:.5rem;border-bottom:2px solid var(--bg2)}
 .records-table td{padding:.55rem .5rem;border-bottom:1px solid var(--bg2);vertical-align:top}
 .records-table tr:hover td{background:var(--bg2)}
 
-/* ── ABOUT TYPE CARDS ── */
 .about-type{border-left:4px solid;border-radius:var(--radius);padding:1.5rem;margin-bottom:1.25rem;background:#fff;box-shadow:var(--card-shadow)}
 .about-type h3{font-size:1.2rem;margin-bottom:.2rem}
 .about-type .tagline{font-style:italic;color:var(--ink-light);display:block;margin-bottom:.75rem;font-size:.88rem}
 .about-type p{font-size:.85rem;line-height:1.7;margin-bottom:.5rem}
 
-/* ── PRINT ── */
 @media print{
   header,.nav-tabs{display:none}
   .panel{display:block!important;max-width:100%}
@@ -127,8 +113,6 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
   #tab-review,#tab-records{display:none!important}
   .btn{display:none}
 }
-
-/* ── RESPONSIVE ── */
 @media(max-width:500px){
   .likert-option{padding:.6rem .15rem}
   .likert-dot{width:24px;height:24px}
@@ -153,8 +137,6 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 
 <!-- ══════════ ASSESSMENT TAB ══════════ -->
 <div id="tab-quiz" class="panel active">
-
-  <!-- REGISTER -->
   <div id="step-register">
     <div class="section-head mt-2">
       <div class="eyebrow">Self-Assessment</div>
@@ -173,22 +155,14 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
       <label for="reg-role">Role</label>
       <select id="reg-role">
         <option value="">Select your role…</option>
-        <option>Teacher</option>
-        <option>Lead Teacher</option>
-        <option>Assistant Teacher</option>
-        <option>Director</option>
-        <option>Assistant Director</option>
-        <option>Mentor</option>
-        <option>Coach</option>
-        <option>Owner/Operator</option>
-        <option>Other</option>
+        <option>Teacher</option><option>Lead Teacher</option><option>Assistant Teacher</option>
+        <option>Director</option><option>Assistant Director</option><option>Mentor</option>
+        <option>Coach</option><option>Owner/Operator</option><option>Other</option>
       </select>
       <div class="error-msg" id="reg-error"></div>
       <button class="btn btn-gold" onclick="startQuiz()">Begin Assessment</button>
     </div>
   </div>
-
-  <!-- QUIZ -->
   <div id="step-quiz" style="display:none">
     <div class="progress-wrap">
       <div class="progress-bar-outer"><div class="progress-bar-inner" id="prog-bar" style="width:0%"></div></div>
@@ -200,17 +174,12 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
       <button class="btn btn-gold btn-sm" id="btn-next" onclick="nextQ()">Next →</button>
     </div>
   </div>
-
-  <!-- RESULTS -->
   <div id="step-results" style="display:none"></div>
 </div>
 
 <!-- ══════════ REVIEW TAB ══════════ -->
 <div id="tab-review" class="panel">
-  <div class="section-head mt-2">
-    <div class="eyebrow">Your History</div>
-    <h2>Review Past Results</h2>
-  </div>
+  <div class="section-head mt-2"><div class="eyebrow">Your History</div><h2>Review Past Results</h2></div>
   <div class="card">
     <label for="review-email">Enter Your Email</label>
     <input type="email" id="review-email" placeholder="you@example.com">
@@ -221,10 +190,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 
 <!-- ══════════ RECORDS TAB ══════════ -->
 <div id="tab-records" class="panel">
-  <div class="section-head mt-2">
-    <div class="eyebrow">Administrator</div>
-    <h2>All Records</h2>
-  </div>
+  <div class="section-head mt-2"><div class="eyebrow">Administrator</div><h2>All Records</h2></div>
   <div class="card">
     <label for="admin-pass">Administrator Password</label>
     <input type="password" id="admin-pass" placeholder="Enter password">
@@ -240,25 +206,22 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 
 <!-- ══════════ ABOUT TAB ══════════ -->
 <div id="tab-about" class="panel">
-  <div class="section-head mt-2">
-    <div class="eyebrow">Framework</div>
-    <h2>Understanding SELCS</h2>
-  </div>
+  <div class="section-head mt-2"><div class="eyebrow">Framework</div><h2>Understanding SELCS</h2></div>
   <div class="card">
     <p style="font-size:.88rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">
-      The Social Emotional Leadership Communication Style (SELCS) framework identifies four distinct orientations that shape how individuals communicate, lead, and build relationships in early childhood education settings.
+      The Social Emotional Leadership Communication Style (SELCS) framework identifies four core orientations that shape how individuals communicate, lead, and build relationships in early childhood education settings.
     </p>
-    <p style="font-size:.85rem;line-height:1.75;color:var(--ink-light)">
-      Every person carries elements of all four styles. The SELCS assessment reveals your unique blend and identifies which orientations are most and least dominant. Understanding your profile empowers you to mentor more effectively by appreciating the diverse styles of those you lead.
+    <p style="font-size:.85rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">
+      Every person carries elements of all four styles. Many people are a <strong>blend</strong> of two dominant styles — for example, a Driver-Inspirer or a Sustainer-Cultivator. The SELCS assessment reveals your unique profile, whether pure or blended, empowering you to mentor more effectively by understanding your own style and appreciating the styles of those you lead.
     </p>
   </div>
   <div id="about-types"></div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// CORE TYPE DATA
+// ═══════════════════════════════════════════════════════════
 const TYPES = {
   D: {
     label:"The Driver", color:"var(--driver)", bg:"var(--driver-bg)",
@@ -266,13 +229,7 @@ const TYPES = {
     overview:"Drivers are natural leaders who thrive on challenge, decisiveness, and results. They see the big picture, move quickly toward goals, and are unafraid to make tough calls. In mentoring relationships, Drivers bring clarity of direction, high expectations, and an energizing sense of purpose that inspires teams to aim higher.",
     communication:"Drivers communicate directly and efficiently. They prefer getting to the point quickly, value logic and evidence, and may challenge ideas vigorously to test their strength. Their directness can sometimes be perceived as blunt, but it stems from a genuine desire for excellence and truth.",
     values:"Achievement, competence, efficiency, truth, innovation, and forward progress.",
-    mentoring:[
-      "Sets clear, ambitious goals and holds mentees accountable",
-      "Excellent at cutting through ambiguity to find actionable solutions",
-      "Models courage in decision-making and willingness to take calculated risks",
-      "Growth edge: slowing down to listen fully and prioritizing relationships alongside results",
-      "Brings transformative energy that pushes teams beyond incremental improvement"
-    ]
+    mentoring:["Sets clear, ambitious goals and holds mentees accountable","Excellent at cutting through ambiguity to find actionable solutions","Models courage in decision-making and willingness to take calculated risks","Growth edge: slowing down to listen fully and prioritizing relationships alongside results","Brings transformative energy that pushes teams beyond incremental improvement"]
   },
   I: {
     label:"The Inspirer", color:"var(--inspirer)", bg:"var(--inspirer-bg)",
@@ -280,13 +237,7 @@ const TYPES = {
     overview:"Inspirers light up every room they enter. They are energetic, socially gifted, and naturally optimistic — seeing the best in people and situations. In mentoring relationships, Inspirers create warmth and excitement that make people feel valued and motivated to grow. Their gift for storytelling and spontaneity makes learning feel like an adventure.",
     communication:"Inspirers communicate with enthusiasm and warmth. They prefer talking things through, thrive in collaborative conversation, and often think out loud. They may need to work at consistency in messaging and follow-through, but their ability to connect with others is unmatched.",
     values:"Connection, fun, optimism, spontaneity, collaboration, and social harmony.",
-    mentoring:[
-      "Creates an energizing, positive atmosphere where mentees feel safe to take risks",
-      "Excellent at building rapport quickly and making people feel seen",
-      "Models enthusiasm and creativity that is contagious across teams",
-      "Growth edge: maintaining focus and follow-through when initial excitement fades",
-      "Brings the gift of turning tense moments into lighter, more productive ones"
-    ]
+    mentoring:["Creates an energizing, positive atmosphere where mentees feel safe to take risks","Excellent at building rapport quickly and making people feel seen","Models enthusiasm and creativity that is contagious across teams","Growth edge: maintaining focus and follow-through when initial excitement fades","Brings the gift of turning tense moments into lighter, more productive ones"]
   },
   S: {
     label:"The Sustainer", color:"var(--sustainer)", bg:"var(--sustainer-bg)",
@@ -294,13 +245,7 @@ const TYPES = {
     overview:"Sustainers are the steady heart of any team. They lead with empathy, patience, and a deep commitment to understanding others. In mentoring relationships, Sustainers create the psychological safety that allows honest growth. They listen deeply, value every person's dignity, and prioritize relational harmony — building the trust that makes transformation possible.",
     communication:"Sustainers communicate with warmth and attentiveness. They ask thoughtful questions to understand emotions, seek common ground in disagreements, and always acknowledge the person before evaluating the idea. Their gentleness can sometimes make it hard to deliver tough feedback, but it builds extraordinary trust.",
     values:"Empathy, harmony, authenticity, compassion, loyalty, and mutual understanding.",
-    mentoring:[
-      "Creates deep psychological safety where mentees feel truly known and valued",
-      "Excellent at reading emotional undercurrents and responding with care",
-      "Models the kind of genuine human connection that transforms professional relationships",
-      "Growth edge: building confidence to deliver direct feedback and embrace healthy conflict",
-      "Brings the gift of making every person feel that who they are matters more than what they produce"
-    ]
+    mentoring:["Creates deep psychological safety where mentees feel truly known and valued","Excellent at reading emotional undercurrents and responding with care","Models the kind of genuine human connection that transforms professional relationships","Growth edge: building confidence to deliver direct feedback and embrace healthy conflict","Brings the gift of making every person feel that who they are matters more than what they produce"]
   },
   C: {
     label:"The Cultivator", color:"var(--cultivator)", bg:"var(--cultivator-bg)",
@@ -308,16 +253,118 @@ const TYPES = {
     overview:"Cultivators are the careful thinkers and system builders of any team. They approach everything with thoroughness, precision, and a deep respect for doing things right. In mentoring relationships, Cultivators provide the most grounded, well-reasoned guidance — holding high standards while creating structured pathways for growth. They see patterns others miss and build frameworks that endure.",
     communication:"Cultivators communicate with precision and deliberation. They prefer to think before speaking, often favor written communication for its ability to be refined, and value data and evidence in decision-making. They may appear reserved, but this stems from genuine care for quality and accuracy — not indifference.",
     values:"Accuracy, quality, structure, depth, integrity, and continuous improvement.",
-    mentoring:[
-      "Models thoroughness and reflective practice that elevates professional standards",
-      "Excellent at creating systems, frameworks, and clear expectations for growth",
-      "Provides the most honest, carefully considered feedback of any type",
-      "Growth edge: embracing imperfection and sharing ideas before they feel fully formed",
-      "Brings the gift of seeing the deeper patterns and building structures that support lasting change"
-    ]
+    mentoring:["Models thoroughness and reflective practice that elevates professional standards","Excellent at creating systems, frameworks, and clear expectations for growth","Provides the most honest, carefully considered feedback of any type","Growth edge: embracing imperfection and sharing ideas before they feel fully formed","Brings the gift of seeing the deeper patterns and building structures that support lasting change"]
   }
 };
 
+// ═══════════════════════════════════════════════════════════
+// BLENDED PROFILES — 12 combinations
+// Each has a unique name, tagline, overview, communication
+// style, values, and mentoring insights that genuinely merge
+// the two orientations.
+// ═══════════════════════════════════════════════════════════
+const BLENDS = {
+  "D-I": {
+    label:"The Driver-Inspirer",
+    tagline:"A bold, energizing force who charges toward goals while bringing everyone along for the ride",
+    overview:"Catalysts combine the Driver's decisive leadership with the Inspirer's magnetic energy. They don't just set the direction — they rally people around it with contagious enthusiasm. They are visionary leaders who move fast, think big, and make the journey exciting for everyone involved. In mentoring, they set ambitious goals and create the positive energy that makes people believe those goals are achievable.",
+    communication:"Catalysts communicate with confident energy. They are direct about what needs to happen but deliver it with warmth and storytelling that keeps people engaged. They think out loud, move fast in conversation, and can sometimes overwhelm quieter team members with their pace and passion.",
+    values:"Achievement, connection, momentum, optimism, bold action, and team spirit.",
+    mentoring:["Sets inspiring goals while building genuine excitement about reaching them","Naturally combines accountability with encouragement","Models both courage and warmth in leadership","Growth edge: pausing to listen deeply rather than leading every conversation","Creates environments where people feel both challenged and celebrated"]
+  },
+  "D-S": {
+    label:"The Driver-Sustainer",
+    tagline:"A principled leader who drives results while fiercely protecting the people doing the work",
+    overview:"Stewards combine the Driver's goal orientation with the Sustainer's deep care for people. They are the leader who pushes for excellence but never at the expense of the team's wellbeing. They make tough decisions while ensuring every person feels valued in the process. In mentoring, they hold high expectations and simultaneously create the safety net that allows people to stretch without fear.",
+    communication:"Stewards communicate with purposeful warmth. They are direct about expectations but take time to understand how their words land. They balance frank feedback with genuine concern for the person receiving it, and they check in on the emotional impact of their decisions.",
+    values:"Results, loyalty, integrity, people-centered accountability, and protective leadership.",
+    mentoring:["Combines clear goal-setting with emotional attunement to each mentee","Holds people accountable while making them feel genuinely cared for","Models the rare balance of strength and tenderness in leadership","Growth edge: resisting the urge to take over when patience would serve better","Creates cultures where high performance and deep trust coexist"]
+  },
+  "D-C": {
+    label:"The Driver-Cultivator",
+    tagline:"A strategic mastermind who builds precise, well-engineered paths to ambitious goals",
+    overview:"Architects combine the Driver's bold ambition with the Cultivator's analytical precision. They don't just want to reach the goal — they want to build the most effective system for getting there. They are the leader who sees the big picture AND the fine details, creating strategies that are both visionary and airtight. In mentoring, they set clear standards and provide structured, evidence-based guidance for meeting them.",
+    communication:"Architects communicate with efficient precision. They present well-researched arguments, expect the same rigor from others, and can be impatient with vague or emotional reasoning. They prefer data-driven conversations but can come across as intimidating when their directness meets their high standards.",
+    values:"Excellence, strategy, precision, competence, evidence-based leadership, and systematic progress.",
+    mentoring:["Builds thorough development plans with clear milestones and measurable outcomes","Provides feedback that is both direct and meticulously reasoned","Models the discipline of combining vision with attention to detail","Growth edge: making space for emotional processing and relational warmth","Creates frameworks that turn ambitious goals into achievable, step-by-step pathways"]
+  },
+  "I-D": {
+    label:"The Inspirer-Driver",
+    tagline:"An infectious motivator who inspires action, then drives it across the finish line",
+    overview:"Igniters lead with the Inspirer's relational warmth but carry the Driver's determination to see things through. They get people excited, then channel that excitement into real results. They are the leader who makes you want to follow them — and then actually delivers on the promise. In mentoring, they build instant rapport and then leverage that trust to push for meaningful growth.",
+    communication:"Igniters communicate with animated conviction. They lead with stories and enthusiasm but shift to direct, no-nonsense language when it's time to execute. They can be persuasive to the point of being overwhelming, and may need to slow down for those who process more quietly.",
+    values:"Inspiration, achievement, persuasion, energy, follow-through, and team momentum.",
+    mentoring:["Builds trust through warmth, then leverages it to set challenging expectations","Excellent at motivating people who have lost confidence or momentum","Models the combination of joyful leadership and determined follow-through","Growth edge: giving others the floor instead of carrying every conversation","Creates a sense of possibility that makes even reluctant mentees want to try"]
+  },
+  "I-S": {
+    label:"The Inspirer-Sustainer",
+    tagline:"A warm-hearted champion of people who builds joyful, deeply connected teams",
+    overview:"Harmonizers blend the Inspirer's social energy with the Sustainer's deep empathy. They are the leader everyone wants to work with — upbeat, caring, and genuinely invested in each person's emotional wellbeing. They create team cultures that feel like family. In mentoring, they form bonds quickly and create the kind of relationship where people open up, take risks, and grow because they feel completely safe and valued.",
+    communication:"Harmonizers communicate with heartfelt enthusiasm. They are warm, affirming, and attentive to how people feel. They may struggle with delivering critical feedback because their deep care for the relationship makes them reluctant to say anything that might cause pain.",
+    values:"Relationships, joy, empathy, belonging, encouragement, and emotional connection.",
+    mentoring:["Creates the most welcoming, psychologically safe mentoring relationships","Naturally affirms the whole person — not just their professional performance","Models the power of leading with both warmth and genuine optimism","Growth edge: building the courage to have difficult conversations when growth requires it","Makes every mentee feel like they are the most important person in the room"]
+  },
+  "I-C": {
+    label:"The Inspirer-Cultivator",
+    tagline:"A creative visionary who blends social energy with deep analytical thinking",
+    overview:"Innovators combine the Inspirer's enthusiasm and people skills with the Cultivator's love of depth and precision. They are the leader who gets excited about an idea AND does the homework to make sure it works. They bring creative energy to structured problems and structured thinking to creative challenges. In mentoring, they inspire mentees with possibilities while providing the analytical framework to pursue them wisely.",
+    communication:"Innovators communicate in bursts — enthusiastic brainstorming followed by periods of quiet reflection and refinement. They can shift quickly between collaborative energy and solitary deep thinking, which can confuse those who expect consistency. They value both spontaneous dialogue and carefully crafted written communication.",
+    values:"Creativity, precision, curiosity, collaboration balanced with depth, and meaningful innovation.",
+    mentoring:["Inspires creative thinking while grounding it in practical, well-reasoned analysis","Brings enthusiasm to research and data in a way that makes it accessible","Models the balance of social engagement and reflective practice","Growth edge: staying consistent in approach rather than oscillating between extroversion and withdrawal","Helps mentees see that rigorous thinking and creative joy are not opposites"]
+  },
+  "S-D": {
+    label:"The Sustainer-Driver",
+    tagline:"A steady protector who cares deeply for people while driving them toward their potential",
+    overview:"Guardians lead with the Sustainer's empathy but carry the Driver's conviction that people should be pushed toward their best. They are the leader who holds your hand AND holds you accountable. They won't let you settle for less than your potential, but they'll be kind about it every step of the way. In mentoring, they create safe relationships built on trust — and then use that trust as the foundation for challenging growth conversations.",
+    communication:"Guardians communicate with gentle firmness. They listen deeply and validate feelings, but they also name what needs to change. They are comfortable with uncomfortable conversations because they know growth requires them — but they always ensure the relationship feels secure first.",
+    values:"Care, accountability, courage, relational safety, high expectations, and protective strength.",
+    mentoring:["Builds deep trust, then uses it as a platform for honest, growth-focused conversations","Holds people to high standards while ensuring they feel supported every step of the way","Models the combination of tenderness and backbone that defines great mentoring","Growth edge: trusting that others can handle directness without the relationship breaking","Creates relationships where mentees feel both safe enough to be vulnerable and challenged enough to grow"]
+  },
+  "S-I": {
+    label:"The Sustainer-Inspirer",
+    tagline:"A gentle encourager who leads through deep personal connection and joyful affirmation",
+    overview:"Nurturers blend the Sustainer's empathy with the Inspirer's warmth and social ease. They are the leader who makes everyone feel like they belong — celebrated for who they are, not just what they do. They radiate kindness, bring lightness to heavy moments, and create spaces where people feel truly seen. In mentoring, they form deep bonds and use encouragement as their primary tool for growth.",
+    communication:"Nurturers communicate with tender warmth and gentle enthusiasm. They affirm frequently, listen with their whole being, and instinctively know what someone needs to hear. They may avoid conflict almost entirely, preferring to encourage around problems rather than address them directly.",
+    values:"Belonging, encouragement, kindness, emotional safety, joy in relationships, and unconditional positive regard.",
+    mentoring:["Creates the warmest, most affirming mentoring relationships","Helps mentees discover strengths they didn't know they had through genuine celebration","Models the power of unconditional positive regard in professional growth","Growth edge: developing the willingness to name problems directly rather than hoping encouragement will resolve them","Makes mentees feel valued in a way that builds lasting confidence and self-worth"]
+  },
+  "S-C": {
+    label:"The Sustainer-Cultivator",
+    tagline:"A thoughtful counselor who blends empathy with wisdom and careful discernment",
+    overview:"Sages combine the Sustainer's deep empathy with the Cultivator's love of thoughtful analysis. They are the leader people go to for wisdom — someone who listens fully, considers carefully, and offers guidance that is both emotionally attuned and intellectually grounded. They don't rush to answers. In mentoring, they create reflective spaces where mentees feel safe to explore, and then offer insights that are both compassionate and precisely targeted.",
+    communication:"Sages communicate with quiet, considered warmth. They ask probing questions, reflect before responding, and offer counsel that balances emotional understanding with analytical clarity. They may be slow to speak in group settings, but when they do, people listen because their words carry weight.",
+    values:"Wisdom, empathy, reflection, careful discernment, patience, and depth of understanding.",
+    mentoring:["Creates contemplative mentoring spaces where deep exploration is possible","Offers guidance that honors both the emotional and intellectual dimensions of growth","Models the power of thoughtful, unhurried wisdom in a fast-paced field","Growth edge: speaking up sooner and trusting that imperfect wisdom still has value","Helps mentees develop their own reflective practice through modeling"]
+  },
+  "C-D": {
+    label:"The Cultivator-Driver",
+    tagline:"A meticulous planner who builds precise systems and drives them toward ambitious outcomes",
+    overview:"Strategists lead with the Cultivator's analytical rigor but carry the Driver's urgency to see results. They are the leader who won't just build the plan — they'll push relentlessly until it's executed to the highest standard. They demand precision AND progress. In mentoring, they create the most detailed, well-structured development plans and hold mentees accountable for following through on every step.",
+    communication:"Strategists communicate with precise authority. They present thoroughly researched positions and expect others to come equally prepared. They can be challenging conversationalists because they combine high standards for accuracy with impatience for slow progress. Their feedback is always specific, evidence-based, and actionable.",
+    values:"Strategy, excellence, efficiency, evidence, systematic execution, and measurable results.",
+    mentoring:["Builds the most comprehensive, data-driven development plans","Provides feedback that is specific, actionable, and thoroughly reasoned","Models the discipline of combining analytical depth with decisive action","Growth edge: remembering that people need emotional encouragement alongside precise feedback","Creates clear pathways to mastery with built-in accountability and measurement"]
+  },
+  "C-I": {
+    label:"The Cultivator-Inspirer",
+    tagline:"A creative thinker who blends deep analysis with the ability to inspire others around new ideas",
+    overview:"Visionaries combine the Cultivator's depth with the Inspirer's ability to energize people. They are the rare leader who can do the deep thinking AND make it exciting for others. They see patterns and possibilities that others miss, and they have the social gift to bring people along on the journey of discovery. In mentoring, they inspire intellectual curiosity while providing the analytical scaffolding to support it.",
+    communication:"Visionaries communicate by alternating between reflective depth and animated sharing. They may disappear to think, then emerge with ideas presented in compelling, story-driven ways. They value both precision and engagement, and they are at their best when translating complex analysis into language that inspires action.",
+    values:"Innovation, depth, curiosity, compelling communication, pattern recognition, and inspired analysis.",
+    mentoring:["Makes complex ideas accessible and exciting for mentees at any level","Inspires intellectual curiosity while providing the structure to channel it productively","Models the power of deep thinking combined with enthusiastic communication","Growth edge: being patient with mentees who don't share their love of complexity","Helps mentees see that depth and excitement are complementary, not competing forces"]
+  },
+  "C-S": {
+    label:"The Cultivator-Sustainer",
+    tagline:"A caring analyst who combines meticulous observation with genuine emotional investment in people",
+    overview:"Counselors blend the Cultivator's analytical precision with the Sustainer's deep empathy. They are the leader who notices everything — not just the data, but the feelings behind the data. They observe carefully, care deeply, and offer guidance that is both emotionally sensitive and practically grounded. In mentoring, they see what mentees need before the mentees see it themselves, and they deliver that insight with kindness.",
+    communication:"Counselors communicate with observant gentleness. They notice patterns in behavior and emotion, reflect carefully on what they've observed, and share their insights in ways that feel caring rather than clinical. They may be reserved in groups but are deeply attentive in one-on-one conversations.",
+    values:"Attentiveness, empathy, accuracy, thoughtful care, observation, and quietly impactful guidance.",
+    mentoring:["Notices growth opportunities others miss because of their combination of analytical and emotional awareness","Delivers precise feedback in the most emotionally sensitive way possible","Models the power of careful observation paired with genuine compassion","Growth edge: sharing observations proactively rather than waiting for the perfect moment","Creates mentoring relationships where people feel both deeply understood and precisely guided"]
+  }
+};
+
+// ═══════════════════════════════════════════════════════════
+// QUESTIONS — 72 statements, 18 per type
+// ═══════════════════════════════════════════════════════════
 const QUESTIONS = [
   {t:"When faced with challenges and new tasks, I am eager to jump in and find solutions.",type:"D"},
   {t:"When I believe in a goal, I am driven to accomplish it and ready to take charge.",type:"D"},
@@ -398,22 +445,46 @@ const QUESTIONS = [
 
 const ADMIN_PASS = "selcs2025";
 const TYPE_ORDER = ['D','I','S','C'];
-const TYPE_COLORS = {D:'var(--driver)',I:'var(--inspirer)',S:'var(--sustainer)',C:'var(--cultivator)'};
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════════════════
-let currentUser = null;
-let currentQ = 0;
-let answers = {};
-let shuffledOrder = [];
+// ═══════════════════════════════════════════════════════════
+let currentUser = null, currentQ = 0, answers = {}, shuffledOrder = [];
 
 function getRecords(){ try{return JSON.parse(localStorage.getItem('selcs2_records')||'[]')}catch(e){return[]} }
 function saveRecords(r){ localStorage.setItem('selcs2_records',JSON.stringify(r)) }
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// BLEND DETERMINATION
+// If the #1 type's percentage of the TOTAL score is ≥ 60%,
+// they are a pure type. Otherwise, combine the top two.
+// ═══════════════════════════════════════════════════════════
+function determineProfile(pcts, ranked) {
+  const totalPct = TYPE_ORDER.reduce((s,t) => s + pcts[t], 0);
+  const topShare = pcts[ranked[0]] / totalPct;
+  if (topShare >= 0.60) {
+    // Pure type
+    return { isBlend: false, key: ranked[0], profile: TYPES[ranked[0]] };
+  } else {
+    // Blended — top two
+    const blendKey = ranked[0] + '-' + ranked[1];
+    const profile = BLENDS[blendKey];
+    return { isBlend: true, key: blendKey, primary: ranked[0], secondary: ranked[1], profile };
+  }
+}
+
+function getBlendColor(key) {
+  if (key.length === 1) return TYPES[key].color;
+  return TYPES[key.split('-')[0]].color;
+}
+function getBlendBg(key) {
+  if (key.length === 1) return TYPES[key].bg;
+  return TYPES[key.split('-')[0]].bg;
+}
+
+// ═══════════════════════════════════════════════════════════
 // TABS
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function showTab(name, btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tabs button').forEach(b=>b.classList.remove('active'));
@@ -422,9 +493,9 @@ function showTab(name, btn){
   if(name==='about') renderAbout();
 }
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // QUIZ
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function startQuiz(){
   const name=document.getElementById('reg-name').value.trim();
   const email=document.getElementById('reg-email').value.trim();
@@ -435,9 +506,7 @@ function startQuiz(){
   if(!/\S+@\S+\.\S+/.test(email)){err.textContent='Please enter a valid email address.';err.style.display='block';return}
   err.style.display='none';
   currentUser={name,email,org,role};
-  answers={};
-  currentQ=0;
-  // Shuffle question order
+  answers={};currentQ=0;
   shuffledOrder=QUESTIONS.map((_,i)=>i);
   for(let i=shuffledOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffledOrder[i],shuffledOrder[j]]=[shuffledOrder[j],shuffledOrder[i]]}
   document.getElementById('step-register').style.display='none';
@@ -453,18 +522,14 @@ function renderQuestion(){
   document.getElementById('prog-bar').style.width=pct+'%';
   document.getElementById('prog-text').textContent=`Question ${currentQ+1} of ${QUESTIONS.length}`;
   document.getElementById('btn-prev').disabled=currentQ===0;
-  const isLast=currentQ===QUESTIONS.length-1;
-  document.getElementById('btn-next').textContent=isLast?'See Results →':'Next →';
-
+  document.getElementById('btn-next').textContent=currentQ===QUESTIONS.length-1?'See Results →':'Next →';
   const labels=['Strongly Disagree','Disagree','Neutral','Agree','Strongly Agree'];
-  const vals=[1,2,3,4,5];
   let html=`<div class="question-card">
     <div class="question-num">Question ${currentQ+1} of ${QUESTIONS.length}</div>
     <div class="question-text">${q.t}</div>
     <div class="likert-row">`;
-  vals.forEach((v,i)=>{
-    const sel=selected===v?'selected':'';
-    html+=`<div class="likert-option ${sel}" onclick="selectAnswer(${idx},${v})">
+  [1,2,3,4,5].forEach((v,i)=>{
+    html+=`<div class="likert-option ${selected===v?'selected':''}" onclick="selectAnswer(${idx},${v})">
       <div class="likert-dot"></div>
       <div class="likert-val">${labels[i]}</div>
     </div>`;
@@ -472,61 +537,46 @@ function renderQuestion(){
   html+=`</div></div>`;
   document.getElementById('question-area').innerHTML=html;
 }
-
-function selectAnswer(qIdx,val){
-  answers[qIdx]=val;
-  renderQuestion();
-}
-
-function prevQ(){
-  if(currentQ>0){currentQ--;renderQuestion()}
-}
-
+function selectAnswer(qIdx,val){answers[qIdx]=val;renderQuestion()}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion()}}
 function nextQ(){
   const idx=shuffledOrder[currentQ];
-  if(answers[idx]===undefined){
-    // Highlight that selection is needed
-    const card=document.querySelector('.question-card');
-    card.style.borderColor='var(--driver)';
-    setTimeout(()=>card.style.borderColor='transparent',600);
-    return;
-  }
+  if(answers[idx]===undefined){const c=document.querySelector('.question-card');c.style.borderColor='var(--driver)';setTimeout(()=>c.style.borderColor='transparent',600);return}
   if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion()}
   else{calculateResults()}
 }
 
-// ═══════════════════════════════════════════════════
-// RESULTS
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// CALCULATE & RENDER RESULTS
+// ═══════════════════════════════════════════════════════════
 function calculateResults(){
   const scores={D:0,I:0,S:0,C:0};
-  const maxPerType=18*5; // 18 questions × max 5
-  QUESTIONS.forEach((q,i)=>{
-    if(answers[i]!==undefined) scores[q.type]+=answers[i];
-  });
+  const maxPerType=18*5;
+  QUESTIONS.forEach((q,i)=>{ if(answers[i]!==undefined) scores[q.type]+=answers[i] });
   const pcts={};
   TYPE_ORDER.forEach(t=>{ pcts[t]=Math.round((scores[t]/maxPerType)*100) });
   const ranked=TYPE_ORDER.slice().sort((a,b)=>pcts[b]-pcts[a]);
-  const primary=ranked[0];
 
-  // Save record
+  const profile = determineProfile(pcts, ranked);
+
   const record={
-    name:currentUser.name,
-    email:currentUser.email,
-    org:currentUser.org,
-    role:currentUser.role,
-    date:new Date().toISOString(),
-    scores,pcts,ranked,primary
+    name:currentUser.name, email:currentUser.email, org:currentUser.org, role:currentUser.role,
+    date:new Date().toISOString(), scores, pcts, ranked,
+    primary:ranked[0],
+    profileKey: profile.key,
+    profileLabel: profile.profile.label,
+    isBlend: profile.isBlend
   };
-  const records=getRecords();
-  records.push(record);
-  saveRecords(records);
-
+  const records=getRecords(); records.push(record); saveRecords(records);
   renderResults(record);
 }
 
 function renderResults(r){
-  const tp=TYPES[r.primary];
+  const profile = determineProfile(r.pcts, r.ranked);
+  const pr = profile.profile;
+  const prColor = getBlendColor(profile.key);
+  const prBg = getBlendBg(profile.key);
+
   let html=`
     <div class="results-header">
       <div class="eyebrow" style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.5rem">Assessment Complete</div>
@@ -546,24 +596,29 @@ function renderResults(r){
   });
   html+=`</div>`;
 
-  // Spotlight
-  html+=`<div class="spotlight card" style="border-left-color:${tp.color};background:${tp.bg}">
-    <h3 style="color:${tp.color}">Your Primary Style: ${tp.label}</h3>
-    <span class="tagline">${tp.tagline}</span>
-    <p>${tp.overview}</p>
-    <p><strong>Communication Style:</strong> ${tp.communication}</p>
-    <p><strong>Core Values:</strong> ${tp.values}</p>
+  // Profile spotlight
+  html+=`<div class="spotlight card" style="border-left-color:${prColor};background:${prBg}">`;
+  if (profile.isBlend) {
+    const c1 = TYPES[profile.primary].color;
+    const c2 = TYPES[profile.secondary].color;
+    html+=`<span class="blend-badge" style="background:linear-gradient(135deg,${c1},${c2});color:#fff">${TYPES[profile.primary].label.replace('The ','')} + ${TYPES[profile.secondary].label.replace('The ','')}</span>`;
+  }
+  html+=`<h3 style="color:${prColor}">Your Style: ${pr.label}</h3>
+    <span class="tagline">${pr.tagline}</span>
+    <p>${pr.overview}</p>
+    <p><strong>Communication Style:</strong> ${pr.communication}</p>
+    <p><strong>Core Values:</strong> ${pr.values}</p>
     <p style="font-weight:600;margin-top:.5rem">As a Mentor:</p>`;
-  tp.mentoring.forEach(m=>{html+=`<p style="padding-left:1rem;font-size:.85rem">• ${m}</p>`});
+  pr.mentoring.forEach(m=>{html+=`<p style="padding-left:1rem;font-size:.85rem">• ${m}</p>`});
   html+=`</div>`;
 
-  // All 4 mini cards
-  html+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:1rem">All Four SELCS Styles</h3><div class="type-grid">`;
+  // All 4 base types mini-cards
+  html+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:1rem">The Four Core SELCS Styles</h3><div class="type-grid">`;
   TYPE_ORDER.forEach(t=>{
     const info=TYPES[t];
-    const isPrimary=t===r.primary?' (Your Primary)':'';
+    const mark = r.ranked.indexOf(t)===0?' (Your #1)': r.ranked.indexOf(t)===1?' (Your #2)':'';
     html+=`<div class="type-mini" style="border-color:${info.color}20;background:${info.bg}">
-      <h4 style="color:${info.color}">${info.label}${isPrimary}</h4>
+      <h4 style="color:${info.color}">${info.label}${mark}</h4>
       <p>${info.tagline}</p>
     </div>`;
   });
@@ -584,22 +639,24 @@ function retakeQuiz(){
   document.getElementById('step-register').style.display='block';
 }
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // REVIEW
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function reviewResults(){
   const email=document.getElementById('review-email').value.trim().toLowerCase();
-  if(!email){return}
+  if(!email) return;
   const records=getRecords().filter(r=>r.email.toLowerCase()===email);
   const out=document.getElementById('review-output');
   if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No results found for that email address.</p></div>';return}
   let html='';
   records.reverse().forEach(r=>{
     const d=new Date(r.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-    const tp=TYPES[r.primary];
+    const profile = determineProfile(r.pcts, r.ranked);
+    const prColor = getBlendColor(profile.key);
     html+=`<div class="card mt-1">
       <p style="font-size:.75rem;color:var(--ink-faint);margin-bottom:.5rem">${d}</p>
-      <p style="font-weight:600;color:${tp.color};margin-bottom:.5rem">Primary: ${tp.label}</p>`;
+      <p style="font-weight:600;color:${prColor};margin-bottom:.15rem">${profile.profile.label}</p>
+      <p style="font-size:.8rem;font-style:italic;color:var(--ink-light);margin-bottom:.75rem">${profile.isBlend?TYPES[profile.primary].label.replace('The ','')+' + '+TYPES[profile.secondary].label.replace('The ',''):'Pure type'}</p>`;
     r.ranked.forEach((t,i)=>{
       html+=`<div class="type-rank">
         <div class="rank-num" style="font-size:1.1rem">${i+1}</div>
@@ -613,9 +670,9 @@ function reviewResults(){
   out.innerHTML=html;
 }
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // RECORDS (ADMIN)
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function viewRecords(){
   const pass=document.getElementById('admin-pass').value;
   const out=document.getElementById('records-output');
@@ -628,11 +685,15 @@ function viewRecords(){
   let html=`<div class="card mt-1" style="overflow-x:auto">
     <p style="font-size:.82rem;color:var(--ink-light);margin-bottom:.75rem">${records.length} record${records.length>1?'s':''} found</p>
     <table class="records-table">
-    <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Primary</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th></tr></thead><tbody>`;
+    <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Profile</th><th>Type</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th></tr></thead><tbody>`;
   records.reverse().forEach(r=>{
     const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'});
+    const profile = determineProfile(r.pcts, r.ranked);
+    const prColor = getBlendColor(profile.key);
+    const typeLabel = profile.isBlend ? 'Blend' : 'Pure';
     html+=`<tr><td>${d}</td><td>${r.name}</td><td>${r.email}</td><td>${r.org||'—'}</td><td>${r.role||'—'}</td>
-      <td style="font-weight:600;color:${TYPES[r.primary].color}">${TYPES[r.primary].label.replace('The ','')}</td>
+      <td style="font-weight:600;color:${prColor}">${profile.profile.label}</td>
+      <td style="font-size:.72rem">${typeLabel}</td>
       <td>${r.pcts.D}</td><td>${r.pcts.I}</td><td>${r.pcts.S}</td><td>${r.pcts.C}</td></tr>`;
   });
   html+=`</tbody></table></div>
@@ -644,24 +705,27 @@ function exportCSV(){
   const pass=document.getElementById('admin-pass').value;
   if(pass!==ADMIN_PASS){document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Enter admin password first.</p></div>';return}
   const records=getRecords();
-  if(!records.length){return}
-  let csv='Date,Name,Email,Organization,Role,Primary,Driver%,Inspirer%,Sustainer%,Cultivator%,Ranked Order\n';
+  if(!records.length) return;
+  let csv='Date,Name,Email,Organization,Role,Profile,Type,Driver%,Inspirer%,Sustainer%,Cultivator%,Ranked Order\n';
   records.forEach(r=>{
     const d=new Date(r.date).toLocaleDateString();
+    const profile = determineProfile(r.pcts, r.ranked);
     const ranked=r.ranked.map(t=>TYPES[t].label.replace('The ','')).join(' > ');
-    csv+=`"${d}","${r.name}","${r.email}","${r.org||''}","${r.role||''}","${TYPES[r.primary].label}",${r.pcts.D},${r.pcts.I},${r.pcts.S},${r.pcts.C},"${ranked}"\n`;
+    csv+=`"${d}","${r.name}","${r.email}","${r.org||''}","${r.role||''}","${profile.profile.label}","${profile.isBlend?'Blend':'Pure'}",${r.pcts.D},${r.pcts.I},${r.pcts.S},${r.pcts.C},"${ranked}"\n`;
   });
   const blob=new Blob([csv],{type:'text/csv'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SELCS_Records.csv';a.click();
 }
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // ABOUT
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function renderAbout(){
   const el=document.getElementById('about-types');
   if(el.innerHTML) return;
-  el.innerHTML=TYPE_ORDER.map(key=>{
+  // Show 4 core types
+  let html = '<div class="section-head mt-2"><div class="eyebrow">Core Styles</div><h2>The Four Foundations</h2></div>';
+  html += TYPE_ORDER.map(key=>{
     const tp=TYPES[key];
     return `<div class="about-type" style="border-left-color:${tp.color}">
       <h3 style="color:${tp.color}">${tp.label}</h3>
@@ -673,6 +737,25 @@ function renderAbout(){
       ${tp.mentoring.map(m=>`<p style="padding-left:1rem;font-size:.83rem">• ${m}</p>`).join('')}
     </div>`;
   }).join('');
+
+  // Show blended profiles
+  html += '<div class="section-head mt-2"><div class="eyebrow">Blended Styles</div><h2>When Two Styles Combine</h2></div>';
+  html += '<p style="font-size:.85rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">When no single style accounts for 60% or more of your total score, your top two styles blend into a unique combined profile. Here are all twelve possible blends:</p>';
+  Object.entries(BLENDS).forEach(([key, bl])=>{
+    const parts = key.split('-');
+    const c1 = TYPES[parts[0]].color;
+    html+=`<div class="about-type" style="border-left-color:${c1}">
+      <span class="blend-badge" style="background:linear-gradient(135deg,${TYPES[parts[0]].color},${TYPES[parts[1]].color});color:#fff;margin-bottom:.5rem">${TYPES[parts[0]].label.replace('The ','')} + ${TYPES[parts[1]].label.replace('The ','')}</span>
+      <h3 style="color:${c1}">${bl.label}</h3>
+      <span class="tagline">${bl.tagline}</span>
+      <p>${bl.overview}</p>
+      <p><strong>Communication Style:</strong> ${bl.communication}</p>
+      <p><strong>Core Values:</strong> ${bl.values}</p>
+      <p style="font-weight:600;margin-top:.5rem">As a Mentor:</p>
+      ${bl.mentoring.map(m=>`<p style="padding-left:1rem;font-size:.83rem">• ${m}</p>`).join('')}
+    </div>`;
+  });
+  el.innerHTML=html;
 }
 </script>
 </body>
