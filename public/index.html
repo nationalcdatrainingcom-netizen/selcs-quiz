@@ -19,7 +19,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh}
-h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.2}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.2}
 
 header{background:var(--ink);color:var(--gold-light);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100}
 header .logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
@@ -31,7 +31,7 @@ header .logo em{font-style:italic;font-weight:400;color:var(--gold)}
 .nav-tabs button.active{color:var(--gold)}
 .nav-tabs button.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
 
-.panel{display:none;max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.panel{display:none;max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .panel.active{display:block}
 .card{background:#fff;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);margin-bottom:1.25rem}
 .section-head{margin-bottom:1.5rem}
@@ -83,11 +83,27 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 .rank-bar-inner{height:100%;border-radius:5px;transition:width 1s ease}
 .rank-pct{font-size:.82rem;font-weight:600;width:3rem;text-align:right}
 
-.spotlight{border-left:4px solid;padding:1.5rem;margin-top:1.25rem}
+.spotlight{border-left:4px solid;padding:1.75rem;margin-top:1.25rem}
 .spotlight h3{font-size:1.35rem;margin-bottom:.5rem}
 .spotlight .tagline{font-style:italic;color:var(--ink-light);margin-bottom:.75rem;font-size:.9rem;display:block}
 .spotlight p{font-size:.88rem;line-height:1.7;color:var(--ink);margin-bottom:.65rem}
 .blend-badge{display:inline-block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:.25rem .75rem;border-radius:20px;margin-bottom:.75rem}
+
+.profile-section{margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,.06)}
+.profile-section h4{font-size:1.1rem;margin-bottom:.65rem;color:var(--ink)}
+.profile-section .bullet{padding-left:1rem;font-size:.85rem;line-height:1.7;margin-bottom:.5rem}
+.profile-section .bullet strong{font-weight:600}
+.profile-section .bullet-desc{padding-left:2rem;font-size:.82rem;line-height:1.65;color:var(--ink-light);margin-bottom:.65rem}
+
+.growth-section{margin-top:1.25rem;padding:1.25rem;border-radius:var(--radius);background:rgba(0,0,0,.02);border:1px solid rgba(0,0,0,.05)}
+.growth-section h4{font-size:1.1rem;margin-bottom:.75rem;color:var(--ink)}
+.growth-sub{font-size:.82rem;font-weight:600;color:var(--ink);margin-top:.75rem;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.05em}
+.growth-text{font-size:.85rem;line-height:1.7;color:var(--ink-light);margin-bottom:.5rem}
+
+.nemesis-section{margin-top:1.25rem;padding:1.25rem;border-radius:var(--radius);background:rgba(193,75,63,.04);border:1px solid rgba(193,75,63,.12)}
+.nemesis-section h4{font-size:1.1rem;margin-bottom:.5rem;color:var(--ink)}
+.nemesis-label{display:inline-block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.2rem .6rem;border-radius:12px;background:rgba(193,75,63,.1);color:var(--driver);margin-bottom:.65rem}
+.nemesis-text{font-size:.85rem;line-height:1.7;color:var(--ink-light);margin-bottom:.5rem}
 
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
 @media(max-width:600px){.type-grid{grid-template-columns:1fr}}
@@ -100,7 +116,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 .records-table td{padding:.55rem .5rem;border-bottom:1px solid var(--bg2);vertical-align:top}
 .records-table tr:hover td{background:var(--bg2)}
 
-.about-type{border-left:4px solid;border-radius:var(--radius);padding:1.5rem;margin-bottom:1.25rem;background:#fff;box-shadow:var(--card-shadow)}
+.about-type{border-left:4px solid;border-radius:var(--radius);padding:1.75rem;margin-bottom:1.5rem;background:#fff;box-shadow:var(--card-shadow)}
 .about-type h3{font-size:1.2rem;margin-bottom:.2rem}
 .about-type .tagline{font-style:italic;color:var(--ink-light);display:block;margin-bottom:.75rem;font-size:.88rem}
 .about-type p{font-size:.85rem;line-height:1.7;margin-bottom:.5rem}
@@ -112,6 +128,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
   #tab-quiz #step-results{display:block!important}
   #tab-review,#tab-records{display:none!important}
   .btn{display:none}
+  .growth-section{break-inside:avoid}
 }
 @media(max-width:500px){
   .likert-option{padding:.6rem .15rem}
@@ -124,9 +141,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 </head>
 <body>
 
-<header>
-  <div class="logo">Mentor Success <em>Academy</em></div>
-</header>
+<header><div class="logo">Mentor Success <em>Academy</em></div></header>
 
 <nav class="nav-tabs">
   <button class="active" onclick="showTab('quiz',this)">Assessment</button>
@@ -135,231 +150,373 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
   <button onclick="showTab('about',this)">About SELCS</button>
 </nav>
 
-<!-- ══════════ ASSESSMENT TAB ══════════ -->
 <div id="tab-quiz" class="panel active">
   <div id="step-register">
-    <div class="section-head mt-2">
-      <div class="eyebrow">Self-Assessment</div>
-      <h2>Social Emotional Leadership<br>Communication Style</h2>
-    </div>
+    <div class="section-head mt-2"><div class="eyebrow">Self-Assessment</div><h2>Social Emotional Leadership<br>Communication Style</h2></div>
     <div class="card">
-      <p style="font-size:.88rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">
-        Discover your unique SELCS profile — how you communicate, lead, and build relationships in early childhood settings. This assessment contains 72 statements. For each, indicate how strongly you agree or disagree. There are no right or wrong answers.
-      </p>
-      <label for="reg-name">Full Name *</label>
-      <input type="text" id="reg-name" placeholder="Your full name">
-      <label for="reg-email">Email Address *</label>
-      <input type="email" id="reg-email" placeholder="you@example.com">
-      <label for="reg-org">Organization</label>
-      <input type="text" id="reg-org" placeholder="Your school or center name">
+      <p style="font-size:.88rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">Discover your unique SELCS profile — how you communicate, lead, and build relationships in early childhood settings. This assessment contains 72 statements. For each, indicate how strongly you agree or disagree. There are no right or wrong answers.</p>
+      <label for="reg-name">Full Name *</label><input type="text" id="reg-name" placeholder="Your full name">
+      <label for="reg-email">Email Address *</label><input type="email" id="reg-email" placeholder="you@example.com">
+      <label for="reg-org">Organization</label><input type="text" id="reg-org" placeholder="Your school or center name">
       <label for="reg-role">Role</label>
-      <select id="reg-role">
-        <option value="">Select your role…</option>
-        <option>Teacher</option><option>Lead Teacher</option><option>Assistant Teacher</option>
-        <option>Director</option><option>Assistant Director</option><option>Mentor</option>
-        <option>Coach</option><option>Owner/Operator</option><option>Other</option>
-      </select>
+      <select id="reg-role"><option value="">Select your role…</option><option>Teacher</option><option>Lead Teacher</option><option>Assistant Teacher</option><option>Director</option><option>Assistant Director</option><option>Mentor</option><option>Coach</option><option>Owner/Operator</option><option>Other</option></select>
       <div class="error-msg" id="reg-error"></div>
       <button class="btn btn-gold" onclick="startQuiz()">Begin Assessment</button>
     </div>
   </div>
   <div id="step-quiz" style="display:none">
-    <div class="progress-wrap">
-      <div class="progress-bar-outer"><div class="progress-bar-inner" id="prog-bar" style="width:0%"></div></div>
-      <div class="progress-text" id="prog-text">Question 1 of 72</div>
-    </div>
+    <div class="progress-wrap"><div class="progress-bar-outer"><div class="progress-bar-inner" id="prog-bar" style="width:0%"></div></div><div class="progress-text" id="prog-text">Question 1 of 72</div></div>
     <div id="question-area"></div>
-    <div class="quiz-nav">
-      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="prevQ()" disabled>← Previous</button>
-      <button class="btn btn-gold btn-sm" id="btn-next" onclick="nextQ()">Next →</button>
-    </div>
+    <div class="quiz-nav"><button class="btn btn-outline btn-sm" id="btn-prev" onclick="prevQ()" disabled>← Previous</button><button class="btn btn-gold btn-sm" id="btn-next" onclick="nextQ()">Next →</button></div>
   </div>
   <div id="step-results" style="display:none"></div>
 </div>
 
-<!-- ══════════ REVIEW TAB ══════════ -->
 <div id="tab-review" class="panel">
   <div class="section-head mt-2"><div class="eyebrow">Your History</div><h2>Review Past Results</h2></div>
-  <div class="card">
-    <label for="review-email">Enter Your Email</label>
-    <input type="email" id="review-email" placeholder="you@example.com">
-    <button class="btn btn-gold btn-sm" onclick="reviewResults()">Look Up Results</button>
-  </div>
+  <div class="card"><label for="review-email">Enter Your Email</label><input type="email" id="review-email" placeholder="you@example.com"><button class="btn btn-gold btn-sm" onclick="reviewResults()">Look Up Results</button></div>
   <div id="review-output"></div>
 </div>
 
-<!-- ══════════ RECORDS TAB ══════════ -->
 <div id="tab-records" class="panel">
   <div class="section-head mt-2"><div class="eyebrow">Administrator</div><h2>All Records</h2></div>
   <div class="card">
-    <label for="admin-pass">Administrator Password</label>
-    <input type="password" id="admin-pass" placeholder="Enter password">
-    <label for="admin-org-filter">Filter by Organization</label>
-    <input type="text" id="admin-org-filter" placeholder="Leave blank for all">
-    <div class="flex-gap">
-      <button class="btn btn-gold btn-sm" onclick="viewRecords()">View Records</button>
-      <button class="btn btn-outline btn-sm" onclick="exportCSV()">Export CSV</button>
-    </div>
+    <label for="admin-pass">Administrator Password</label><input type="password" id="admin-pass" placeholder="Enter password">
+    <label for="admin-org-filter">Filter by Organization</label><input type="text" id="admin-org-filter" placeholder="Leave blank for all">
+    <div class="flex-gap"><button class="btn btn-gold btn-sm" onclick="viewRecords()">View Records</button><button class="btn btn-outline btn-sm" onclick="exportCSV()">Export CSV</button></div>
   </div>
   <div id="records-output"></div>
 </div>
 
-<!-- ══════════ ABOUT TAB ══════════ -->
 <div id="tab-about" class="panel">
   <div class="section-head mt-2"><div class="eyebrow">Framework</div><h2>Understanding SELCS</h2></div>
   <div class="card">
-    <p style="font-size:.88rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">
-      The Social Emotional Leadership Communication Style (SELCS) framework identifies four core orientations that shape how individuals communicate, lead, and build relationships in early childhood education settings.
-    </p>
-    <p style="font-size:.85rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">
-      Every person carries elements of all four styles. Many people are a <strong>blend</strong> of two dominant styles — for example, a Driver-Inspirer or a Sustainer-Cultivator. The SELCS assessment reveals your unique profile, whether pure or blended, empowering you to mentor more effectively by understanding your own style and appreciating the styles of those you lead.
-    </p>
+    <p style="font-size:.88rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">The Social Emotional Leadership Communication Style (SELCS) framework identifies four core orientations that shape how individuals communicate, lead, and build relationships in early childhood education settings.</p>
+    <p style="font-size:.85rem;line-height:1.75;color:var(--ink-light)">Every person carries elements of all four styles. Many people are a <strong>blend</strong> of two dominant styles — for example, a Driver-Inspirer or a Sustainer-Cultivator. The SELCS assessment reveals your unique profile, whether pure or blended, empowering you to mentor more effectively.</p>
   </div>
   <div id="about-types"></div>
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════════════
-// CORE TYPE DATA
+// PROFILE DATA — 4 core types + 12 blends
+// Each has: mentoring (array of {title, desc}), growth object
 // ═══════════════════════════════════════════════════════════
 const TYPES = {
-  D: {
-    label:"The Driver", color:"var(--driver)", bg:"var(--driver-bg)",
-    tagline:"Bold visionary who leads with decisive action and forward momentum",
-    overview:"Drivers are natural leaders who thrive on challenge, decisiveness, and results. They see the big picture, move quickly toward goals, and are unafraid to make tough calls. In mentoring relationships, Drivers bring clarity of direction, high expectations, and an energizing sense of purpose that inspires teams to aim higher.",
-    communication:"Drivers communicate directly and efficiently. They prefer getting to the point quickly, value logic and evidence, and may challenge ideas vigorously to test their strength. Their directness can sometimes be perceived as blunt, but it stems from a genuine desire for excellence and truth.",
-    values:"Achievement, competence, efficiency, truth, innovation, and forward progress.",
-    mentoring:["Sets clear, ambitious goals and holds mentees accountable","Excellent at cutting through ambiguity to find actionable solutions","Models courage in decision-making and willingness to take calculated risks","Growth edge: slowing down to listen fully and prioritizing relationships alongside results","Brings transformative energy that pushes teams beyond incremental improvement"]
-  },
-  I: {
-    label:"The Inspirer", color:"var(--inspirer)", bg:"var(--inspirer-bg)",
-    tagline:"Enthusiastic connector who leads through energy, optimism, and relationships",
-    overview:"Inspirers light up every room they enter. They are energetic, socially gifted, and naturally optimistic — seeing the best in people and situations. In mentoring relationships, Inspirers create warmth and excitement that make people feel valued and motivated to grow. Their gift for storytelling and spontaneity makes learning feel like an adventure.",
-    communication:"Inspirers communicate with enthusiasm and warmth. They prefer talking things through, thrive in collaborative conversation, and often think out loud. They may need to work at consistency in messaging and follow-through, but their ability to connect with others is unmatched.",
-    values:"Connection, fun, optimism, spontaneity, collaboration, and social harmony.",
-    mentoring:["Creates an energizing, positive atmosphere where mentees feel safe to take risks","Excellent at building rapport quickly and making people feel seen","Models enthusiasm and creativity that is contagious across teams","Growth edge: maintaining focus and follow-through when initial excitement fades","Brings the gift of turning tense moments into lighter, more productive ones"]
-  },
-  S: {
-    label:"The Sustainer", color:"var(--sustainer)", bg:"var(--sustainer-bg)",
-    tagline:"Empathetic anchor who leads through deep care, patience, and relational harmony",
-    overview:"Sustainers are the steady heart of any team. They lead with empathy, patience, and a deep commitment to understanding others. In mentoring relationships, Sustainers create the psychological safety that allows honest growth. They listen deeply, value every person's dignity, and prioritize relational harmony — building the trust that makes transformation possible.",
-    communication:"Sustainers communicate with warmth and attentiveness. They ask thoughtful questions to understand emotions, seek common ground in disagreements, and always acknowledge the person before evaluating the idea. Their gentleness can sometimes make it hard to deliver tough feedback, but it builds extraordinary trust.",
-    values:"Empathy, harmony, authenticity, compassion, loyalty, and mutual understanding.",
-    mentoring:["Creates deep psychological safety where mentees feel truly known and valued","Excellent at reading emotional undercurrents and responding with care","Models the kind of genuine human connection that transforms professional relationships","Growth edge: building confidence to deliver direct feedback and embrace healthy conflict","Brings the gift of making every person feel that who they are matters more than what they produce"]
-  },
-  C: {
-    label:"The Cultivator", color:"var(--cultivator)", bg:"var(--cultivator-bg)",
-    tagline:"Thoughtful analyst who leads through precision, depth, and careful stewardship",
-    overview:"Cultivators are the careful thinkers and system builders of any team. They approach everything with thoroughness, precision, and a deep respect for doing things right. In mentoring relationships, Cultivators provide the most grounded, well-reasoned guidance — holding high standards while creating structured pathways for growth. They see patterns others miss and build frameworks that endure.",
-    communication:"Cultivators communicate with precision and deliberation. They prefer to think before speaking, often favor written communication for its ability to be refined, and value data and evidence in decision-making. They may appear reserved, but this stems from genuine care for quality and accuracy — not indifference.",
-    values:"Accuracy, quality, structure, depth, integrity, and continuous improvement.",
-    mentoring:["Models thoroughness and reflective practice that elevates professional standards","Excellent at creating systems, frameworks, and clear expectations for growth","Provides the most honest, carefully considered feedback of any type","Growth edge: embracing imperfection and sharing ideas before they feel fully formed","Brings the gift of seeing the deeper patterns and building structures that support lasting change"]
+D:{
+  label:"The Driver",color:"var(--driver)",bg:"var(--driver-bg)",
+  tagline:"Bold visionary who leads with decisive action and forward momentum",
+  overview:"Drivers are natural leaders who thrive on challenge, decisiveness, and results. They see the big picture, move quickly toward goals, and are unafraid to make tough calls. In mentoring relationships, Drivers bring clarity of direction, high expectations, and an energizing sense of purpose that inspires teams to aim higher.",
+  communication:"Drivers communicate directly and efficiently. They prefer getting to the point quickly, value logic and evidence, and may challenge ideas vigorously to test their strength. Their directness can sometimes be perceived as blunt, but it stems from a genuine desire for excellence and truth.",
+  values:"Achievement, competence, efficiency, truth, innovation, and forward progress.",
+  mentoring:[
+    {title:"Sets clear, ambitious goals and holds mentees accountable",desc:"Drivers establish specific, measurable targets from day one. They check progress regularly, name what's working and what isn't, and keep mentees focused on outcomes. Mentees always know exactly where they stand and what's expected next."},
+    {title:"Cuts through ambiguity to find actionable solutions",desc:"When a mentee is stuck in overthinking or vague concerns, the Driver asks the clarifying question that gets to the root. They reframe fuzzy problems into concrete next steps, helping mentees move from 'I don't know what to do' to 'Here's what I'm doing Monday morning.'"},
+    {title:"Models courage in decision-making",desc:"Drivers demonstrate that leadership means making calls — sometimes unpopular ones — and standing behind them. They show mentees that waiting for perfect information is itself a decision, and often the wrong one. Their willingness to act gives mentees permission to be brave."},
+    {title:"Brings transformative energy that pushes beyond incremental improvement",desc:"Drivers don't settle for 'a little better.' They challenge mentees to reimagine what's possible in their classrooms. They ask questions like 'What would this look like if it were truly excellent?' and refuse to accept mediocrity dressed up as realism."},
+    {title:"Provides honest, no-nonsense feedback",desc:"A Driver's feedback is clear, specific, and actionable. They don't soften the message so much that it loses meaning. Mentees may not always enjoy the conversation in the moment, but they leave knowing exactly what to work on and trusting that the feedback was genuine."}
+  ],
+  growth:{
+    tendencies:"Drivers tend to move fast — sometimes too fast. They may push for action before a mentee is emotionally ready, skip over the relational groundwork that makes feedback land well, or dismiss concerns they view as emotional rather than logical. They can become impatient with mentees who process slowly, need encouragement before correction, or want to talk through feelings before problem-solving.",
+    comesAcross:"To some mentees, Drivers can come across as intimidating, dismissive, or uncaring — even when their intentions are good. Their directness can feel like criticism. Their pace can feel like pressure. Their focus on results can make people feel like they matter less than the outcome.",
+    blindSpots:"It may not occur to Drivers that a mentee needs to feel safe before they can hear feedback. They may not realize that asking 'How are you feeling about this?' before diving into action items would make their guidance ten times more effective. They can underestimate how much relational trust matters for lasting change.",
+    underPressure:"Under stress, Drivers tend to become more controlling, more direct, and less patient. They may take over tasks rather than coaching through them, issue directives instead of asking questions, or become visibly frustrated with what they see as lack of progress. They can shut down emotional conversations by pivoting abruptly to logistics and action items."
   }
+},
+I:{
+  label:"The Inspirer",color:"var(--inspirer)",bg:"var(--inspirer-bg)",
+  tagline:"Enthusiastic connector who leads through energy, optimism, and relationships",
+  overview:"Inspirers light up every room they enter. They are energetic, socially gifted, and naturally optimistic — seeing the best in people and situations. In mentoring relationships, Inspirers create warmth and excitement that make people feel valued and motivated to grow. Their gift for storytelling and spontaneity makes learning feel like an adventure.",
+  communication:"Inspirers communicate with enthusiasm and warmth. They prefer talking things through, thrive in collaborative conversation, and often think out loud. They may need to work at consistency in messaging and follow-through, but their ability to connect with others is unmatched.",
+  values:"Connection, fun, optimism, spontaneity, collaboration, and social harmony.",
+  mentoring:[
+    {title:"Creates an energizing atmosphere where mentees feel safe to take risks",desc:"Inspirers set a tone of 'we're in this together and it's going to be great.' Their enthusiasm is genuine and contagious — mentees feel permission to try new things because the Inspirer has made it clear that effort matters more than perfection and that stumbles are part of the adventure."},
+    {title:"Builds rapport quickly and makes people feel seen",desc:"Within minutes of meeting someone, the Inspirer has found common ground, shared a laugh, and made the other person feel like the most interesting person in the room. This gift is invaluable in mentoring — it breaks down the power dynamic and creates the kind of easy trust that accelerates growth."},
+    {title:"Models enthusiasm and creativity that is contagious",desc:"Inspirers approach challenges with a 'what if we tried this?' energy that makes problem-solving feel exciting rather than burdensome. They generate ideas freely, invite others into the creative process, and demonstrate that leadership can be joyful."},
+    {title:"Turns tense moments into productive ones through humor and warmth",desc:"When a mentee is anxious about an observation or dreading a difficult conversation, the Inspirer has a gift for lightening the emotional load without dismissing the seriousness. They normalize struggle with stories from their own experience and help mentees see that difficulty is universal, not personal."},
+    {title:"Celebrates progress in ways that build lasting motivation",desc:"Inspirers don't just notice wins — they celebrate them with genuine delight. Their enthusiasm for a mentee's progress is so authentic that it builds the mentee's internal motivation. People want to grow because the Inspirer makes growth feel good."}
+  ],
+  growth:{
+    tendencies:"Inspirers tend to avoid anything that threatens the positive energy they've built. They may gloss over serious performance issues, change the subject when conversations get uncomfortable, or substitute encouragement for the direct feedback a mentee actually needs. They can get so caught up in the excitement of a new idea that they abandon the follow-through on the last one.",
+    comesAcross:"To some mentees — especially Cultivators and Drivers — Inspirers can come across as scattered, superficial, or unreliable. Their optimism can feel dismissive of real problems. Their tendency to jump between ideas can feel like a lack of seriousness. Quieter mentees may feel overwhelmed by their energy.",
+    blindSpots:"It may not occur to Inspirers that their mentee needs silence, not another story. They may not realize that consistently avoiding hard conversations is actually a form of dishonesty that erodes trust over time. They can underestimate how much their mentees need follow-through and consistency, not just inspiration.",
+    underPressure:"Under stress, Inspirers tend to become more talkative, more scattered, and more avoidant of the actual problem. They may fill silence with nervous energy, make promises they can't keep to restore the good feeling, or deflect criticism with humor. They can become defensive when someone suggests they haven't followed through, and may externalize blame rather than owning mistakes."
+  }
+},
+S:{
+  label:"The Sustainer",color:"var(--sustainer)",bg:"var(--sustainer-bg)",
+  tagline:"Empathetic anchor who leads through deep care, patience, and relational harmony",
+  overview:"Sustainers are the steady heart of any team. They lead with empathy, patience, and a deep commitment to understanding others. In mentoring relationships, Sustainers create the psychological safety that allows honest growth. They listen deeply, value every person's dignity, and prioritize relational harmony — building the trust that makes transformation possible.",
+  communication:"Sustainers communicate with warmth and attentiveness. They ask thoughtful questions to understand emotions, seek common ground in disagreements, and always acknowledge the person before evaluating the idea. Their gentleness can sometimes make it hard to deliver tough feedback, but it builds extraordinary trust.",
+  values:"Empathy, harmony, authenticity, compassion, loyalty, and mutual understanding.",
+  mentoring:[
+    {title:"Creates deep psychological safety where mentees feel truly known",desc:"Sustainers invest time in understanding who their mentees are as whole people — their fears, their hopes, their home lives, their insecurities. This depth of knowing creates a mentoring relationship where the mentee feels safe enough to be honest about struggles rather than hiding them."},
+    {title:"Reads emotional undercurrents and responds with care",desc:"When a mentee says 'I'm fine' but clearly isn't, the Sustainer notices. They pick up on shifts in tone, body language, and energy that others miss. More importantly, they respond to what they sense with gentleness, creating space for the real conversation to happen."},
+    {title:"Acknowledges the person before evaluating the idea",desc:"Before giving feedback on a lesson plan or classroom practice, the Sustainer first honors the effort, the intention, and the person behind the work. This isn't flattery — it's a genuine recognition that the human being matters more than the performance, and it makes all subsequent feedback easier to receive."},
+    {title:"Models genuine human connection that transforms professional relationships",desc:"Sustainers show that leadership isn't just about competence — it's about care. Their mentoring relationships often become the most meaningful professional relationships their mentees have ever experienced, because the mentee feels valued for who they are, not just what they produce."},
+    {title:"Brings patience that allows growth to happen at its own pace",desc:"Sustainers resist the urge to rush. They understand that lasting change happens slowly, that people need time to process, and that pushing too hard too fast often produces compliance rather than genuine growth. Their patience communicates deep respect for the mentee's journey."}
+  ],
+  growth:{
+    tendencies:"Sustainers tend to prioritize the relationship over the work — sometimes at the expense of the mentee's professional growth. They may avoid giving critical feedback because they fear it will damage the connection. They can become so focused on making people feel good that they neglect to challenge them. They sometimes take on their mentees' emotional burdens as their own, leading to exhaustion and resentment.",
+    comesAcross:"To some mentees — especially Drivers — Sustainers can come across as too soft, too slow, or unwilling to be honest. Their avoidance of conflict can feel like a lack of confidence or conviction. Mentees who need directness may feel frustrated by the Sustainer's tendency to soften every message.",
+    blindSpots:"It may not occur to Sustainers that their mentee actually wants direct feedback and would welcome a honest conversation about what needs to change. They may not realize that protecting someone from discomfort is not the same as caring for them — and that sometimes the most caring thing is to name a hard truth. They can underestimate their own strength and authority.",
+    underPressure:"Under stress, Sustainers tend to withdraw emotionally, become passive, or agree to things they don't actually support just to avoid conflict. They may internalize frustration rather than expressing it, leading to quiet resentment that eventually leaks out sideways. They can become paralyzed by the fear of hurting someone's feelings, delaying important conversations until the problem becomes much larger than it needed to be."
+  }
+},
+C:{
+  label:"The Cultivator",color:"var(--cultivator)",bg:"var(--cultivator-bg)",
+  tagline:"Thoughtful analyst who leads through precision, depth, and careful stewardship",
+  overview:"Cultivators are the careful thinkers and system builders of any team. They approach everything with thoroughness, precision, and a deep respect for doing things right. In mentoring relationships, Cultivators provide the most grounded, well-reasoned guidance — holding high standards while creating structured pathways for growth. They see patterns others miss and build frameworks that endure.",
+  communication:"Cultivators communicate with precision and deliberation. They prefer to think before speaking, often favor written communication for its ability to be refined, and value data and evidence in decision-making. They may appear reserved, but this stems from genuine care for quality and accuracy — not indifference.",
+  values:"Accuracy, quality, structure, depth, integrity, and continuous improvement.",
+  mentoring:[
+    {title:"Models thoroughness and reflective practice",desc:"Cultivators demonstrate what it looks like to think carefully before acting. They show mentees how to analyze their own teaching, gather data on what's working, and make evidence-based adjustments. Their reflective approach teaches mentees to become their own best evaluators over time."},
+    {title:"Creates systems, frameworks, and clear expectations for growth",desc:"Rather than vague encouragement, the Cultivator builds structured development plans with specific benchmarks, timelines, and criteria for success. Mentees always know exactly what 'good' looks like because the Cultivator has defined it with precision."},
+    {title:"Provides the most honest, carefully considered feedback",desc:"A Cultivator's feedback is never off-the-cuff. They observe thoroughly, analyze what they've seen, and deliver their insights with specificity and accuracy. Their feedback may take longer to arrive, but it is always substantive, fair, and deeply useful."},
+    {title:"Sees deeper patterns and builds structures that support lasting change",desc:"Where others see isolated incidents, the Cultivator sees patterns. They connect a mentee's classroom management challenge to a curriculum planning gap to a time management issue, and then build a systematic approach that addresses the root cause rather than the symptoms."},
+    {title:"Holds high standards that elevate professional practice",desc:"Cultivators believe that everyone is capable of excellence, and their detailed, precise approach to mentoring reflects that belief. They don't lower the bar — they build the scaffolding that helps people reach it. Their standards, while demanding, communicate deep respect for the profession."}
+  ],
+  growth:{
+    tendencies:"Cultivators tend to over-analyze and under-connect. They may spend so much time perfecting their feedback that they miss the window to deliver it. They can become so focused on accuracy and thoroughness that they lose sight of the human being in front of them. They sometimes withhold ideas or guidance because it doesn't yet meet their own internal standard of 'ready.'",
+    comesAcross:"To some mentees — especially Inspirers — Cultivators can come across as cold, overly critical, or impossibly demanding. Their precision can feel like nitpicking. Their reserve can feel like disapproval. Their preference for written communication can feel impersonal. Mentees who need warmth and encouragement may feel that the Cultivator doesn't believe in them.",
+    blindSpots:"It may not occur to Cultivators that their mentee needs to hear 'I believe in you' before they can absorb a detailed analysis of what needs improvement. They may not realize that their silence — which they experience as thoughtful reflection — is being interpreted as judgment. They can underestimate how much their emotional presence (or absence) affects the people around them.",
+    underPressure:"Under stress, Cultivators tend to become more withdrawn, more critical, and more rigid in their expectations. They may retreat into analysis rather than engaging with the problem relationally. They can become perfectionistic to the point of paralysis, or express frustration through pointed critique that lacks the warmth needed to be heard. They may use silence or sarcasm as a defense mechanism when they feel their competence is being questioned."
+  }
+}
 };
 
 // ═══════════════════════════════════════════════════════════
 // BLENDED PROFILES — 12 combinations
-// Each has a unique name, tagline, overview, communication
-// style, values, and mentoring insights that genuinely merge
-// the two orientations.
 // ═══════════════════════════════════════════════════════════
 const BLENDS = {
-  "D-I": {
-    label:"The Driver-Inspirer",
-    tagline:"A bold, energizing force who charges toward goals while bringing everyone along for the ride",
-    overview:"Catalysts combine the Driver's decisive leadership with the Inspirer's magnetic energy. They don't just set the direction — they rally people around it with contagious enthusiasm. They are visionary leaders who move fast, think big, and make the journey exciting for everyone involved. In mentoring, they set ambitious goals and create the positive energy that makes people believe those goals are achievable.",
-    communication:"Catalysts communicate with confident energy. They are direct about what needs to happen but deliver it with warmth and storytelling that keeps people engaged. They think out loud, move fast in conversation, and can sometimes overwhelm quieter team members with their pace and passion.",
-    values:"Achievement, connection, momentum, optimism, bold action, and team spirit.",
-    mentoring:["Sets inspiring goals while building genuine excitement about reaching them","Naturally combines accountability with encouragement","Models both courage and warmth in leadership","Growth edge: pausing to listen deeply rather than leading every conversation","Creates environments where people feel both challenged and celebrated"]
-  },
-  "D-S": {
-    label:"The Driver-Sustainer",
-    tagline:"A principled leader who drives results while fiercely protecting the people doing the work",
-    overview:"Stewards combine the Driver's goal orientation with the Sustainer's deep care for people. They are the leader who pushes for excellence but never at the expense of the team's wellbeing. They make tough decisions while ensuring every person feels valued in the process. In mentoring, they hold high expectations and simultaneously create the safety net that allows people to stretch without fear.",
-    communication:"Stewards communicate with purposeful warmth. They are direct about expectations but take time to understand how their words land. They balance frank feedback with genuine concern for the person receiving it, and they check in on the emotional impact of their decisions.",
-    values:"Results, loyalty, integrity, people-centered accountability, and protective leadership.",
-    mentoring:["Combines clear goal-setting with emotional attunement to each mentee","Holds people accountable while making them feel genuinely cared for","Models the rare balance of strength and tenderness in leadership","Growth edge: resisting the urge to take over when patience would serve better","Creates cultures where high performance and deep trust coexist"]
-  },
-  "D-C": {
-    label:"The Driver-Cultivator",
-    tagline:"A strategic mastermind who builds precise, well-engineered paths to ambitious goals",
-    overview:"Architects combine the Driver's bold ambition with the Cultivator's analytical precision. They don't just want to reach the goal — they want to build the most effective system for getting there. They are the leader who sees the big picture AND the fine details, creating strategies that are both visionary and airtight. In mentoring, they set clear standards and provide structured, evidence-based guidance for meeting them.",
-    communication:"Architects communicate with efficient precision. They present well-researched arguments, expect the same rigor from others, and can be impatient with vague or emotional reasoning. They prefer data-driven conversations but can come across as intimidating when their directness meets their high standards.",
-    values:"Excellence, strategy, precision, competence, evidence-based leadership, and systematic progress.",
-    mentoring:["Builds thorough development plans with clear milestones and measurable outcomes","Provides feedback that is both direct and meticulously reasoned","Models the discipline of combining vision with attention to detail","Growth edge: making space for emotional processing and relational warmth","Creates frameworks that turn ambitious goals into achievable, step-by-step pathways"]
-  },
-  "I-D": {
-    label:"The Inspirer-Driver",
-    tagline:"An infectious motivator who inspires action, then drives it across the finish line",
-    overview:"Igniters lead with the Inspirer's relational warmth but carry the Driver's determination to see things through. They get people excited, then channel that excitement into real results. They are the leader who makes you want to follow them — and then actually delivers on the promise. In mentoring, they build instant rapport and then leverage that trust to push for meaningful growth.",
-    communication:"Igniters communicate with animated conviction. They lead with stories and enthusiasm but shift to direct, no-nonsense language when it's time to execute. They can be persuasive to the point of being overwhelming, and may need to slow down for those who process more quietly.",
-    values:"Inspiration, achievement, persuasion, energy, follow-through, and team momentum.",
-    mentoring:["Builds trust through warmth, then leverages it to set challenging expectations","Excellent at motivating people who have lost confidence or momentum","Models the combination of joyful leadership and determined follow-through","Growth edge: giving others the floor instead of carrying every conversation","Creates a sense of possibility that makes even reluctant mentees want to try"]
-  },
-  "I-S": {
-    label:"The Inspirer-Sustainer",
-    tagline:"A warm-hearted champion of people who builds joyful, deeply connected teams",
-    overview:"Harmonizers blend the Inspirer's social energy with the Sustainer's deep empathy. They are the leader everyone wants to work with — upbeat, caring, and genuinely invested in each person's emotional wellbeing. They create team cultures that feel like family. In mentoring, they form bonds quickly and create the kind of relationship where people open up, take risks, and grow because they feel completely safe and valued.",
-    communication:"Harmonizers communicate with heartfelt enthusiasm. They are warm, affirming, and attentive to how people feel. They may struggle with delivering critical feedback because their deep care for the relationship makes them reluctant to say anything that might cause pain.",
-    values:"Relationships, joy, empathy, belonging, encouragement, and emotional connection.",
-    mentoring:["Creates the most welcoming, psychologically safe mentoring relationships","Naturally affirms the whole person — not just their professional performance","Models the power of leading with both warmth and genuine optimism","Growth edge: building the courage to have difficult conversations when growth requires it","Makes every mentee feel like they are the most important person in the room"]
-  },
-  "I-C": {
-    label:"The Inspirer-Cultivator",
-    tagline:"A creative visionary who blends social energy with deep analytical thinking",
-    overview:"Innovators combine the Inspirer's enthusiasm and people skills with the Cultivator's love of depth and precision. They are the leader who gets excited about an idea AND does the homework to make sure it works. They bring creative energy to structured problems and structured thinking to creative challenges. In mentoring, they inspire mentees with possibilities while providing the analytical framework to pursue them wisely.",
-    communication:"Innovators communicate in bursts — enthusiastic brainstorming followed by periods of quiet reflection and refinement. They can shift quickly between collaborative energy and solitary deep thinking, which can confuse those who expect consistency. They value both spontaneous dialogue and carefully crafted written communication.",
-    values:"Creativity, precision, curiosity, collaboration balanced with depth, and meaningful innovation.",
-    mentoring:["Inspires creative thinking while grounding it in practical, well-reasoned analysis","Brings enthusiasm to research and data in a way that makes it accessible","Models the balance of social engagement and reflective practice","Growth edge: staying consistent in approach rather than oscillating between extroversion and withdrawal","Helps mentees see that rigorous thinking and creative joy are not opposites"]
-  },
-  "S-D": {
-    label:"The Sustainer-Driver",
-    tagline:"A steady protector who cares deeply for people while driving them toward their potential",
-    overview:"Guardians lead with the Sustainer's empathy but carry the Driver's conviction that people should be pushed toward their best. They are the leader who holds your hand AND holds you accountable. They won't let you settle for less than your potential, but they'll be kind about it every step of the way. In mentoring, they create safe relationships built on trust — and then use that trust as the foundation for challenging growth conversations.",
-    communication:"Guardians communicate with gentle firmness. They listen deeply and validate feelings, but they also name what needs to change. They are comfortable with uncomfortable conversations because they know growth requires them — but they always ensure the relationship feels secure first.",
-    values:"Care, accountability, courage, relational safety, high expectations, and protective strength.",
-    mentoring:["Builds deep trust, then uses it as a platform for honest, growth-focused conversations","Holds people to high standards while ensuring they feel supported every step of the way","Models the combination of tenderness and backbone that defines great mentoring","Growth edge: trusting that others can handle directness without the relationship breaking","Creates relationships where mentees feel both safe enough to be vulnerable and challenged enough to grow"]
-  },
-  "S-I": {
-    label:"The Sustainer-Inspirer",
-    tagline:"A gentle encourager who leads through deep personal connection and joyful affirmation",
-    overview:"Nurturers blend the Sustainer's empathy with the Inspirer's warmth and social ease. They are the leader who makes everyone feel like they belong — celebrated for who they are, not just what they do. They radiate kindness, bring lightness to heavy moments, and create spaces where people feel truly seen. In mentoring, they form deep bonds and use encouragement as their primary tool for growth.",
-    communication:"Nurturers communicate with tender warmth and gentle enthusiasm. They affirm frequently, listen with their whole being, and instinctively know what someone needs to hear. They may avoid conflict almost entirely, preferring to encourage around problems rather than address them directly.",
-    values:"Belonging, encouragement, kindness, emotional safety, joy in relationships, and unconditional positive regard.",
-    mentoring:["Creates the warmest, most affirming mentoring relationships","Helps mentees discover strengths they didn't know they had through genuine celebration","Models the power of unconditional positive regard in professional growth","Growth edge: developing the willingness to name problems directly rather than hoping encouragement will resolve them","Makes mentees feel valued in a way that builds lasting confidence and self-worth"]
-  },
-  "S-C": {
-    label:"The Sustainer-Cultivator",
-    tagline:"A thoughtful counselor who blends empathy with wisdom and careful discernment",
-    overview:"Sages combine the Sustainer's deep empathy with the Cultivator's love of thoughtful analysis. They are the leader people go to for wisdom — someone who listens fully, considers carefully, and offers guidance that is both emotionally attuned and intellectually grounded. They don't rush to answers. In mentoring, they create reflective spaces where mentees feel safe to explore, and then offer insights that are both compassionate and precisely targeted.",
-    communication:"Sages communicate with quiet, considered warmth. They ask probing questions, reflect before responding, and offer counsel that balances emotional understanding with analytical clarity. They may be slow to speak in group settings, but when they do, people listen because their words carry weight.",
-    values:"Wisdom, empathy, reflection, careful discernment, patience, and depth of understanding.",
-    mentoring:["Creates contemplative mentoring spaces where deep exploration is possible","Offers guidance that honors both the emotional and intellectual dimensions of growth","Models the power of thoughtful, unhurried wisdom in a fast-paced field","Growth edge: speaking up sooner and trusting that imperfect wisdom still has value","Helps mentees develop their own reflective practice through modeling"]
-  },
-  "C-D": {
-    label:"The Cultivator-Driver",
-    tagline:"A meticulous planner who builds precise systems and drives them toward ambitious outcomes",
-    overview:"Strategists lead with the Cultivator's analytical rigor but carry the Driver's urgency to see results. They are the leader who won't just build the plan — they'll push relentlessly until it's executed to the highest standard. They demand precision AND progress. In mentoring, they create the most detailed, well-structured development plans and hold mentees accountable for following through on every step.",
-    communication:"Strategists communicate with precise authority. They present thoroughly researched positions and expect others to come equally prepared. They can be challenging conversationalists because they combine high standards for accuracy with impatience for slow progress. Their feedback is always specific, evidence-based, and actionable.",
-    values:"Strategy, excellence, efficiency, evidence, systematic execution, and measurable results.",
-    mentoring:["Builds the most comprehensive, data-driven development plans","Provides feedback that is specific, actionable, and thoroughly reasoned","Models the discipline of combining analytical depth with decisive action","Growth edge: remembering that people need emotional encouragement alongside precise feedback","Creates clear pathways to mastery with built-in accountability and measurement"]
-  },
-  "C-I": {
-    label:"The Cultivator-Inspirer",
-    tagline:"A creative thinker who blends deep analysis with the ability to inspire others around new ideas",
-    overview:"Visionaries combine the Cultivator's depth with the Inspirer's ability to energize people. They are the rare leader who can do the deep thinking AND make it exciting for others. They see patterns and possibilities that others miss, and they have the social gift to bring people along on the journey of discovery. In mentoring, they inspire intellectual curiosity while providing the analytical scaffolding to support it.",
-    communication:"Visionaries communicate by alternating between reflective depth and animated sharing. They may disappear to think, then emerge with ideas presented in compelling, story-driven ways. They value both precision and engagement, and they are at their best when translating complex analysis into language that inspires action.",
-    values:"Innovation, depth, curiosity, compelling communication, pattern recognition, and inspired analysis.",
-    mentoring:["Makes complex ideas accessible and exciting for mentees at any level","Inspires intellectual curiosity while providing the structure to channel it productively","Models the power of deep thinking combined with enthusiastic communication","Growth edge: being patient with mentees who don't share their love of complexity","Helps mentees see that depth and excitement are complementary, not competing forces"]
-  },
-  "C-S": {
-    label:"The Cultivator-Sustainer",
-    tagline:"A caring analyst who combines meticulous observation with genuine emotional investment in people",
-    overview:"Counselors blend the Cultivator's analytical precision with the Sustainer's deep empathy. They are the leader who notices everything — not just the data, but the feelings behind the data. They observe carefully, care deeply, and offer guidance that is both emotionally sensitive and practically grounded. In mentoring, they see what mentees need before the mentees see it themselves, and they deliver that insight with kindness.",
-    communication:"Counselors communicate with observant gentleness. They notice patterns in behavior and emotion, reflect carefully on what they've observed, and share their insights in ways that feel caring rather than clinical. They may be reserved in groups but are deeply attentive in one-on-one conversations.",
-    values:"Attentiveness, empathy, accuracy, thoughtful care, observation, and quietly impactful guidance.",
-    mentoring:["Notices growth opportunities others miss because of their combination of analytical and emotional awareness","Delivers precise feedback in the most emotionally sensitive way possible","Models the power of careful observation paired with genuine compassion","Growth edge: sharing observations proactively rather than waiting for the perfect moment","Creates mentoring relationships where people feel both deeply understood and precisely guided"]
+"D-I":{
+  label:"The Driver-Inspirer",
+  tagline:"A bold, energizing force who charges toward goals while bringing everyone along for the ride",
+  overview:"Driver-Inspirers combine decisive leadership with magnetic energy. They don't just set the direction — they rally people around it with contagious enthusiasm. They are visionary leaders who move fast, think big, and make the journey exciting for everyone involved. In mentoring, they set ambitious goals and create the positive energy that makes people believe those goals are achievable.",
+  communication:"Driver-Inspirers communicate with confident energy. They are direct about what needs to happen but deliver it with warmth and storytelling that keeps people engaged. They think out loud, move fast in conversation, and can sometimes overwhelm quieter team members with their pace and passion.",
+  values:"Achievement, connection, momentum, optimism, bold action, and team spirit.",
+  mentoring:[
+    {title:"Sets inspiring goals while building excitement about reaching them",desc:"They paint the picture of what's possible and make mentees want to get there. Goals feel ambitious but achievable because the Driver-Inspirer brings both the strategic clarity and the emotional fuel to sustain momentum."},
+    {title:"Naturally combines accountability with encouragement",desc:"They can deliver a tough message and leave the mentee feeling motivated rather than defeated. They hold the line on expectations while keeping the energy positive — a rare and powerful combination."},
+    {title:"Models both courage and warmth in leadership",desc:"They show mentees that being bold and being kind are not opposites. They make difficult decisions with confidence but communicate them with enough warmth that people stay engaged rather than shutting down."},
+    {title:"Creates environments where people feel both challenged and celebrated",desc:"In a Driver-Inspirer's mentoring relationship, there is always something to strive for and always something to celebrate. They keep the bar high and the morale higher."}
+  ],
+  growth:{
+    tendencies:"Driver-Inspirers can dominate every interaction with their energy and opinions. They may be so focused on momentum that they steamroll quieter voices, skip over needed processing time, or celebrate effort without examining quality. Their combined directness and social energy can make it very difficult for mentees to disagree with them.",
+    comesAcross:"They can come across as intense, overwhelming, or exhausting — especially to Sustainers and Cultivators who need quiet space to think. Their confidence can feel like it leaves no room for other perspectives. Their pace can feel relentless.",
+    blindSpots:"It may not occur to them that silence isn't a problem to be filled. They may miss that their mentee is nodding along out of social pressure rather than genuine agreement. They can underestimate how much their energy takes up space in a room, leaving little oxygen for others.",
+    underPressure:"Under stress, they may become louder, faster, and more controlling — simultaneously pushing for results and performing optimism to keep morale up, even when authenticity would serve better. They can struggle to sit with uncertainty or admit they don't know the answer."
   }
+},
+"D-S":{
+  label:"The Driver-Sustainer",
+  tagline:"A principled leader who drives results while fiercely protecting the people doing the work",
+  overview:"Driver-Sustainers combine goal orientation with deep care for people. They push for excellence but never at the expense of the team's wellbeing. They make tough decisions while ensuring every person feels valued in the process. In mentoring, they hold high expectations and simultaneously create the safety net that allows people to stretch without fear.",
+  communication:"Driver-Sustainers communicate with purposeful warmth. They are direct about expectations but take time to understand how their words land. They balance frank feedback with genuine concern for the person receiving it, and they check in on the emotional impact of their decisions.",
+  values:"Results, loyalty, integrity, people-centered accountability, and protective leadership.",
+  mentoring:[
+    {title:"Combines clear goal-setting with emotional attunement",desc:"They know exactly where the mentee needs to go and they pay attention to how the mentee is feeling about getting there. Development plans include both performance targets and relational check-ins."},
+    {title:"Holds people accountable while making them feel genuinely cared for",desc:"They can say 'this needs to improve' in a way that the mentee hears 'I believe you can do better and I'm here to help.' The accountability never feels punitive because the care is always visible."},
+    {title:"Models the balance of strength and tenderness",desc:"They show mentees that you can be both decisive and compassionate, both demanding and kind. This is the rarest and most powerful form of mentoring because it meets people's need for both direction and belonging."},
+    {title:"Creates cultures where high performance and deep trust coexist",desc:"Under a Driver-Sustainer's mentoring, teams develop both excellence and loyalty. People perform at their best because they feel both pushed and protected."}
+  ],
+  growth:{
+    tendencies:"The Driver and Sustainer within them can create internal tension. They may oscillate between being too direct and then overcorrecting with too much gentleness, leaving mentees confused about which version to expect. They can struggle to decide when to push and when to comfort, sometimes doing neither well.",
+    comesAcross:"They can come across as unpredictable — warm one moment and blunt the next. Mentees may feel they need to read the Driver-Sustainer's mood to know which conversation they're walking into. Their internal tug-of-war between results and relationships can feel inconsistent.",
+    blindSpots:"It may not occur to them that their mentee needs one thing consistently rather than both things alternately. They may not realize that their protective instinct can become paternalistic — making decisions 'for' people rather than empowering them to make their own choices.",
+    underPressure:"Under stress, one side usually wins. They either become all-Driver (directive, impatient, focused solely on outcomes) or all-Sustainer (avoidant, people-pleasing, refusing to make the hard call). The integration they usually manage well breaks down when the pressure is highest."
+  }
+},
+"D-C":{
+  label:"The Driver-Cultivator",
+  tagline:"A strategic mastermind who builds precise, well-engineered paths to ambitious goals",
+  overview:"Driver-Cultivators combine bold ambition with analytical precision. They don't just want to reach the goal — they want to build the most effective system for getting there. They see the big picture AND the fine details, creating strategies that are both visionary and airtight. In mentoring, they set clear standards and provide structured, evidence-based guidance for meeting them.",
+  communication:"Driver-Cultivators communicate with efficient precision. They present well-researched arguments, expect the same rigor from others, and can be impatient with vague or emotional reasoning. They prefer data-driven conversations but can come across as intimidating when their directness meets their high standards.",
+  values:"Excellence, strategy, precision, competence, evidence-based leadership, and systematic progress.",
+  mentoring:[
+    {title:"Builds thorough development plans with clear milestones",desc:"Every mentoring relationship has a roadmap. The Driver-Cultivator maps out specific competencies to develop, creates measurable benchmarks, and tracks progress with precision. Nothing is left to guesswork."},
+    {title:"Provides feedback that is both direct and meticulously reasoned",desc:"Their feedback comes with evidence. They don't say 'your transitions need work' — they say 'during the 10:15 transition, four children were unengaged for two minutes because the materials weren't pre-staged.' The specificity makes the feedback undeniable and actionable."},
+    {title:"Models combining vision with attention to detail",desc:"They show mentees that big goals are achieved through small, precise actions — and that attention to detail isn't the enemy of ambition but its engine. Their mentoring is a masterclass in strategic execution."},
+    {title:"Creates frameworks that turn ambitious goals into achievable pathways",desc:"They break down overwhelming objectives into systematic, sequenced steps. Mentees who felt lost are suddenly holding a clear map. The Driver-Cultivator's greatest gift is making the complex feel manageable."}
+  ],
+  growth:{
+    tendencies:"Driver-Cultivators can become so focused on the plan and the data that they forget there's a human being on the other end. They may deliver technically perfect feedback with zero emotional intelligence. They can hold standards so rigidly that mentees feel they can never be good enough. Their combination of impatience and perfectionism can create an atmosphere of constant pressure.",
+    comesAcross:"They can come across as cold, demanding, and impossible to satisfy. Their high standards combined with their directness can feel crushing rather than motivating. Mentees may feel evaluated rather than supported, measured rather than known.",
+    blindSpots:"It may not occur to them that their mentee needs to hear 'you're doing well' before hearing the next five things to improve. They may not realize that their analytical precision, while impressive, can feel dehumanizing. They can completely miss the emotional context in which their feedback is being received.",
+    underPressure:"Under stress, they become intensely controlling — micromanaging details, demanding data, and losing all tolerance for imprecision or inefficiency. They can become sharply critical and emotionally unavailable at exactly the moment when people need warmth and reassurance most."
+  }
+},
+"I-D":{
+  label:"The Inspirer-Driver",
+  tagline:"An infectious motivator who inspires action, then drives it across the finish line",
+  overview:"Inspirer-Drivers lead with relational warmth but carry the determination to see things through. They get people excited, then channel that excitement into real results. They are the leader who makes you want to follow them — and then actually delivers on the promise. In mentoring, they build instant rapport and then leverage that trust to push for meaningful growth.",
+  communication:"Inspirer-Drivers communicate with animated conviction. They lead with stories and enthusiasm but shift to direct, no-nonsense language when it's time to execute. They can be persuasive to the point of being overwhelming, and may need to slow down for those who process more quietly.",
+  values:"Inspiration, achievement, persuasion, energy, follow-through, and team momentum.",
+  mentoring:[
+    {title:"Builds trust through warmth, then leverages it for challenging expectations",desc:"They don't lead with demands — they lead with connection. But once the relationship is established, they aren't afraid to push hard. Mentees accept the challenge because they trust the person delivering it."},
+    {title:"Excellent at motivating people who have lost confidence",desc:"When a mentee is stuck, discouraged, or ready to give up, the Inspirer-Driver's combination of genuine belief and results-oriented energy can reignite their fire. They paint a picture of what's possible and then help build the path."},
+    {title:"Models joyful leadership with determined follow-through",desc:"They show mentees that enthusiasm and execution are not opposites. They start projects with excitement and finish them with discipline — modeling the complete arc that many leaders struggle to sustain."},
+    {title:"Creates a sense of possibility that draws even reluctant mentees in",desc:"Their energy is genuinely magnetic, and their track record of follow-through gives that energy credibility. Mentees who are skeptical of 'cheerleader' types discover that this leader actually delivers."}
+  ],
+  growth:{
+    tendencies:"Inspirer-Drivers can use their charm and energy to push agendas without truly listening. They may be so persuasive that mentees agree to things they aren't ready for. Their combination of social dominance and goal focus means they can control both the emotional temperature and the direction of every conversation, leaving little room for the mentee's voice.",
+    comesAcross:"They can come across as pushy, salesmanlike, or manipulative — especially when their warmth feels like a tool for getting buy-in rather than genuine care. Cultivators in particular may distrust the Inspirer-Driver's rapid shifts between enthusiasm and directness.",
+    blindSpots:"It may not occur to them that not everyone wants to be inspired. They may miss that their mentee is going along with the plan to please them rather than because they're truly convinced. They can underestimate the value of quiet, slow, unexciting progress.",
+    underPressure:"Under stress, the Inspirer side may generate increasingly frantic energy while the Driver side demands immediate results — creating a pressured, frenetic atmosphere. They may become frustrated with people who aren't matching their intensity and interpret calmness as lack of commitment."
+  }
+},
+"I-S":{
+  label:"The Inspirer-Sustainer",
+  tagline:"A warm-hearted champion of people who builds joyful, deeply connected teams",
+  overview:"Inspirer-Sustainers blend social energy with deep empathy. They are the leader everyone wants to work with — upbeat, caring, and genuinely invested in each person's emotional wellbeing. They create team cultures that feel like family. In mentoring, they form bonds quickly and create relationships where people open up, take risks, and grow because they feel completely safe and valued.",
+  communication:"Inspirer-Sustainers communicate with heartfelt enthusiasm. They are warm, affirming, and attentive to how people feel. They may struggle with delivering critical feedback because their deep care for the relationship makes them reluctant to say anything that might cause pain.",
+  values:"Relationships, joy, empathy, belonging, encouragement, and emotional connection.",
+  mentoring:[
+    {title:"Creates the most welcoming, psychologically safe mentoring relationships",desc:"Within minutes, the mentee feels like they've known this person forever. The Inspirer-Sustainer combines social ease with emotional depth, creating a space where vulnerability feels natural and judgment feels impossible."},
+    {title:"Affirms the whole person — not just their professional performance",desc:"They notice when a mentee is having a hard day. They remember the mentee's children's names. They celebrate personal milestones alongside professional ones. The message is always: you matter as a human being, not just as a teacher."},
+    {title:"Brings warmth and genuine optimism to every interaction",desc:"Even difficult conversations feel gentler in their hands. They approach challenges with an 'I know this is hard AND I know you can do this' energy that sustains mentees through discouraging stretches."},
+    {title:"Makes every mentee feel like the most important person in the room",desc:"Their combination of social attentiveness and emotional empathy means they are fully present in every interaction. Mentees leave feeling seen, heard, and valued in ways they may rarely experience elsewhere."}
+  ],
+  growth:{
+    tendencies:"Inspirer-Sustainers can become so focused on making people feel good that they avoid anything that might create discomfort — including the honest feedback their mentees need most. They may substitute warmth for accountability and encouragement for honesty. Their deep investment in the relationship can make it very hard for them to risk it with a difficult conversation.",
+    comesAcross:"They can come across as nice but ineffective. Drivers may find them frustrating because nothing seems to change. Cultivators may find them superficial because the warmth doesn't come with substance. Mentees who need direct guidance may feel cared for but not actually helped.",
+    blindSpots:"It may not occur to them that their mentee is being held back by the very comfort they've worked so hard to create. They may not realize that some mentees need to be uncomfortable to grow, and that protecting them from discomfort is actually a form of disrespect — it communicates 'I don't think you can handle the truth.'",
+    underPressure:"Under stress, they may become people-pleasing to the point of dishonesty — agreeing with conflicting perspectives, promising things they can't deliver, and refusing to take a stand. They can become emotionally flooded by the stress of others, losing their own center in the process."
+  }
+},
+"I-C":{
+  label:"The Inspirer-Cultivator",
+  tagline:"A creative visionary who blends social energy with deep analytical thinking",
+  overview:"Inspirer-Cultivators combine enthusiasm and people skills with depth and precision. They get excited about an idea AND do the homework to make sure it works. They bring creative energy to structured problems and structured thinking to creative challenges. In mentoring, they inspire mentees with possibilities while providing the analytical framework to pursue them wisely.",
+  communication:"Inspirer-Cultivators communicate in bursts — enthusiastic brainstorming followed by periods of quiet reflection and refinement. They can shift quickly between collaborative energy and solitary deep thinking, which can confuse those who expect consistency. They value both spontaneous dialogue and carefully crafted written communication.",
+  values:"Creativity, precision, curiosity, collaboration balanced with depth, and meaningful innovation.",
+  mentoring:[
+    {title:"Inspires creative thinking while grounding it in practical analysis",desc:"They help mentees dream big and then help them build the evidence base to pursue those dreams wisely. Ideas get both the excitement they need to launch and the rigor they need to land."},
+    {title:"Brings enthusiasm to research and data",desc:"They make analysis exciting rather than tedious. When they share observation data with a mentee, it feels like unwrapping a present rather than reading a report card. Their excitement about patterns and insights is infectious."},
+    {title:"Models the balance of social engagement and reflective practice",desc:"They show mentees that being outgoing and being thoughtful aren't in conflict. They demonstrate how to energize a team meeting AND sit quietly with data afterward — and that both are essential leadership practices."},
+    {title:"Helps mentees see that rigor and joy are complementary",desc:"Many mentees believe that 'doing it right' means 'doing it seriously.' The Inspirer-Cultivator dismantles that assumption by bringing genuine delight to the process of careful, thorough work."}
+  ],
+  growth:{
+    tendencies:"Their two sides can create inconsistency. They may be enthusiastically collaborative one day and withdrawn into their own analysis the next, leaving mentees unsure of what to expect. They can start many projects with excitement but get pulled into perfecting the details of one, leaving others abandoned.",
+    comesAcross:"They can come across as unpredictable or moody — extroverted one moment and introverted the next. Mentees may feel whiplash between the warm, energizing Inspirer and the quiet, exacting Cultivator. Some may wonder which version is the 'real' one.",
+    blindSpots:"It may not occur to them that their shifting modes feel destabilizing to others. They may not realize that the mentee needs them to be consistent more than they need them to be brilliant. They can overestimate how much their enthusiasm masks the fact that their detailed analysis contains hard truths.",
+    underPressure:"Under stress, one mode usually dominates at the expense of the other. They either become all-Inspirer (performatively upbeat, avoiding depth) or all-Cultivator (withdrawn, hypercritical, emotionally unavailable). The integration they normally manage well collapses under pressure."
+  }
+},
+"S-D":{
+  label:"The Sustainer-Driver",
+  tagline:"A steady protector who cares deeply for people while driving them toward their potential",
+  overview:"Sustainer-Drivers lead with empathy but carry the conviction that people should be pushed toward their best. They hold your hand AND hold you accountable. They won't let you settle for less than your potential, but they'll be kind about it every step of the way. In mentoring, they create safe relationships built on trust — and then use that trust as the foundation for challenging growth conversations.",
+  communication:"Sustainer-Drivers communicate with gentle firmness. They listen deeply and validate feelings, but they also name what needs to change. They are comfortable with uncomfortable conversations because they know growth requires them — but they always ensure the relationship feels secure first.",
+  values:"Care, accountability, courage, relational safety, high expectations, and protective strength.",
+  mentoring:[
+    {title:"Builds deep trust, then uses it as a platform for honest conversations",desc:"They invest heavily in the relationship first — really knowing the mentee, understanding their fears and aspirations — and then leverage that trust to have the frank conversations that drive real change. The trust makes the honesty possible."},
+    {title:"Holds people to high standards while ensuring they feel supported",desc:"They have mastered the art of saying 'I expect more from you' in a way that sounds like 'I believe in you.' Their high standards feel like an honor rather than a burden because they come wrapped in genuine care."},
+    {title:"Models tenderness and backbone simultaneously",desc:"They show mentees that you don't have to choose between being kind and being strong. They demonstrate that the most powerful form of care is sometimes the willingness to say the hard thing."},
+    {title:"Creates relationships where safety and challenge coexist",desc:"Mentees feel both secure enough to be vulnerable and pushed enough to grow. This is the environment where the deepest, most lasting professional transformation happens."}
+  ],
+  growth:{
+    tendencies:"Sustainer-Drivers can struggle with timing — knowing when to comfort and when to challenge. They may over-prepare relationally, spending so long building safety that they never get to the difficult conversation. Or they may misjudge their mentee's readiness for directness, pushing before the trust account has enough deposits.",
+    comesAcross:"They can come across as slow to act. Drivers may find them frustratingly cautious. Their need to tend the relationship before addressing the issue can feel like stalling to those who want to get to the point. Some mentees may feel the Sustainer-Driver is holding back.",
+    blindSpots:"It may not occur to them that some mentees prefer directness without the relational preamble — that the emotional groundwork they consider essential actually feels patronizing to certain personality types. They may overestimate how fragile people are.",
+    underPressure:"Under stress, the Sustainer side usually wins first — they become overly accommodating and conflict-avoidant. But if that doesn't resolve the pressure, the Driver side can emerge abruptly, shocking people with a level of directness they weren't expecting from someone who has been so gentle."
+  }
+},
+"S-I":{
+  label:"The Sustainer-Inspirer",
+  tagline:"A gentle encourager who leads through deep personal connection and joyful affirmation",
+  overview:"Sustainer-Inspirers blend empathy with warmth and social ease. They make everyone feel like they belong — celebrated for who they are, not just what they do. They radiate kindness, bring lightness to heavy moments, and create spaces where people feel truly seen. In mentoring, they form deep bonds and use encouragement as their primary tool for growth.",
+  communication:"Sustainer-Inspirers communicate with tender warmth and gentle enthusiasm. They affirm frequently, listen with their whole being, and instinctively know what someone needs to hear. They may avoid conflict almost entirely, preferring to encourage around problems rather than address them directly.",
+  values:"Belonging, encouragement, kindness, emotional safety, joy in relationships, and unconditional positive regard.",
+  mentoring:[
+    {title:"Creates the warmest, most affirming mentoring relationships",desc:"Their combination of deep empathy and social warmth produces relationships where mentees feel unconditionally accepted. This isn't naive — it's strategic. People who feel accepted are far more willing to take the risks that growth requires."},
+    {title:"Helps mentees discover strengths they didn't know they had",desc:"Through careful observation and genuine celebration, they name gifts and talents that the mentee has never recognized in themselves. This strength-spotting can be transformative for mentees with low professional confidence."},
+    {title:"Models unconditional positive regard in professional settings",desc:"They demonstrate that it's possible to see someone's limitations clearly while still believing wholeheartedly in their potential. Their mentees learn to extend this same grace to the children in their classrooms."},
+    {title:"Builds lasting confidence and self-worth",desc:"Because the affirmation is so genuine and specific, it takes root. Mentees don't just feel good in the moment — they develop a durable sense of professional competence that outlasts the mentoring relationship."}
+  ],
+  growth:{
+    tendencies:"Sustainer-Inspirers can be the most conflict-avoidant of all profiles. Their deep care for people combined with their desire to keep things positive means they may go months without addressing serious performance issues. They can confuse being nice with being helpful, and their encouragement — while genuine — may lack the specificity needed to drive actual improvement.",
+    comesAcross:"They can come across as all warmth and no substance. Drivers and Cultivators may find them frustrating to work with because nothing seems to get addressed head-on. Mentees who are underperforming may feel loved but not led.",
+    blindSpots:"It may not occur to them that their mentee would actually respect them more — not less — if they delivered honest feedback. They may not realize that their avoidance of difficult conversations communicates a lack of confidence in their own authority, which can undermine the mentee's trust.",
+    underPressure:"Under stress, they become increasingly avoidant and increasingly performatively positive — doubling down on encouragement as a way to avoid addressing the actual problem. They may withdraw from the mentoring relationship entirely rather than face a confrontation, framing it as 'giving space' when it's actually retreat."
+  }
+},
+"S-C":{
+  label:"The Sustainer-Cultivator",
+  tagline:"A thoughtful counselor who blends empathy with wisdom and careful discernment",
+  overview:"Sustainer-Cultivators combine deep empathy with thoughtful analysis. They are the leader people go to for wisdom — someone who listens fully, considers carefully, and offers guidance that is both emotionally attuned and intellectually grounded. They don't rush to answers. In mentoring, they create reflective spaces where mentees feel safe to explore, and then offer insights that are both compassionate and precisely targeted.",
+  communication:"Sustainer-Cultivators communicate with quiet, considered warmth. They ask probing questions, reflect before responding, and offer counsel that balances emotional understanding with analytical clarity. They may be slow to speak in group settings, but when they do, people listen because their words carry weight.",
+  values:"Wisdom, empathy, reflection, careful discernment, patience, and depth of understanding.",
+  mentoring:[
+    {title:"Creates contemplative mentoring spaces where deep exploration is possible",desc:"They slow everything down in the best possible way. Their mentoring sessions feel less like performance reviews and more like thoughtful dialogues. Mentees learn to reflect deeply because they are given the space and modeling to do so."},
+    {title:"Honors both emotional and intellectual dimensions of growth",desc:"They never dismiss a mentee's feelings as irrelevant to the work, and they never allow feelings to substitute for analysis. Both get their due, and the integration produces insights neither could produce alone."},
+    {title:"Models thoughtful, unhurried wisdom",desc:"In a field that often rewards speed and decisiveness, the Sustainer-Cultivator demonstrates the power of patience. They show that the best answers often come from the person willing to sit with the question longest."},
+    {title:"Helps mentees develop their own reflective practice",desc:"Their greatest long-term gift is teaching mentees how to think about their own work. Rather than providing all the answers, they ask the questions that build the mentee's capacity for self-evaluation."}
+  ],
+  growth:{
+    tendencies:"Sustainer-Cultivators can become so contemplative that they lose momentum. Their combination of emotional caution and analytical thoroughness means they may take far too long to act on what they already know. They can over-research, over-process, and over-reflect until the window for meaningful intervention has passed.",
+    comesAcross:"They can come across as passive, indecisive, or excessively cautious. Drivers may find them maddeningly slow. Inspirers may find their quiet energy draining. Mentees who need energy and direction may feel lost in the reflective space.",
+    blindSpots:"It may not occur to them that their mentee needs a clear directive, not another thoughtful question. They may not realize that their thorough, measured approach — while intellectually impressive — can feel like a lack of urgency when the mentee needs immediate help.",
+    underPressure:"Under stress, they tend to freeze — paralyzed by the combination of not wanting to hurt anyone (Sustainer) and not wanting to be wrong (Cultivator). They may withdraw completely, going quiet when their team needs them most, processing internally while others are left without guidance."
+  }
+},
+"C-D":{
+  label:"The Cultivator-Driver",
+  tagline:"A meticulous planner who builds precise systems and drives them toward ambitious outcomes",
+  overview:"Cultivator-Drivers lead with analytical rigor but carry the urgency to see results. They won't just build the plan — they'll push relentlessly until it's executed to the highest standard. They demand precision AND progress. In mentoring, they create the most detailed, well-structured development plans and hold mentees accountable for following through on every step.",
+  communication:"Cultivator-Drivers communicate with precise authority. They present thoroughly researched positions and expect others to come equally prepared. They can be challenging conversationalists because they combine high standards for accuracy with impatience for slow progress. Their feedback is always specific, evidence-based, and actionable.",
+  values:"Strategy, excellence, efficiency, evidence, systematic execution, and measurable results.",
+  mentoring:[
+    {title:"Builds the most comprehensive, data-driven development plans",desc:"Nothing is left to chance. Every skill area is assessed, every goal is specific and measurable, and every timeline is realistic but ambitious. Mentees working with a Cultivator-Driver always know exactly where they are and where they're headed."},
+    {title:"Provides feedback that is specific, actionable, and thoroughly reasoned",desc:"They don't offer vague impressions — they present documented observations with specific timestamps, clear analysis, and concrete next steps. Their feedback is a precision tool for professional growth."},
+    {title:"Models combining analytical depth with decisive action",desc:"They show mentees that being thoughtful doesn't mean being slow, and that being action-oriented doesn't mean being reckless. They plan thoroughly and then execute decisively."},
+    {title:"Creates clear pathways to mastery with built-in accountability",desc:"Their development plans include not just goals but systems for tracking progress, regular check-points, and clear consequences for both meeting and missing targets. Growth becomes systematic rather than accidental."}
+  ],
+  growth:{
+    tendencies:"Cultivator-Drivers can be the most intimidating mentoring profile. Their combination of high standards, detailed analysis, and impatience with inefficiency can create an atmosphere where mentees feel perpetually evaluated and never good enough. They may prioritize the system over the person, treating mentoring as a project to be managed rather than a relationship to be nurtured.",
+    comesAcross:"They can come across as relentless, clinical, and impossible to satisfy. Their detailed feedback may feel like an audit. Their impatience with emotional processing can feel dismissive. Mentees may feel respected for their work but unknown as people.",
+    blindSpots:"It may not occur to them that their mentee has stopped growing because they're afraid of them, not because they lack competence. They may not realize that their perfectly engineered development plan is useless if the mentee doesn't feel safe enough to be honest about their struggles.",
+    underPressure:"Under stress, they become micromanagers — checking every detail, demanding updates, questioning every decision. Their tolerance for imperfection drops to zero. They can become sharply critical in ways that damage relationships they took months to build, and they may not recognize the damage until it's too late."
+  }
+},
+"C-I":{
+  label:"The Cultivator-Inspirer",
+  tagline:"A creative thinker who blends deep analysis with the ability to energize others around new ideas",
+  overview:"Cultivator-Inspirers combine depth with the ability to energize people. They are the rare leader who can do the deep thinking AND make it exciting for others. They see patterns and possibilities that others miss, and they have the social gift to bring people along on the journey of discovery. In mentoring, they inspire intellectual curiosity while providing the analytical scaffolding to support it.",
+  communication:"Cultivator-Inspirers communicate by alternating between reflective depth and animated sharing. They may disappear to think, then emerge with ideas presented in compelling, story-driven ways. They value both precision and engagement, and they are at their best when translating complex analysis into language that inspires action.",
+  values:"Innovation, depth, curiosity, compelling communication, pattern recognition, and inspired analysis.",
+  mentoring:[
+    {title:"Makes complex ideas accessible and exciting",desc:"They have the rare gift of translating sophisticated analysis into language that lights up the room. When they share observation data or research findings, mentees lean forward rather than tuning out."},
+    {title:"Inspires intellectual curiosity with structured support",desc:"They make mentees want to learn more, read more, and think more deeply — and then provide the frameworks and resources to channel that curiosity productively."},
+    {title:"Models deep thinking combined with enthusiastic communication",desc:"They demonstrate that being intellectual doesn't mean being boring, and that being engaging doesn't mean being shallow. Their mentoring is both rigorous and delightful."},
+    {title:"Helps mentees discover that depth and excitement are complementary",desc:"Many mentees see 'the fun mentor' and 'the smart mentor' as different people. The Cultivator-Inspirer shows them that the deepest work can also be the most engaging."}
+  ],
+  growth:{
+    tendencies:"Cultivator-Inspirers can become so enamored with their own ideas that they forget to check if anyone else is following. Their combination of analytical depth and enthusiasm can produce elaborate visions that excite them but overwhelm their mentees. They may spend more time developing brilliant frameworks than actually implementing simple changes.",
+    comesAcross:"They can come across as brilliant but impractical — full of fascinating ideas that don't translate into Monday morning action. Their alternation between quiet depth and animated energy can feel performative or unpredictable to those who prefer consistency.",
+    blindSpots:"It may not occur to them that their mentee needs simple, concrete next steps — not a fascinating conceptual framework. They may overestimate how much their enthusiasm for an idea constitutes actual support for implementing it. They can confuse generating insight with producing change.",
+    underPressure:"Under stress, they tend to retreat into analysis — producing increasingly sophisticated frameworks that serve as a substitute for the messy, uncomfortable work of actually addressing problems directly. Their social energy disappears, and the warmth that usually makes their analysis accessible is replaced by a detached intellectualism."
+  }
+},
+"C-S":{
+  label:"The Cultivator-Sustainer",
+  tagline:"A caring analyst who combines meticulous observation with genuine emotional investment in people",
+  overview:"Cultivator-Sustainers blend analytical precision with deep empathy. They notice everything — not just the data, but the feelings behind the data. They observe carefully, care deeply, and offer guidance that is both emotionally sensitive and practically grounded. In mentoring, they see what mentees need before the mentees see it themselves, and they deliver that insight with kindness.",
+  communication:"Cultivator-Sustainers communicate with observant gentleness. They notice patterns in behavior and emotion, reflect carefully on what they've observed, and share insights in ways that feel caring rather than clinical. They may be reserved in groups but are deeply attentive in one-on-one conversations.",
+  values:"Attentiveness, empathy, accuracy, thoughtful care, observation, and quietly impactful guidance.",
+  mentoring:[
+    {title:"Notices growth opportunities others miss",desc:"Their combination of analytical and emotional awareness means they see both what's happening in the classroom and what's happening in the mentee's heart. They connect dots that others don't even see, identifying root causes that produce breakthrough insights."},
+    {title:"Delivers precise feedback in the most emotionally sensitive way possible",desc:"They think carefully about not just what to say but how and when to say it. Their feedback is always accurate and always delivered with awareness of how the mentee will receive it. This makes their feedback uniquely effective because it's both heard and felt."},
+    {title:"Models careful observation paired with genuine compassion",desc:"They show mentees that being analytical doesn't mean being cold, and that being caring doesn't mean being imprecise. Their mentoring embodies the integration of head and heart."},
+    {title:"Creates relationships where people feel both deeply understood and precisely guided",desc:"Mentees experience the rare combination of being truly known as people and being expertly supported as professionals. This produces a depth of trust and a quality of guidance that accelerates growth in remarkable ways."}
+  ],
+  growth:{
+    tendencies:"Cultivator-Sustainers can become the 'silent observer' who sees everything but says nothing. Their combination of wanting to be accurate (Cultivator) and not wanting to hurt (Sustainer) means they may hold critical observations for far too long, waiting for the perfect moment that never comes. They can over-think and over-feel simultaneously, resulting in paralysis.",
+    comesAcross:"They can come across as quiet to the point of invisibility. Inspirers may find them too reserved. Drivers may find them frustratingly slow to act. Their gentle, measured approach can be mistaken for passivity or lack of engagement by those who expect more visible leadership.",
+    blindSpots:"It may not occur to them that their silence is being interpreted as having nothing to offer. They may not realize that the feedback they've been carefully composing in their mind for weeks could have been shared imperfectly two weeks ago and still been enormously helpful. They can overvalue perfection of delivery at the expense of timeliness.",
+    underPressure:"Under stress, they withdraw almost completely — going quiet, avoiding difficult situations, and retreating into private analysis. They may experience significant internal distress that no one around them sees, because their natural reserve prevents them from expressing it. They need someone to notice them the way they notice everyone else."
+  }
+}
 };
 
 // ═══════════════════════════════════════════════════════════
@@ -384,7 +541,6 @@ const QUESTIONS = [
   {t:"When trying to be a good leader, I often feel I need to be more assertive and direct.",type:"D"},
   {t:"When I delegate tasks to others, I do so naturally and effectively.",type:"D"},
   {t:"When I feel out of control of a situation, I become stressed and need to regain my footing.",type:"D"},
-
   {t:"When I am around others, I am energetic, lively, and show affection openly.",type:"I"},
   {t:"When I enter a room, people tend to find me fun to be around because of my humor and storytelling.",type:"I"},
   {t:"When I look at people and situations, I naturally see the best in them.",type:"I"},
@@ -403,7 +559,6 @@ const QUESTIONS = [
   {t:"When I go off on tangents in conversation, I sometimes lose people along the way.",type:"I"},
   {t:"When I feel that others do not like me, I become stressed and unsettled.",type:"I"},
   {t:"When I have a personal experience worth sharing, I frequently tell stories about it to connect with others.",type:"I"},
-
   {t:"When working with others, I am agreeable, cooperative, and easy to get along with.",type:"S"},
   {t:"When situations become chaotic, I remain adaptable, flexible, and calm.",type:"S"},
   {t:"When conflict arises, I instinctively avoid drama and approach the situation with a level head.",type:"S"},
@@ -422,7 +577,6 @@ const QUESTIONS = [
   {t:"When I want to be appreciated, it is for who I am as a person rather than merely for what I accomplish.",type:"S"},
   {t:"When I choose my friendships, I prefer cultivating a small circle of close, meaningful relationships.",type:"S"},
   {t:"When the group disagrees with me, I hesitate to speak up and advocate for my own position.",type:"S"},
-
   {t:"When gathering information, I am rational, thorough, and partial to keeping detailed records.",type:"C"},
   {t:"When approaching a task, I am cautious, attentive, and resist rushing into things.",type:"C"},
   {t:"When organizing my environment, I am meticulous, orderly, and maintain high standards.",type:"C"},
@@ -443,319 +597,261 @@ const QUESTIONS = [
   {t:"When sharing my thoughts, I favor written communication because it can be revised, polished, and perfected.",type:"C"}
 ];
 
-const ADMIN_PASS = "selcs2025";
-const TYPE_ORDER = ['D','I','S','C'];
+const ADMIN_PASS="selcs2025";
+const TYPE_ORDER=['D','I','S','C'];
 
 // ═══════════════════════════════════════════════════════════
-// STATE
+// NEMESIS PAIRS — natural opposites
+// D ↔ S (action vs. harmony) and I ↔ C (spontaneity vs. precision)
 // ═══════════════════════════════════════════════════════════
-let currentUser = null, currentQ = 0, answers = {}, shuffledOrder = [];
-
-function getRecords(){ try{return JSON.parse(localStorage.getItem('selcs2_records')||'[]')}catch(e){return[]} }
-function saveRecords(r){ localStorage.setItem('selcs2_records',JSON.stringify(r)) }
-
-// ═══════════════════════════════════════════════════════════
-// BLEND DETERMINATION
-// If the #1 type's percentage of the TOTAL score is ≥ 60%,
-// they are a pure type. Otherwise, combine the top two.
-// ═══════════════════════════════════════════════════════════
-function determineProfile(pcts, ranked) {
-  const totalPct = TYPE_ORDER.reduce((s,t) => s + pcts[t], 0);
-  const topShare = pcts[ranked[0]] / totalPct;
-  if (topShare >= 0.60) {
-    // Pure type
-    return { isBlend: false, key: ranked[0], profile: TYPES[ranked[0]] };
-  } else {
-    // Blended — top two
-    const blendKey = ranked[0] + '-' + ranked[1];
-    const profile = BLENDS[blendKey];
-    return { isBlend: true, key: blendKey, primary: ranked[0], secondary: ranked[1], profile };
+const NEMESIS = {
+  D:{
+    opposite:"S",
+    title:"Driver ↔ Sustainer",
+    why:"These two styles sit at opposite ends of the action-versus-harmony spectrum. Drivers prioritize results, speed, and directness. Sustainers prioritize relationships, patience, and emotional safety. Each represents what the other most struggles with — and most needs to learn.",
+    clashes:"The Driver's directness can feel aggressive and uncaring to the Sustainer, who needs relational warmth before they can hear feedback. The Sustainer's need to process emotions and maintain harmony can feel like stalling and avoidance to the Driver, who wants to solve the problem and move on. Drivers may interpret Sustainers as weak or indecisive. Sustainers may interpret Drivers as harsh or emotionally reckless. Both interpretations are wrong, but they arise naturally from their opposing orientations.",
+    awareness:"If you are a Driver mentoring a Sustainer, slow down. Ask how they're feeling before diving into action items. Build the relational bridge first — your feedback will land ten times harder once they trust your care. If you are a Sustainer mentoring a Driver, be direct. They don't need you to soften the message — they need you to respect them enough to say it plainly. Your warmth is a gift, but so is your willingness to be honest."
+  },
+  S:{
+    opposite:"D",
+    title:"Sustainer ↔ Driver",
+    why:"These two styles sit at opposite ends of the action-versus-harmony spectrum. Sustainers prioritize relationships, patience, and emotional safety. Drivers prioritize results, speed, and directness. Each represents what the other most struggles with — and most needs to learn.",
+    clashes:"The Sustainer's need for relational groundwork can feel like unnecessary delay to the Driver, who is ready to act. The Driver's blunt feedback can feel like a personal attack to the Sustainer, who filters everything through an emotional lens. Sustainers may shut down or withdraw when a Driver pushes too hard. Drivers may become frustrated and escalate their directness when a Sustainer doesn't respond quickly enough.",
+    awareness:"If you are a Sustainer mentoring a Driver, resist the urge to over-process. Drivers respect efficiency and candor — give them the feedback straight and they'll actually appreciate you more, not less. If you are a Driver mentoring a Sustainer, invest in the relationship before you invest in the agenda. Five minutes of genuine personal connection at the start of a meeting will save you thirty minutes of resistance later."
+  },
+  I:{
+    opposite:"C",
+    title:"Inspirer ↔ Cultivator",
+    why:"These two styles sit at opposite ends of the spontaneity-versus-precision spectrum. Inspirers prioritize energy, connection, and creative possibility. Cultivators prioritize accuracy, structure, and careful analysis. Each represents what the other most struggles with — and most needs to learn.",
+    clashes:"The Inspirer's brainstorming and enthusiasm can feel chaotic, unfocused, and superficial to the Cultivator, who wants depth and rigor. The Cultivator's insistence on data, precision, and thoroughness can feel like a wet blanket on the Inspirer's creative energy. Inspirers may see Cultivators as overly negative or stuck in analysis paralysis. Cultivators may see Inspirers as careless, unreliable, or all talk and no substance.",
+    awareness:"If you are an Inspirer mentoring a Cultivator, bring your preparation. They will respect your energy much more if it comes with evidence and a plan. Don't mistake their silence for disengagement — they're processing deeply. If you are a Cultivator mentoring an Inspirer, start with what's working. They need to feel appreciated before they can hear analysis. And keep your feedback concise — they absorb in quick bursts, not long reports."
+  },
+  C:{
+    opposite:"I",
+    title:"Cultivator ↔ Inspirer",
+    why:"These two styles sit at opposite ends of the spontaneity-versus-precision spectrum. Cultivators prioritize accuracy, structure, and careful analysis. Inspirers prioritize energy, connection, and creative possibility. Each represents what the other most struggles with — and most needs to learn.",
+    clashes:"The Cultivator's need for thoroughness and precision can feel slow, rigid, and joyless to the Inspirer, who thrives on spontaneous energy. The Inspirer's rapid-fire enthusiasm and loose follow-through can feel irresponsible and frustrating to the Cultivator, who values discipline and consistency. Cultivators may withdraw in response to what they see as chaos. Inspirers may disengage in response to what they see as negativity.",
+    awareness:"If you are a Cultivator mentoring an Inspirer, loosen your grip on the timeline. Their best work happens in bursts, not spreadsheets. Celebrate their creative energy and channel it rather than trying to contain it. If you are an Inspirer mentoring a Cultivator, honor their process. Don't rush them. Share your feedback in writing so they can process it thoroughly. And never dismiss their detailed questions as overthinking — that's how they learn."
   }
-}
+};
 
-function getBlendColor(key) {
-  if (key.length === 1) return TYPES[key].color;
-  return TYPES[key.split('-')[0]].color;
+let currentUser=null,currentQ=0,answers={},shuffledOrder=[];
+function getRecords(){try{return JSON.parse(localStorage.getItem('selcs2_records')||'[]')}catch(e){return[]}}
+function saveRecords(r){localStorage.setItem('selcs2_records',JSON.stringify(r))}
+
+function determineProfile(pcts,ranked){
+  const totalPct=TYPE_ORDER.reduce((s,t)=>s+pcts[t],0);
+  const topShare=pcts[ranked[0]]/totalPct;
+  if(topShare>=0.60) return {isBlend:false,key:ranked[0],profile:TYPES[ranked[0]]};
+  const blendKey=ranked[0]+'-'+ranked[1];
+  return {isBlend:true,key:blendKey,primary:ranked[0],secondary:ranked[1],profile:BLENDS[blendKey]};
 }
-function getBlendBg(key) {
-  if (key.length === 1) return TYPES[key].bg;
-  return TYPES[key.split('-')[0]].bg;
+function getBlendColor(k){return k.length===1?TYPES[k].color:TYPES[k.split('-')[0]].color}
+function getBlendBg(k){return k.length===1?TYPES[k].bg:TYPES[k.split('-')[0]].bg}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER HELPERS — profile sections
+// ═══════════════════════════════════════════════════════════
+function renderMentoringHTML(pr){
+  let h='<div class="profile-section"><h4>As a Mentor</h4>';
+  pr.mentoring.forEach(m=>{
+    h+=`<p class="bullet"><strong>${m.title}</strong></p><p class="bullet-desc">${m.desc}</p>`;
+  });
+  h+='</div>';
+  return h;
+}
+function renderGrowthHTML(pr){
+  const g=pr.growth;
+  let h='<div class="growth-section"><h4>Growth Edge &amp; Self-Awareness</h4>';
+  h+=`<p class="growth-sub">Tendencies to be mindful of</p><p class="growth-text">${g.tendencies}</p>`;
+  h+=`<p class="growth-sub">How you may come across</p><p class="growth-text">${g.comesAcross}</p>`;
+  h+=`<p class="growth-sub">What may not occur to you</p><p class="growth-text">${g.blindSpots}</p>`;
+  h+=`<p class="growth-sub">How you may react under pressure or stress</p><p class="growth-text">${g.underPressure}</p>`;
+  h+='</div>';
+  return h;
+}
+function renderNemesisHTML(primaryType){
+  // primaryType is a single letter: D, I, S, or C
+  const n = NEMESIS[primaryType];
+  if(!n) return '';
+  const oppInfo = TYPES[n.opposite];
+  let h = `<div class="nemesis-section">`;
+  h += `<h4>Your Natural Opposite</h4>`;
+  h += `<span class="nemesis-label">${n.title}</span>`;
+  h += `<p class="nemesis-text"><strong>Why these styles are opposites:</strong> ${n.why}</p>`;
+  h += `<p class="nemesis-text"><strong>Where communication may clash:</strong> ${n.clashes}</p>`;
+  h += `<p class="nemesis-text"><strong>Building awareness:</strong> ${n.awareness}</p>`;
+  h += '</div>';
+  return h;
 }
 
 // ═══════════════════════════════════════════════════════════
 // TABS
 // ═══════════════════════════════════════════════════════════
-function showTab(name, btn){
+function showTab(name,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tabs button').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  if(btn) btn.classList.add('active');
-  if(name==='about') renderAbout();
+  if(btn)btn.classList.add('active');
+  if(name==='about')renderAbout();
 }
 
 // ═══════════════════════════════════════════════════════════
 // QUIZ
 // ═══════════════════════════════════════════════════════════
 function startQuiz(){
-  const name=document.getElementById('reg-name').value.trim();
-  const email=document.getElementById('reg-email').value.trim();
-  const org=document.getElementById('reg-org').value.trim();
-  const role=document.getElementById('reg-role').value;
-  const err=document.getElementById('reg-error');
+  const name=document.getElementById('reg-name').value.trim(),email=document.getElementById('reg-email').value.trim(),org=document.getElementById('reg-org').value.trim(),role=document.getElementById('reg-role').value,err=document.getElementById('reg-error');
   if(!name||!email){err.textContent='Please enter your name and email.';err.style.display='block';return}
   if(!/\S+@\S+\.\S+/.test(email)){err.textContent='Please enter a valid email address.';err.style.display='block';return}
-  err.style.display='none';
-  currentUser={name,email,org,role};
-  answers={};currentQ=0;
+  err.style.display='none';currentUser={name,email,org,role};answers={};currentQ=0;
   shuffledOrder=QUESTIONS.map((_,i)=>i);
   for(let i=shuffledOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffledOrder[i],shuffledOrder[j]]=[shuffledOrder[j],shuffledOrder[i]]}
-  document.getElementById('step-register').style.display='none';
-  document.getElementById('step-quiz').style.display='block';
-  renderQuestion();
+  document.getElementById('step-register').style.display='none';document.getElementById('step-quiz').style.display='block';renderQuestion();
 }
-
 function renderQuestion(){
-  const idx=shuffledOrder[currentQ];
-  const q=QUESTIONS[idx];
-  const selected=answers[idx];
-  const pct=Math.round((currentQ/QUESTIONS.length)*100);
-  document.getElementById('prog-bar').style.width=pct+'%';
+  const idx=shuffledOrder[currentQ],q=QUESTIONS[idx],selected=answers[idx];
+  document.getElementById('prog-bar').style.width=Math.round((currentQ/QUESTIONS.length)*100)+'%';
   document.getElementById('prog-text').textContent=`Question ${currentQ+1} of ${QUESTIONS.length}`;
   document.getElementById('btn-prev').disabled=currentQ===0;
   document.getElementById('btn-next').textContent=currentQ===QUESTIONS.length-1?'See Results →':'Next →';
   const labels=['Strongly Disagree','Disagree','Neutral','Agree','Strongly Agree'];
-  let html=`<div class="question-card">
-    <div class="question-num">Question ${currentQ+1} of ${QUESTIONS.length}</div>
-    <div class="question-text">${q.t}</div>
-    <div class="likert-row">`;
-  [1,2,3,4,5].forEach((v,i)=>{
-    html+=`<div class="likert-option ${selected===v?'selected':''}" onclick="selectAnswer(${idx},${v})">
-      <div class="likert-dot"></div>
-      <div class="likert-val">${labels[i]}</div>
-    </div>`;
-  });
-  html+=`</div></div>`;
-  document.getElementById('question-area').innerHTML=html;
+  let h=`<div class="question-card"><div class="question-num">Question ${currentQ+1} of ${QUESTIONS.length}</div><div class="question-text">${q.t}</div><div class="likert-row">`;
+  [1,2,3,4,5].forEach((v,i)=>{h+=`<div class="likert-option ${selected===v?'selected':''}" onclick="selectAnswer(${idx},${v})"><div class="likert-dot"></div><div class="likert-val">${labels[i]}</div></div>`});
+  h+='</div></div>';document.getElementById('question-area').innerHTML=h;
 }
-function selectAnswer(qIdx,val){answers[qIdx]=val;renderQuestion()}
+function selectAnswer(i,v){answers[i]=v;renderQuestion()}
 function prevQ(){if(currentQ>0){currentQ--;renderQuestion()}}
 function nextQ(){
   const idx=shuffledOrder[currentQ];
   if(answers[idx]===undefined){const c=document.querySelector('.question-card');c.style.borderColor='var(--driver)';setTimeout(()=>c.style.borderColor='transparent',600);return}
-  if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion()}
-  else{calculateResults()}
+  if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion()}else{calculateResults()}
 }
 
 // ═══════════════════════════════════════════════════════════
-// CALCULATE & RENDER RESULTS
+// RESULTS
 // ═══════════════════════════════════════════════════════════
 function calculateResults(){
   const scores={D:0,I:0,S:0,C:0};
-  const maxPerType=18*5;
-  QUESTIONS.forEach((q,i)=>{ if(answers[i]!==undefined) scores[q.type]+=answers[i] });
+  QUESTIONS.forEach((q,i)=>{if(answers[i]!==undefined)scores[q.type]+=answers[i]});
+  const totalScore=TYPE_ORDER.reduce((s,t)=>s+scores[t],0);
   const pcts={};
-  TYPE_ORDER.forEach(t=>{ pcts[t]=Math.round((scores[t]/maxPerType)*100) });
+  // Calculate as share of total so they sum to 100%
+  let assigned=0;
+  TYPE_ORDER.forEach((t,i)=>{
+    if(i<3){const p=Math.round((scores[t]/totalScore)*100);pcts[t]=p;assigned+=p}
+    else{pcts[t]=100-assigned}
+  });
   const ranked=TYPE_ORDER.slice().sort((a,b)=>pcts[b]-pcts[a]);
-
-  const profile = determineProfile(pcts, ranked);
-
-  const record={
-    name:currentUser.name, email:currentUser.email, org:currentUser.org, role:currentUser.role,
-    date:new Date().toISOString(), scores, pcts, ranked,
-    primary:ranked[0],
-    profileKey: profile.key,
-    profileLabel: profile.profile.label,
-    isBlend: profile.isBlend
-  };
-  const records=getRecords(); records.push(record); saveRecords(records);
+  const profile=determineProfile(pcts,ranked);
+  const record={name:currentUser.name,email:currentUser.email,org:currentUser.org,role:currentUser.role,date:new Date().toISOString(),scores,pcts,ranked,primary:ranked[0],profileKey:profile.key,profileLabel:profile.profile.label,isBlend:profile.isBlend};
+  const records=getRecords();records.push(record);saveRecords(records);
   renderResults(record);
 }
-
 function renderResults(r){
-  const profile = determineProfile(r.pcts, r.ranked);
-  const pr = profile.profile;
-  const prColor = getBlendColor(profile.key);
-  const prBg = getBlendBg(profile.key);
+  const profile=determineProfile(r.pcts,r.ranked),pr=profile.profile,prColor=getBlendColor(profile.key),prBg=getBlendBg(profile.key);
+  let h=`<div class="results-header"><div class="eyebrow" style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.5rem">Assessment Complete</div><h2>Your SELCS Profile</h2><p>${r.name}</p></div>`;
+  h+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:1rem;color:var(--ink-light)">Your Ranked Profile</h3>`;
+  r.ranked.forEach((t,i)=>{const info=TYPES[t];h+=`<div class="type-rank"><div class="rank-num">${i+1}</div><div class="rank-label" style="color:${info.color}">${info.label}</div><div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${info.color}"></div></div><div class="rank-pct">${r.pcts[t]}%</div></div>`});
+  h+='</div>';
+  // Spotlight
+  h+=`<div class="spotlight card" style="border-left-color:${prColor};background:${prBg}">`;
+  if(profile.isBlend){const c1=TYPES[profile.primary].color,c2=TYPES[profile.secondary].color;h+=`<span class="blend-badge" style="background:linear-gradient(135deg,${c1},${c2});color:#fff">${TYPES[profile.primary].label.replace('The ','')} + ${TYPES[profile.secondary].label.replace('The ','')}</span>`}
+  h+=`<h3 style="color:${prColor}">Your Style: ${pr.label}</h3><span class="tagline">${pr.tagline}</span><p>${pr.overview}</p><p><strong>Communication Style:</strong> ${pr.communication}</p><p><strong>Core Values:</strong> ${pr.values}</p>`;
+  h+=renderMentoringHTML(pr);
+  h+=renderGrowthHTML(pr);
+  h+=renderNemesisHTML(r.ranked[0]);
+  h+='</div>';
 
-  let html=`
-    <div class="results-header">
-      <div class="eyebrow" style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.5rem">Assessment Complete</div>
-      <h2>Your SELCS Profile</h2>
-      <p>${r.name}</p>
-    </div>
-    <div class="card">
-      <h3 style="font-size:1.1rem;margin-bottom:1rem;color:var(--ink-light)">Your Ranked Profile</h3>`;
-  r.ranked.forEach((t,i)=>{
-    const info=TYPES[t];
-    html+=`<div class="type-rank">
-      <div class="rank-num">${i+1}</div>
-      <div class="rank-label" style="color:${info.color}">${info.label}</div>
-      <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${info.color}"></div></div>
-      <div class="rank-pct">${r.pcts[t]}%</div>
+  // Full descriptions for primary and secondary core types
+  const showTypes = profile.isBlend ? [profile.primary, profile.secondary] : [r.ranked[0], r.ranked[1]];
+  h+=`<div class="section-head mt-2"><div class="eyebrow">Your Core Types</div><h2>${profile.isBlend ? 'The Two Styles That Shape Your Blend' : 'Your Primary &amp; Secondary Styles'}</h2></div>`;
+  showTypes.forEach((key,idx)=>{
+    const tp=TYPES[key];
+    const roleLabel = idx===0 ? (profile.isBlend ? 'Primary Style in Your Blend' : 'Your Primary Style') : (profile.isBlend ? 'Secondary Style in Your Blend' : 'Your Secondary Style');
+    h+=`<div class="about-type" style="border-left-color:${tp.color}">
+      <p style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:${tp.color};margin-bottom:.35rem">${roleLabel} — ${r.pcts[key]}%</p>
+      <h3 style="color:${tp.color}">${tp.label}</h3>
+      <span class="tagline">${tp.tagline}</span>
+      <p>${tp.overview}</p>
+      <p><strong>Communication Style:</strong> ${tp.communication}</p>
+      <p><strong>Core Values:</strong> ${tp.values}</p>
+      ${renderMentoringHTML(tp)}
+      ${renderGrowthHTML(tp)}
     </div>`;
   });
-  html+=`</div>`;
 
-  // Profile spotlight
-  html+=`<div class="spotlight card" style="border-left-color:${prColor};background:${prBg}">`;
-  if (profile.isBlend) {
-    const c1 = TYPES[profile.primary].color;
-    const c2 = TYPES[profile.secondary].color;
-    html+=`<span class="blend-badge" style="background:linear-gradient(135deg,${c1},${c2});color:#fff">${TYPES[profile.primary].label.replace('The ','')} + ${TYPES[profile.secondary].label.replace('The ','')}</span>`;
+  // Compact reference for remaining types
+  const remaining = r.ranked.filter(t => !showTypes.includes(t));
+  if(remaining.length){
+    h+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:.5rem">Your Other Styles</h3><p style="font-size:.83rem;color:var(--ink-light);margin-bottom:1rem">These styles are less dominant in your profile but still present. Understanding them helps you recognize these tendencies in the people you mentor.</p><div class="type-grid">`;
+    remaining.forEach(t=>{
+      const info=TYPES[t];
+      h+=`<div class="type-mini" style="border-color:${info.color}20;background:${info.bg}">
+        <h4 style="color:${info.color}">${info.label} — ${r.pcts[t]}%</h4>
+        <p>${info.tagline}</p>
+        <p style="margin-top:.35rem;font-size:.76rem;color:var(--ink-light)">${info.overview.split('.').slice(0,2).join('.')}.</p>
+      </div>`;
+    });
+    h+='</div></div>';
   }
-  html+=`<h3 style="color:${prColor}">Your Style: ${pr.label}</h3>
-    <span class="tagline">${pr.tagline}</span>
-    <p>${pr.overview}</p>
-    <p><strong>Communication Style:</strong> ${pr.communication}</p>
-    <p><strong>Core Values:</strong> ${pr.values}</p>
-    <p style="font-weight:600;margin-top:.5rem">As a Mentor:</p>`;
-  pr.mentoring.forEach(m=>{html+=`<p style="padding-left:1rem;font-size:.85rem">• ${m}</p>`});
-  html+=`</div>`;
 
-  // All 4 base types mini-cards
-  html+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:1rem">The Four Core SELCS Styles</h3><div class="type-grid">`;
-  TYPE_ORDER.forEach(t=>{
-    const info=TYPES[t];
-    const mark = r.ranked.indexOf(t)===0?' (Your #1)': r.ranked.indexOf(t)===1?' (Your #2)':'';
-    html+=`<div class="type-mini" style="border-color:${info.color}20;background:${info.bg}">
-      <h4 style="color:${info.color}">${info.label}${mark}</h4>
-      <p>${info.tagline}</p>
-    </div>`;
-  });
-  html+=`</div></div>`;
-
-  html+=`<div class="flex-gap mt-2">
-    <button class="btn btn-gold btn-sm" onclick="window.print()">Print Results</button>
-    <button class="btn btn-outline btn-sm" onclick="retakeQuiz()">Retake Assessment</button>
-  </div>`;
-
-  document.getElementById('step-quiz').style.display='none';
-  document.getElementById('step-results').style.display='block';
-  document.getElementById('step-results').innerHTML=html;
+  h+=`<div class="flex-gap mt-2"><button class="btn btn-gold btn-sm" onclick="window.print()">Print Results</button><button class="btn btn-outline btn-sm" onclick="retakeQuiz()">Retake Assessment</button></div>`;
+  document.getElementById('step-quiz').style.display='none';document.getElementById('step-results').style.display='block';document.getElementById('step-results').innerHTML=h;
 }
-
-function retakeQuiz(){
-  document.getElementById('step-results').style.display='none';
-  document.getElementById('step-register').style.display='block';
-}
+function retakeQuiz(){document.getElementById('step-results').style.display='none';document.getElementById('step-register').style.display='block'}
 
 // ═══════════════════════════════════════════════════════════
 // REVIEW
 // ═══════════════════════════════════════════════════════════
 function reviewResults(){
-  const email=document.getElementById('review-email').value.trim().toLowerCase();
-  if(!email) return;
+  const email=document.getElementById('review-email').value.trim().toLowerCase();if(!email)return;
   const records=getRecords().filter(r=>r.email.toLowerCase()===email);
   const out=document.getElementById('review-output');
   if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No results found for that email address.</p></div>';return}
-  let html='';
-  records.reverse().forEach(r=>{
-    const d=new Date(r.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-    const profile = determineProfile(r.pcts, r.ranked);
-    const prColor = getBlendColor(profile.key);
-    html+=`<div class="card mt-1">
-      <p style="font-size:.75rem;color:var(--ink-faint);margin-bottom:.5rem">${d}</p>
-      <p style="font-weight:600;color:${prColor};margin-bottom:.15rem">${profile.profile.label}</p>
-      <p style="font-size:.8rem;font-style:italic;color:var(--ink-light);margin-bottom:.75rem">${profile.isBlend?TYPES[profile.primary].label.replace('The ','')+' + '+TYPES[profile.secondary].label.replace('The ',''):'Pure type'}</p>`;
-    r.ranked.forEach((t,i)=>{
-      html+=`<div class="type-rank">
-        <div class="rank-num" style="font-size:1.1rem">${i+1}</div>
-        <div class="rank-label" style="color:${TYPES[t].color};font-size:.85rem">${TYPES[t].label}</div>
-        <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${TYPES[t].color}"></div></div>
-        <div class="rank-pct" style="font-size:.78rem">${r.pcts[t]}%</div>
-      </div>`;
-    });
-    html+=`</div>`;
-  });
-  out.innerHTML=html;
+  let h='';records.reverse().forEach(r=>{
+    const d=new Date(r.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key);
+    h+=`<div class="card mt-1"><p style="font-size:.75rem;color:var(--ink-faint);margin-bottom:.5rem">${d}</p><p style="font-weight:600;color:${prColor};margin-bottom:.15rem">${profile.profile.label}</p><p style="font-size:.8rem;font-style:italic;color:var(--ink-light);margin-bottom:.75rem">${profile.isBlend?TYPES[profile.primary].label.replace('The ','')+' + '+TYPES[profile.secondary].label.replace('The ',''):'Pure type'}</p>`;
+    r.ranked.forEach((t,i)=>{h+=`<div class="type-rank"><div class="rank-num" style="font-size:1.1rem">${i+1}</div><div class="rank-label" style="color:${TYPES[t].color};font-size:.85rem">${TYPES[t].label}</div><div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${TYPES[t].color}"></div></div><div class="rank-pct" style="font-size:.78rem">${r.pcts[t]}%</div></div>`});
+    h+='</div>';
+  });out.innerHTML=h;
 }
 
 // ═══════════════════════════════════════════════════════════
 // RECORDS (ADMIN)
 // ═══════════════════════════════════════════════════════════
 function viewRecords(){
-  const pass=document.getElementById('admin-pass').value;
-  const out=document.getElementById('records-output');
+  const pass=document.getElementById('admin-pass').value,out=document.getElementById('records-output');
   if(pass!==ADMIN_PASS){out.innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Incorrect password.</p></div>';return}
   const filter=document.getElementById('admin-org-filter').value.trim().toLowerCase();
-  let records=getRecords();
-  if(filter) records=records.filter(r=>(r.org||'').toLowerCase().includes(filter));
+  let records=getRecords();if(filter)records=records.filter(r=>(r.org||'').toLowerCase().includes(filter));
   if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No records found.</p></div>';return}
-
-  let html=`<div class="card mt-1" style="overflow-x:auto">
-    <p style="font-size:.82rem;color:var(--ink-light);margin-bottom:.75rem">${records.length} record${records.length>1?'s':''} found</p>
-    <table class="records-table">
-    <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Profile</th><th>Type</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th></tr></thead><tbody>`;
-  records.reverse().forEach(r=>{
-    const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'});
-    const profile = determineProfile(r.pcts, r.ranked);
-    const prColor = getBlendColor(profile.key);
-    const typeLabel = profile.isBlend ? 'Blend' : 'Pure';
-    html+=`<tr><td>${d}</td><td>${r.name}</td><td>${r.email}</td><td>${r.org||'—'}</td><td>${r.role||'—'}</td>
-      <td style="font-weight:600;color:${prColor}">${profile.profile.label}</td>
-      <td style="font-size:.72rem">${typeLabel}</td>
-      <td>${r.pcts.D}</td><td>${r.pcts.I}</td><td>${r.pcts.S}</td><td>${r.pcts.C}</td></tr>`;
-  });
-  html+=`</tbody></table></div>
-    <div class="mt-1"><button class="btn btn-outline btn-sm" style="color:var(--driver);border-color:var(--driver)" onclick="if(confirm('Clear ALL records? This cannot be undone.')){saveRecords([]);document.getElementById('records-output').innerHTML='<div class=\\'card mt-1\\'><p>All records cleared.</p></div>'}">Clear All Records</button></div>`;
-  out.innerHTML=html;
+  let h=`<div class="card mt-1" style="overflow-x:auto"><p style="font-size:.82rem;color:var(--ink-light);margin-bottom:.75rem">${records.length} record${records.length>1?'s':''} found</p><table class="records-table"><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Profile</th><th>Type</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th></tr></thead><tbody>`;
+  records.reverse().forEach(r=>{const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key);
+    h+=`<tr><td>${d}</td><td>${r.name}</td><td>${r.email}</td><td>${r.org||'—'}</td><td>${r.role||'—'}</td><td style="font-weight:600;color:${prColor}">${profile.profile.label.replace('The ','')}</td><td style="font-size:.72rem">${profile.isBlend?'Blend':'Pure'}</td><td>${r.pcts.D}</td><td>${r.pcts.I}</td><td>${r.pcts.S}</td><td>${r.pcts.C}</td></tr>`});
+  h+=`</tbody></table></div><div class="mt-1"><button class="btn btn-outline btn-sm" style="color:var(--driver);border-color:var(--driver)" onclick="if(confirm('Clear ALL records? This cannot be undone.')){saveRecords([]);document.getElementById('records-output').innerHTML='<div class=\\'card mt-1\\'><p>All records cleared.</p></div>'}">Clear All Records</button></div>`;
+  out.innerHTML=h;
 }
-
 function exportCSV(){
-  const pass=document.getElementById('admin-pass').value;
-  if(pass!==ADMIN_PASS){document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Enter admin password first.</p></div>';return}
-  const records=getRecords();
-  if(!records.length) return;
+  const pass=document.getElementById('admin-pass').value;if(pass!==ADMIN_PASS){document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Enter admin password first.</p></div>';return}
+  const records=getRecords();if(!records.length)return;
   let csv='Date,Name,Email,Organization,Role,Profile,Type,Driver%,Inspirer%,Sustainer%,Cultivator%,Ranked Order\n';
-  records.forEach(r=>{
-    const d=new Date(r.date).toLocaleDateString();
-    const profile = determineProfile(r.pcts, r.ranked);
-    const ranked=r.ranked.map(t=>TYPES[t].label.replace('The ','')).join(' > ');
-    csv+=`"${d}","${r.name}","${r.email}","${r.org||''}","${r.role||''}","${profile.profile.label}","${profile.isBlend?'Blend':'Pure'}",${r.pcts.D},${r.pcts.I},${r.pcts.S},${r.pcts.C},"${ranked}"\n`;
-  });
-  const blob=new Blob([csv],{type:'text/csv'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SELCS_Records.csv';a.click();
+  records.forEach(r=>{const d=new Date(r.date).toLocaleDateString(),profile=determineProfile(r.pcts,r.ranked),ranked=r.ranked.map(t=>TYPES[t].label.replace('The ','')).join(' > ');
+    csv+=`"${d}","${r.name}","${r.email}","${r.org||''}","${r.role||''}","${profile.profile.label}","${profile.isBlend?'Blend':'Pure'}",${r.pcts.D},${r.pcts.I},${r.pcts.S},${r.pcts.C},"${ranked}"\n`});
+  const blob=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SELCS_Records.csv';a.click();
 }
 
 // ═══════════════════════════════════════════════════════════
 // ABOUT
 // ═══════════════════════════════════════════════════════════
 function renderAbout(){
-  const el=document.getElementById('about-types');
-  if(el.innerHTML) return;
-  // Show 4 core types
-  let html = '<div class="section-head mt-2"><div class="eyebrow">Core Styles</div><h2>The Four Foundations</h2></div>';
-  html += TYPE_ORDER.map(key=>{
-    const tp=TYPES[key];
-    return `<div class="about-type" style="border-left-color:${tp.color}">
-      <h3 style="color:${tp.color}">${tp.label}</h3>
-      <span class="tagline">${tp.tagline}</span>
-      <p>${tp.overview}</p>
-      <p><strong>Communication Style:</strong> ${tp.communication}</p>
-      <p><strong>Core Values:</strong> ${tp.values}</p>
-      <p style="font-weight:600;margin-top:.5rem">As a Mentor:</p>
-      ${tp.mentoring.map(m=>`<p style="padding-left:1rem;font-size:.83rem">• ${m}</p>`).join('')}
-    </div>`;
-  }).join('');
-
-  // Show blended profiles
-  html += '<div class="section-head mt-2"><div class="eyebrow">Blended Styles</div><h2>When Two Styles Combine</h2></div>';
-  html += '<p style="font-size:.85rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">When no single style accounts for 60% or more of your total score, your top two styles blend into a unique combined profile. Here are all twelve possible blends:</p>';
-  Object.entries(BLENDS).forEach(([key, bl])=>{
-    const parts = key.split('-');
-    const c1 = TYPES[parts[0]].color;
-    html+=`<div class="about-type" style="border-left-color:${c1}">
-      <span class="blend-badge" style="background:linear-gradient(135deg,${TYPES[parts[0]].color},${TYPES[parts[1]].color});color:#fff;margin-bottom:.5rem">${TYPES[parts[0]].label.replace('The ','')} + ${TYPES[parts[1]].label.replace('The ','')}</span>
-      <h3 style="color:${c1}">${bl.label}</h3>
-      <span class="tagline">${bl.tagline}</span>
-      <p>${bl.overview}</p>
-      <p><strong>Communication Style:</strong> ${bl.communication}</p>
-      <p><strong>Core Values:</strong> ${bl.values}</p>
-      <p style="font-weight:600;margin-top:.5rem">As a Mentor:</p>
-      ${bl.mentoring.map(m=>`<p style="padding-left:1rem;font-size:.83rem">• ${m}</p>`).join('')}
-    </div>`;
-  });
-  el.innerHTML=html;
+  const el=document.getElementById('about-types');if(el.innerHTML)return;
+  let h='<div class="section-head mt-2"><div class="eyebrow">Core Styles</div><h2>The Four Foundations</h2></div>';
+  h+=TYPE_ORDER.map(key=>{const tp=TYPES[key];return `<div class="about-type" style="border-left-color:${tp.color}"><h3 style="color:${tp.color}">${tp.label}</h3><span class="tagline">${tp.tagline}</span><p>${tp.overview}</p><p><strong>Communication Style:</strong> ${tp.communication}</p><p><strong>Core Values:</strong> ${tp.values}</p>${renderMentoringHTML(tp)}${renderGrowthHTML(tp)}${renderNemesisHTML(key)}</div>`}).join('');
+  h+='<div class="section-head mt-2"><div class="eyebrow">Blended Styles</div><h2>When Two Styles Combine</h2></div>';
+  h+='<p style="font-size:.85rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">When no single style accounts for 60% or more of your total score, your top two styles blend into a unique combined profile. Here are all twelve possible blends:</p>';
+  Object.entries(BLENDS).forEach(([key,bl])=>{const parts=key.split('-'),c1=TYPES[parts[0]].color;
+    h+=`<div class="about-type" style="border-left-color:${c1}"><span class="blend-badge" style="background:linear-gradient(135deg,${TYPES[parts[0]].color},${TYPES[parts[1]].color});color:#fff;margin-bottom:.5rem">${TYPES[parts[0]].label.replace('The ','')} + ${TYPES[parts[1]].label.replace('The ','')}</span><h3 style="color:${c1}">${bl.label}</h3><span class="tagline">${bl.tagline}</span><p>${bl.overview}</p><p><strong>Communication Style:</strong> ${bl.communication}</p><p><strong>Core Values:</strong> ${bl.values}</p>${renderMentoringHTML(bl)}${renderGrowthHTML(bl)}</div>`});
+  el.innerHTML=h;
 }
 </script>
 </body>
