@@ -639,6 +639,23 @@ let currentUser=null,currentQ=0,answers={},shuffledOrder=[];
 function getRecords(){try{return JSON.parse(localStorage.getItem('selcs2_records')||'[]')}catch(e){return[]}}
 function saveRecords(r){localStorage.setItem('selcs2_records',JSON.stringify(r))}
 
+// Recalculate percentages from raw scores so they sum to 100%
+// Works on both old records (which have scores) and new ones
+function fixPcts(r){
+  if(!r.scores) return r; // no raw scores, can't fix
+  const totalScore=TYPE_ORDER.reduce((s,t)=>s+(r.scores[t]||0),0);
+  if(totalScore===0) return r;
+  const pcts={};let assigned=0;
+  TYPE_ORDER.forEach((t,i)=>{
+    if(i<3){const p=Math.round(((r.scores[t]||0)/totalScore)*100);pcts[t]=p;assigned+=p}
+    else{pcts[t]=100-assigned}
+  });
+  r.pcts=pcts;
+  // Also re-rank
+  r.ranked=TYPE_ORDER.slice().sort((a,b)=>pcts[b]-pcts[a]);
+  return r;
+}
+
 function determineProfile(pcts,ranked){
   const totalPct=TYPE_ORDER.reduce((s,t)=>s+pcts[t],0);
   const topShare=pcts[ranked[0]]/totalPct;
@@ -805,14 +822,23 @@ function retakeQuiz(){document.getElementById('step-results').style.display='non
 // ═══════════════════════════════════════════════════════════
 function reviewResults(){
   const email=document.getElementById('review-email').value.trim().toLowerCase();if(!email)return;
-  const records=getRecords().filter(r=>r.email.toLowerCase()===email);
+  const records=getRecords().filter(r=>r.email.toLowerCase()===email).map(fixPcts);
   const out=document.getElementById('review-output');
   if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No results found for that email address.</p></div>';return}
   let h='';records.reverse().forEach(r=>{
-    const d=new Date(r.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key);
-    h+=`<div class="card mt-1"><p style="font-size:.75rem;color:var(--ink-faint);margin-bottom:.5rem">${d}</p><p style="font-weight:600;color:${prColor};margin-bottom:.15rem">${profile.profile.label}</p><p style="font-size:.8rem;font-style:italic;color:var(--ink-light);margin-bottom:.75rem">${profile.isBlend?TYPES[profile.primary].label.replace('The ','')+' + '+TYPES[profile.secondary].label.replace('The ',''):'Pure type'}</p>`;
+    const d=new Date(r.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key),pr=profile.profile;
+    h+=`<div class="card mt-1"><p style="font-size:.75rem;color:var(--ink-faint);margin-bottom:.5rem">${d}</p>`;
+    // Ranked bars
+    h+=`<h3 style="font-size:1.05rem;margin-bottom:.75rem;color:var(--ink-light)">Ranked Profile</h3>`;
     r.ranked.forEach((t,i)=>{h+=`<div class="type-rank"><div class="rank-num" style="font-size:1.1rem">${i+1}</div><div class="rank-label" style="color:${TYPES[t].color};font-size:.85rem">${TYPES[t].label}</div><div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${TYPES[t].color}"></div></div><div class="rank-pct" style="font-size:.78rem">${r.pcts[t]}%</div></div>`});
-    h+='</div>';
+    // Full profile spotlight
+    h+=`<div class="spotlight" style="border-left-color:${prColor};background:${getBlendBg(profile.key)};margin-top:1rem">`;
+    if(profile.isBlend){h+=`<span class="blend-badge" style="background:linear-gradient(135deg,${TYPES[profile.primary].color},${TYPES[profile.secondary].color});color:#fff">${TYPES[profile.primary].label.replace('The ','')} + ${TYPES[profile.secondary].label.replace('The ','')}</span>`}
+    h+=`<h3 style="color:${prColor}">${pr.label}</h3><span class="tagline">${pr.tagline}</span><p>${pr.overview}</p><p><strong>Communication Style:</strong> ${pr.communication}</p><p><strong>Core Values:</strong> ${pr.values}</p>`;
+    h+=renderMentoringHTML(pr);
+    h+=renderGrowthHTML(pr);
+    h+=renderNemesisHTML(r.ranked[0]);
+    h+=`</div></div>`;
   });out.innerHTML=h;
 }
 
@@ -823,7 +849,7 @@ function viewRecords(){
   const pass=document.getElementById('admin-pass').value,out=document.getElementById('records-output');
   if(pass!==ADMIN_PASS){out.innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Incorrect password.</p></div>';return}
   const filter=document.getElementById('admin-org-filter').value.trim().toLowerCase();
-  let records=getRecords();if(filter)records=records.filter(r=>(r.org||'').toLowerCase().includes(filter));
+  let records=getRecords().map(fixPcts);if(filter)records=records.filter(r=>(r.org||'').toLowerCase().includes(filter));
   if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No records found.</p></div>';return}
   let h=`<div class="card mt-1" style="overflow-x:auto"><p style="font-size:.82rem;color:var(--ink-light);margin-bottom:.75rem">${records.length} record${records.length>1?'s':''} found</p><table class="records-table"><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Profile</th><th>Type</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th></tr></thead><tbody>`;
   records.reverse().forEach(r=>{const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key);
@@ -833,7 +859,7 @@ function viewRecords(){
 }
 function exportCSV(){
   const pass=document.getElementById('admin-pass').value;if(pass!==ADMIN_PASS){document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Enter admin password first.</p></div>';return}
-  const records=getRecords();if(!records.length)return;
+  const records=getRecords().map(fixPcts);if(!records.length)return;
   let csv='Date,Name,Email,Organization,Role,Profile,Type,Driver%,Inspirer%,Sustainer%,Cultivator%,Ranked Order\n';
   records.forEach(r=>{const d=new Date(r.date).toLocaleDateString(),profile=determineProfile(r.pcts,r.ranked),ranked=r.ranked.map(t=>TYPES[t].label.replace('The ','')).join(' > ');
     csv+=`"${d}","${r.name}","${r.email}","${r.org||''}","${r.role||''}","${profile.profile.label}","${profile.isBlend?'Blend':'Pure'}",${r.pcts.D},${r.pcts.I},${r.pcts.S},${r.pcts.C},"${ranked}"\n`});
