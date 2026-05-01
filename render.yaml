@@ -1,14 +1,14 @@
 services:
   - type: web
-    name: selcs-quiz
+    name: leap-quiz
     env: node
     buildCommand: npm install
     startCommand: node server.js
     envVars:
       - key: ADMIN_PASSWORD
         generateValue: false
-        value: selcs2025
+        value: leap2026
     disk:
-      name: selcs-data
+      name: leap-data
       mountPath: /opt/render/project/src/data
       sizeGB: 1
