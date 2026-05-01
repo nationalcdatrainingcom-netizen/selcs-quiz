@@ -3,33 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SELCS Assessment — Mentor Success Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>LEAP Assessment — Mentor Success Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#FDFBF7; --bg2:#F5F0E8; --ink:#1C1810; --ink-light:#6B6456; --ink-faint:#A89F90;
-  --gold:#C5A55A; --gold-dark:#9E833A; --gold-light:#E8D5A8;
+  /* MSA brand palette */
+  --bg:#faf8f3;          /* cream background */
+  --bg2:#f0ebe0;         /* darker cream for borders/hovers */
+  --ink:#2c2c2c;         /* primary text */
+  --ink-light:#666666;   /* secondary text */
+  --ink-faint:#999999;   /* muted text */
+  --green-deep:#2c4a35;  /* primary green */
+  --green-mid:#4a7c59;   /* mid green for hovers and accents */
+  --gold:#c9953a;        /* MSA gold */
+  --gold-dark:#a87a26;   /* gold for hover/active states */
+  --gold-light:#e0b870;  /* gold for soft highlights */
+  --line:#ddd8cc;        /* primary border */
+  --line-soft:#eee8dc;   /* soft border */
+  /* Four leadership expression colors — preserved from the framework */
   --driver:#C14B3F; --driver-bg:#FDF0EE;
   --inspirer:#D4943A; --inspirer-bg:#FDF5EC;
   --sustainer:#5A8F6E; --sustainer-bg:#EFF6F1;
   --cultivator:#4A7A9B; --cultivator-bg:#EDF3F7;
-  --card-shadow:0 2px 12px rgba(28,24,16,.06);
-  --radius:10px;
+  --card-shadow:0 4px 20px rgba(44,74,53,.06);
+  --radius:12px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh}
-h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.2}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.2}
 
-header{background:var(--ink);color:var(--gold-light);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100}
-header .logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
-header .logo em{font-style:italic;font-weight:400;color:var(--gold)}
+header{background:linear-gradient(135deg,var(--green-deep) 0%,var(--green-mid) 100%);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(44,74,53,.15)}
+header .logo-block{display:flex;align-items:center;gap:.85rem}
+header .logo-mark{background:var(--gold);color:#fff;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(201,149,58,.3)}
+header .logo-text{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;letter-spacing:.005em;line-height:1.15}
+header .logo-text em{font-style:italic;font-weight:400;color:var(--gold-light)}
+header .logo-sub{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);opacity:.85;margin-top:2px}
 
-.nav-tabs{display:flex;gap:0;background:var(--ink);padding:0 1.5rem;border-bottom:1px solid rgba(197,165,90,.15)}
-.nav-tabs button{background:none;border:none;color:var(--ink-faint);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;padding:.7rem 1.1rem;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;position:relative;transition:color .2s}
-.nav-tabs button:hover{color:var(--gold-light)}
-.nav-tabs button.active{color:var(--gold)}
-.nav-tabs button.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
+.nav-tabs{display:flex;gap:0;background:#fff;padding:0 1.5rem;border-bottom:1px solid var(--line);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-tabs button{background:none;border:none;color:var(--ink-light);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;padding:.85rem 1.1rem;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;position:relative;transition:color .2s;white-space:nowrap;flex-shrink:0}
+.nav-tabs button:hover{color:var(--green-deep)}
+.nav-tabs button.active{color:var(--green-deep);font-weight:600}
+.nav-tabs button.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold)}
 
 .panel{display:none;max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .panel.active{display:block}
@@ -38,15 +53,15 @@ header .logo em{font-style:italic;font-weight:400;color:var(--gold)}
 .section-head .eyebrow{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.25rem}
 .section-head h2{font-size:1.65rem;color:var(--ink)}
 
-label{display:block;font-size:.82rem;font-weight:600;color:var(--ink-light);margin-bottom:.35rem;letter-spacing:.02em}
+label{display:block;font-size:.78rem;font-weight:600;color:var(--ink-light);margin-bottom:.4rem;letter-spacing:.04em;text-transform:uppercase}
 input[type="text"],input[type="email"],input[type="password"],select{
-  width:100%;padding:.65rem .85rem;border:1.5px solid var(--bg2);border-radius:8px;font-size:.9rem;
-  font-family:'DM Sans',sans-serif;background:var(--bg);transition:border-color .2s;margin-bottom:1rem}
-input:focus,select:focus{outline:none;border-color:var(--gold)}
-.btn{display:inline-block;padding:.7rem 1.6rem;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em}
-.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:var(--gold-dark)}
-.btn-outline{background:none;border:1.5px solid var(--gold);color:var(--gold-dark)}.btn-outline:hover{background:var(--gold);color:#fff}
-.btn-sm{padding:.45rem 1rem;font-size:.78rem}
+  width:100%;padding:.75rem .9rem;border:1.5px solid var(--line);border-radius:8px;font-size:.92rem;
+  font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);transition:border-color .15s,background .15s;margin-bottom:1rem}
+input:focus,select:focus{outline:none;border-color:var(--green-mid);background:#fff;box-shadow:0 0 0 3px rgba(74,124,89,.1)}
+.btn{display:inline-block;padding:.75rem 1.6rem;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.btn-gold{background:var(--green-deep);color:#fff}.btn-gold:hover{background:var(--green-mid)}
+.btn-outline{background:#fff;border:1.5px solid var(--green-deep);color:var(--green-deep)}.btn-outline:hover{background:var(--bg2)}
+.btn-sm{padding:.5rem 1.05rem;font-size:.8rem}
 .btn:disabled{opacity:.5;cursor:default}
 .error-msg{color:var(--driver);font-size:.82rem;margin-bottom:1rem;display:none}
 .flex-gap{display:flex;gap:.75rem;flex-wrap:wrap}
@@ -54,13 +69,13 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 
 .progress-wrap{margin-bottom:1.75rem}
 .progress-bar-outer{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
-.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));border-radius:3px;transition:width .4s ease}
+.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--green-mid),var(--gold));border-radius:3px;transition:width .4s ease}
 .progress-text{font-size:.75rem;color:var(--ink-faint);text-align:right}
 
 .question-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--card-shadow);animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .question-num{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.6rem}
-.question-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;line-height:1.45;margin-bottom:1.75rem;color:var(--ink)}
+.question-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;line-height:1.45;margin-bottom:1.75rem;color:var(--ink)}
 .likert-row{display:flex;align-items:stretch;gap:0;margin-bottom:.5rem}
 .likert-option{flex:1;display:flex;flex-direction:column;align-items:center;padding:.85rem .25rem;cursor:pointer;border:1.5px solid transparent;border-radius:8px;transition:all .2s;gap:.35rem}
 .likert-option:hover{background:var(--bg2)}
@@ -77,7 +92,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 .results-header p{color:var(--ink-light);font-size:.9rem}
 .type-rank{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--bg2)}
 .type-rank:last-child{border-bottom:none}
-.rank-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ink-faint);width:2rem;text-align:center}
+.rank-num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--ink-faint);width:2rem;text-align:center}
 .rank-label{font-weight:600;font-size:.95rem;min-width:120px}
 .rank-bar-outer{flex:1;height:10px;background:var(--bg2);border-radius:5px;overflow:hidden}
 .rank-bar-inner{height:100%;border-radius:5px;transition:width 1s ease}
@@ -108,7 +123,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
 @media(max-width:600px){.type-grid{grid-template-columns:1fr}}
 .type-mini{padding:1rem;border-radius:var(--radius);border:1px solid var(--bg2)}
-.type-mini h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:.25rem}
+.type-mini h4{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.25rem}
 .type-mini p{font-size:.78rem;line-height:1.6;color:var(--ink-light)}
 
 .records-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:1rem}
@@ -141,20 +156,28 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 </head>
 <body>
 
-<header><div class="logo">Mentor Success <em>Academy</em></div></header>
+<header>
+  <div class="logo-block">
+    <div class="logo-mark">MSA</div>
+    <div>
+      <div class="logo-text">Mentor Success <em>Academy</em></div>
+      <div class="logo-sub">LEAP Assessment</div>
+    </div>
+  </div>
+</header>
 
 <nav class="nav-tabs">
   <button class="active" onclick="showTab('quiz',this)">Assessment</button>
   <button onclick="showTab('review',this)">My Results</button>
   <button onclick="showTab('records',this)">Records</button>
-  <button onclick="showTab('about',this)">About SELCS</button>
+  <button onclick="showTab('about',this)">About LEAP</button>
 </nav>
 
 <div id="tab-quiz" class="panel active">
   <div id="step-register">
-    <div class="section-head mt-2"><div class="eyebrow">Self-Assessment</div><h2>Social Emotional Leadership<br>Communication Style</h2></div>
+    <div class="section-head mt-2"><div class="eyebrow">Self-Assessment</div><h2>Leadership Expression<br>Assessment Profile</h2></div>
     <div class="card">
-      <p style="font-size:.88rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">Discover your unique SELCS profile — how you communicate, lead, and build relationships in early childhood settings. This assessment contains 72 statements. For each, indicate how strongly you agree or disagree. There are no right or wrong answers.</p>
+      <p style="font-size:.9rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">Discover your unique LEAP profile — your <em>natural leadership expression</em>, the way you most authentically lead, communicate, and build relationships in early childhood settings. This assessment contains 72 statements. For each, indicate how strongly you agree or disagree. There are no right or wrong answers.</p>
       <label for="reg-name">Full Name *</label><input type="text" id="reg-name" placeholder="Your full name">
       <label for="reg-email">Email Address *</label><input type="email" id="reg-email" placeholder="you@example.com">
       <label for="reg-org">Organization</label><input type="text" id="reg-org" placeholder="Your school or center name">
@@ -189,10 +212,10 @@ input:focus,select:focus{outline:none;border-color:var(--gold)}
 </div>
 
 <div id="tab-about" class="panel">
-  <div class="section-head mt-2"><div class="eyebrow">Framework</div><h2>Understanding SELCS</h2></div>
+  <div class="section-head mt-2"><div class="eyebrow">Framework</div><h2>Understanding LEAP</h2></div>
   <div class="card">
-    <p style="font-size:.88rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">The Social Emotional Leadership Communication Style (SELCS) framework identifies four core orientations that shape how individuals communicate, lead, and build relationships in early childhood education settings.</p>
-    <p style="font-size:.85rem;line-height:1.75;color:var(--ink-light)">Every person carries elements of all four styles. Many people are a <strong>blend</strong> of two dominant styles — for example, a Driver-Inspirer or a Sustainer-Cultivator. The SELCS assessment reveals your unique profile, whether pure or blended, empowering you to mentor more effectively.</p>
+    <p style="font-size:.9rem;line-height:1.75;color:var(--ink-light);margin-bottom:1rem">The <strong>Leadership Expression Assessment Profile</strong> (LEAP) identifies four core orientations that shape how individuals naturally lead, communicate, and build relationships in early childhood education settings. Each is a <em>natural leadership expression</em> — not a personality type, not a fixed label, but the way someone most authentically shows up as a leader.</p>
+    <p style="font-size:.88rem;line-height:1.75;color:var(--ink-light)">Every person carries elements of all four expressions. Many are a <strong>blend</strong> of two dominant ones — for example, a Driver-Inspirer or a Sustainer-Cultivator. The LEAP assessment reveals your unique profile, whether pure or blended, empowering you to mentor more effectively and recognize the natural leadership expressions of those you mentor.</p>
   </div>
   <div id="about-types"></div>
 </div>
@@ -597,7 +620,7 @@ const QUESTIONS = [
   {t:"When sharing my thoughts, I favor written communication because it can be revised, polished, and perfected.",type:"C"}
 ];
 
-const ADMIN_PASS="selcs2025";
+const ADMIN_PASS="leap2026";  // legacy local-only fallback; primary admin auth is server-side via ADMIN_PASSWORD env var
 const TYPE_ORDER=['D','I','S','C'];
 
 // ═══════════════════════════════════════════════════════════
@@ -636,8 +659,115 @@ const NEMESIS = {
 };
 
 let currentUser=null,currentQ=0,answers={},shuffledOrder=[];
-function getRecords(){try{return JSON.parse(localStorage.getItem('selcs2_records')||'[]')}catch(e){return[]}}
-function saveRecords(r){localStorage.setItem('selcs2_records',JSON.stringify(r))}
+
+// ═══════════════════════════════════════════════════════════
+// DATA LAYER — server-synced with localStorage as fallback
+// ═══════════════════════════════════════════════════════════
+// Storage strategy:
+//   1. Primary: server (data/results.json on Render)
+//   2. Backup: localStorage under 'leap_records'
+//   3. Migration: on first read, any old 'selcs2_records' is preserved
+//      under the new key as well, so legacy data stays accessible.
+// All saves attempt server first; if the network fails the result is
+// still kept in localStorage so the user is never left without their
+// LEAP profile.
+
+const LEAP_STORAGE_KEY = 'leap_records';
+const LEGACY_SELCS_KEY = 'selcs2_records';
+
+// Migrate any legacy SELCS records into the new LEAP key on first load.
+// Idempotent — running it more than once is harmless.
+(function migrateLegacyRecords(){
+  try {
+    const legacy = localStorage.getItem(LEGACY_SELCS_KEY);
+    if (!legacy) return;
+    const newer = localStorage.getItem(LEAP_STORAGE_KEY);
+    if (!newer) {
+      // Just copy across
+      localStorage.setItem(LEAP_STORAGE_KEY, legacy);
+      console.log('LEAP: migrated legacy SELCS records to new key');
+      return;
+    }
+    // Both exist — merge by date, keep latest per email
+    const oldArr = JSON.parse(legacy || '[]');
+    const newArr = JSON.parse(newer || '[]');
+    const merged = [...newArr];
+    oldArr.forEach(o => {
+      const dup = merged.findIndex(n => n.email === o.email && n.date === o.date);
+      if (dup === -1) merged.push(o);
+    });
+    localStorage.setItem(LEAP_STORAGE_KEY, JSON.stringify(merged));
+  } catch(e){ console.warn('LEAP migration skipped:', e); }
+})();
+
+function getLocalRecords(){
+  try { return JSON.parse(localStorage.getItem(LEAP_STORAGE_KEY) || '[]'); }
+  catch(e){ return []; }
+}
+function saveLocalRecords(r){
+  try { localStorage.setItem(LEAP_STORAGE_KEY, JSON.stringify(r)); } catch(e){}
+}
+
+// Save a single record — to server first, then mirror to local cache.
+async function saveRecordToServer(record){
+  try {
+    const r = await fetch('/api/results', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(record)
+    });
+    if (!r.ok) throw new Error('server returned ' + r.status);
+    const data = await r.json();
+    return { ok: true, record: data.record };
+  } catch(e) {
+    console.warn('LEAP: server save failed, kept locally only:', e);
+    return { ok: false, error: e.message };
+  }
+}
+
+// Look up a single email's record from the server (used in My Results).
+async function fetchRecordByEmail(email){
+  try {
+    const r = await fetch('/api/results/' + encodeURIComponent(email));
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error('server returned ' + r.status);
+    return await r.json();
+  } catch(e) {
+    console.warn('LEAP: server lookup failed:', e);
+    return undefined; // distinguish offline (undefined) from "no record" (null)
+  }
+}
+
+// Admin: pull all records from the server.
+async function fetchAllRecords(password, org){
+  const r = await fetch('/api/admin/results', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ password, org })
+  });
+  if (r.status === 401) return { ok: false, error: 'incorrect-password' };
+  if (!r.ok) return { ok: false, error: 'server-error' };
+  const data = await r.json();
+  return { ok: true, ...data };
+}
+
+async function deleteRecordOnServer(id, password){
+  const r = await fetch('/api/admin/results/' + encodeURIComponent(id), {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ password })
+  });
+  return r.ok;
+}
+
+async function clearAllRecordsOnServer(password){
+  const r = await fetch('/api/admin/clear', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ password, confirm: 'CLEAR_ALL_RECORDS' })
+  });
+  return r.ok;
+}
 
 // Recalculate percentages from raw scores so they sum to 100%
 // Works on both old records (which have scores) and new ones
@@ -747,7 +877,7 @@ function nextQ(){
 // ═══════════════════════════════════════════════════════════
 // RESULTS
 // ═══════════════════════════════════════════════════════════
-function calculateResults(){
+async function calculateResults(){
   const scores={D:0,I:0,S:0,C:0};
   QUESTIONS.forEach((q,i)=>{if(answers[i]!==undefined)scores[q.type]+=answers[i]});
   const totalScore=TYPE_ORDER.reduce((s,t)=>s+scores[t],0);
@@ -761,19 +891,31 @@ function calculateResults(){
   const ranked=TYPE_ORDER.slice().sort((a,b)=>pcts[b]-pcts[a]);
   const profile=determineProfile(pcts,ranked);
   const record={name:currentUser.name,email:currentUser.email,org:currentUser.org,role:currentUser.role,date:new Date().toISOString(),scores,pcts,ranked,primary:ranked[0],profileKey:profile.key,profileLabel:profile.profile.label,isBlend:profile.isBlend};
-  const records=getRecords();records.push(record);saveRecords(records);
-  renderResults(record);
+
+  // Save to server first
+  const serverResult = await saveRecordToServer(record);
+  // Always cache locally too — for offline access and resilience
+  const local = getLocalRecords();
+  // Replace any prior record for this email so the local cache stays current
+  const idx = local.findIndex(r => (r.email||'').toLowerCase() === record.email.toLowerCase());
+  if (idx >= 0) local[idx] = record; else local.push(record);
+  saveLocalRecords(local);
+
+  renderResults(record, serverResult.ok ? null : 'offline');
 }
-function renderResults(r){
+function renderResults(r, syncStatus){
   const profile=determineProfile(r.pcts,r.ranked),pr=profile.profile,prColor=getBlendColor(profile.key),prBg=getBlendBg(profile.key);
-  let h=`<div class="results-header"><div class="eyebrow" style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.5rem">Assessment Complete</div><h2>Your SELCS Profile</h2><p>${r.name}</p></div>`;
+  let h=`<div class="results-header"><div class="eyebrow" style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.5rem">Assessment Complete</div><h2>Your LEAP Profile</h2><p>${r.name}</p></div>`;
+  if (syncStatus === 'offline') {
+    h += `<div class="card" style="background:#fef9e7;border:1px solid #f0e1a8;color:#7a5a10;font-size:.85rem;padding:.85rem 1rem;margin-bottom:1rem"><strong>Saved locally only.</strong> We couldn't reach the server right now, but your results are kept in this browser. Re-take the assessment from any device when connected to sync to the program admins.</div>`;
+  }
   h+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:1rem;color:var(--ink-light)">Your Ranked Profile</h3>`;
   r.ranked.forEach((t,i)=>{const info=TYPES[t];h+=`<div class="type-rank"><div class="rank-num">${i+1}</div><div class="rank-label" style="color:${info.color}">${info.label}</div><div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${r.pcts[t]}%;background:${info.color}"></div></div><div class="rank-pct">${r.pcts[t]}%</div></div>`});
   h+='</div>';
   // Spotlight
   h+=`<div class="spotlight card" style="border-left-color:${prColor};background:${prBg}">`;
   if(profile.isBlend){const c1=TYPES[profile.primary].color,c2=TYPES[profile.secondary].color;h+=`<span class="blend-badge" style="background:linear-gradient(135deg,${c1},${c2});color:#fff">${TYPES[profile.primary].label.replace('The ','')} + ${TYPES[profile.secondary].label.replace('The ','')}</span>`}
-  h+=`<h3 style="color:${prColor}">Your Style: ${pr.label}</h3><span class="tagline">${pr.tagline}</span><p>${pr.overview}</p><p><strong>Communication Style:</strong> ${pr.communication}</p><p><strong>Core Values:</strong> ${pr.values}</p>`;
+  h+=`<h3 style="color:${prColor}">Your Leadership Expression: ${pr.label}</h3><span class="tagline">${pr.tagline}</span><p>${pr.overview}</p><p><strong>Communication Style:</strong> ${pr.communication}</p><p><strong>Core Values:</strong> ${pr.values}</p>`;
   h+=renderMentoringHTML(pr);
   h+=renderGrowthHTML(pr);
   h+=renderNemesisHTML(r.ranked[0]);
@@ -781,10 +923,10 @@ function renderResults(r){
 
   // Full descriptions for primary and secondary core types
   const showTypes = profile.isBlend ? [profile.primary, profile.secondary] : [r.ranked[0], r.ranked[1]];
-  h+=`<div class="section-head mt-2"><div class="eyebrow">Your Core Types</div><h2>${profile.isBlend ? 'The Two Styles That Shape Your Blend' : 'Your Primary &amp; Secondary Styles'}</h2></div>`;
+  h+=`<div class="section-head mt-2"><div class="eyebrow">Your Core Expressions</div><h2>${profile.isBlend ? 'The Two Expressions That Shape Your Blend' : 'Your Primary &amp; Secondary Expressions'}</h2></div>`;
   showTypes.forEach((key,idx)=>{
     const tp=TYPES[key];
-    const roleLabel = idx===0 ? (profile.isBlend ? 'Primary Style in Your Blend' : 'Your Primary Style') : (profile.isBlend ? 'Secondary Style in Your Blend' : 'Your Secondary Style');
+    const roleLabel = idx===0 ? (profile.isBlend ? 'Primary Expression in Your Blend' : 'Your Primary Expression') : (profile.isBlend ? 'Secondary Expression in Your Blend' : 'Your Secondary Expression');
     h+=`<div class="about-type" style="border-left-color:${tp.color}">
       <p style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:${tp.color};margin-bottom:.35rem">${roleLabel} — ${r.pcts[key]}%</p>
       <h3 style="color:${tp.color}">${tp.label}</h3>
@@ -800,7 +942,7 @@ function renderResults(r){
   // Compact reference for remaining types
   const remaining = r.ranked.filter(t => !showTypes.includes(t));
   if(remaining.length){
-    h+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:.5rem">Your Other Styles</h3><p style="font-size:.83rem;color:var(--ink-light);margin-bottom:1rem">These styles are less dominant in your profile but still present. Understanding them helps you recognize these tendencies in the people you mentor.</p><div class="type-grid">`;
+    h+=`<div class="card"><h3 style="font-size:1.1rem;margin-bottom:.5rem">Your Other Expressions</h3><p style="font-size:.83rem;color:var(--ink-light);margin-bottom:1rem">These expressions are less dominant in your profile but still present. Understanding them helps you recognize these tendencies in the people you mentor.</p><div class="type-grid">`;
     remaining.forEach(t=>{
       const info=TYPES[t];
       h+=`<div class="type-mini" style="border-color:${info.color}20;background:${info.bg}">
@@ -820,12 +962,48 @@ function retakeQuiz(){document.getElementById('step-results').style.display='non
 // ═══════════════════════════════════════════════════════════
 // REVIEW
 // ═══════════════════════════════════════════════════════════
-function reviewResults(){
+async function reviewResults(){
   const email=document.getElementById('review-email').value.trim().toLowerCase();if(!email)return;
-  const records=getRecords().filter(r=>r.email.toLowerCase()===email).map(fixPcts);
   const out=document.getElementById('review-output');
-  if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No results found for that email address.</p></div>';return}
-  let h='';records.reverse().forEach(r=>{
+  out.innerHTML = '<div class="card mt-1"><p style="color:var(--ink-light)">Looking up your records…</p></div>';
+
+  // Try server first
+  let records = [];
+  let serverNote = '';
+  const serverRecord = await fetchRecordByEmail(email);
+  if (serverRecord) {
+    // The server stores one record per email plus a history array.
+    // Show current first, then any history entries.
+    records.push(serverRecord);
+    if (serverRecord.history && serverRecord.history.length){
+      serverRecord.history.forEach(h => records.push(h));
+    }
+  } else if (serverRecord === undefined) {
+    // Server unreachable — fall back to local
+    serverNote = 'Showing locally stored records (could not reach server).';
+  }
+
+  // Always also pull from local cache; merge any local-only entries
+  const local = getLocalRecords().filter(r => (r.email||'').toLowerCase() === email).map(fixPcts);
+  local.forEach(l => {
+    const dup = records.find(r => r.date === l.date);
+    if (!dup) records.push(l);
+  });
+
+  // Sort newest first
+  records.sort((a,b) => new Date(b.date) - new Date(a.date));
+  records = records.map(fixPcts);
+
+  if(!records.length){
+    out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No results found for that email address.</p></div>';
+    return;
+  }
+
+  let h = '';
+  if (serverNote) {
+    h += `<div class="card mt-1" style="background:#fef9e7;border:1px solid #f0e1a8;color:#7a5a10;font-size:.85rem;padding:.85rem 1rem">${serverNote}</div>`;
+  }
+  records.forEach(r=>{
     const d=new Date(r.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key),pr=profile.profile;
     h+=`<div class="card mt-1"><p style="font-size:.75rem;color:var(--ink-faint);margin-bottom:.5rem">${d}</p>`;
     // Ranked bars
@@ -839,31 +1017,91 @@ function reviewResults(){
     h+=renderGrowthHTML(pr);
     h+=renderNemesisHTML(r.ranked[0]);
     h+=`</div></div>`;
-  });out.innerHTML=h;
+  });
+  out.innerHTML=h;
 }
 
 // ═══════════════════════════════════════════════════════════
 // RECORDS (ADMIN)
 // ═══════════════════════════════════════════════════════════
-function viewRecords(){
-  const pass=document.getElementById('admin-pass').value,out=document.getElementById('records-output');
-  if(pass!==ADMIN_PASS){out.innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Incorrect password.</p></div>';return}
-  const filter=document.getElementById('admin-org-filter').value.trim().toLowerCase();
-  let records=getRecords().map(fixPcts);if(filter)records=records.filter(r=>(r.org||'').toLowerCase().includes(filter));
+async function viewRecords(){
+  const pass=document.getElementById('admin-pass').value;
+  const out=document.getElementById('records-output');
+  if (!pass) { out.innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Please enter the admin password.</p></div>'; return; }
+
+  const filter = document.getElementById('admin-org-filter').value.trim();
+  out.innerHTML = '<div class="card mt-1"><p style="color:var(--ink-light)">Loading records from server…</p></div>';
+
+  const result = await fetchAllRecords(pass, filter || null);
+  if (!result.ok) {
+    if (result.error === 'incorrect-password') {
+      out.innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Incorrect password.</p></div>';
+    } else {
+      out.innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Could not reach the server. Check your connection and try again.</p></div>';
+    }
+    return;
+  }
+
+  let records = (result.results || []).map(fixPcts);
   if(!records.length){out.innerHTML='<div class="card mt-1"><p style="color:var(--ink-light)">No records found.</p></div>';return}
-  let h=`<div class="card mt-1" style="overflow-x:auto"><p style="font-size:.82rem;color:var(--ink-light);margin-bottom:.75rem">${records.length} record${records.length>1?'s':''} found</p><table class="records-table"><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Profile</th><th>Type</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th></tr></thead><tbody>`;
-  records.reverse().forEach(r=>{const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key);
-    h+=`<tr><td>${d}</td><td>${r.name}</td><td>${r.email}</td><td>${r.org||'—'}</td><td>${r.role||'—'}</td><td style="font-weight:600;color:${prColor}">${profile.profile.label.replace('The ','')}</td><td style="font-size:.72rem">${profile.isBlend?'Blend':'Pure'}</td><td>${r.pcts.D}</td><td>${r.pcts.I}</td><td>${r.pcts.S}</td><td>${r.pcts.C}</td></tr>`});
-  h+=`</tbody></table></div><div class="mt-1"><button class="btn btn-outline btn-sm" style="color:var(--driver);border-color:var(--driver)" onclick="if(confirm('Clear ALL records? This cannot be undone.')){saveRecords([]);document.getElementById('records-output').innerHTML='<div class=\\'card mt-1\\'><p>All records cleared.</p></div>'}">Clear All Records</button></div>`;
+
+  let h=`<div class="card mt-1" style="overflow-x:auto"><p style="font-size:.82rem;color:var(--ink-light);margin-bottom:.75rem">${records.length} record${records.length>1?'s':''} found</p><table class="records-table"><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Org</th><th>Role</th><th>Profile</th><th>Type</th><th>D%</th><th>I%</th><th>S%</th><th>C%</th><th></th></tr></thead><tbody>`;
+  records.forEach(r=>{
+    const d=new Date(r.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'}),profile=determineProfile(r.pcts,r.ranked),prColor=getBlendColor(profile.key);
+    h+=`<tr><td>${d}</td><td>${r.name}</td><td>${r.email}</td><td>${r.org||'—'}</td><td>${r.role||'—'}</td><td style="font-weight:600;color:${prColor}">${profile.profile.label.replace('The ','')}</td><td style="font-size:.72rem">${profile.isBlend?'Blend':'Pure'}</td><td>${r.pcts.D}</td><td>${r.pcts.I}</td><td>${r.pcts.S}</td><td>${r.pcts.C}</td><td><button class="btn btn-outline btn-sm" style="padding:.25rem .5rem;font-size:.7rem;color:var(--driver);border-color:var(--driver)" onclick="deleteRecord('${r.id}')">Delete</button></td></tr>`;
+  });
+  h+=`</tbody></table></div><div class="mt-1 flex-gap"><button class="btn btn-outline btn-sm" style="color:var(--driver);border-color:var(--driver)" onclick="confirmClearAll()">Clear All Records</button></div>`;
   out.innerHTML=h;
 }
-function exportCSV(){
-  const pass=document.getElementById('admin-pass').value;if(pass!==ADMIN_PASS){document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Enter admin password first.</p></div>';return}
-  const records=getRecords().map(fixPcts);if(!records.length)return;
-  let csv='Date,Name,Email,Organization,Role,Profile,Type,Driver%,Inspirer%,Sustainer%,Cultivator%,Ranked Order\n';
-  records.forEach(r=>{const d=new Date(r.date).toLocaleDateString(),profile=determineProfile(r.pcts,r.ranked),ranked=r.ranked.map(t=>TYPES[t].label.replace('The ','')).join(' > ');
-    csv+=`"${d}","${r.name}","${r.email}","${r.org||''}","${r.role||''}","${profile.profile.label}","${profile.isBlend?'Blend':'Pure'}",${r.pcts.D},${r.pcts.I},${r.pcts.S},${r.pcts.C},"${ranked}"\n`});
-  const blob=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SELCS_Records.csv';a.click();
+
+async function deleteRecord(id){
+  const pass = document.getElementById('admin-pass').value;
+  if (!pass) return;
+  if (!confirm('Delete this record? This cannot be undone.')) return;
+  const ok = await deleteRecordOnServer(id, pass);
+  if (ok) { viewRecords(); }
+  else { alert('Delete failed. Check your password and connection.'); }
+}
+
+async function confirmClearAll(){
+  const pass = document.getElementById('admin-pass').value;
+  if (!pass) return;
+  const phrase = prompt('This will permanently delete ALL LEAP records on the server. To confirm, type:\n\nCLEAR ALL\n\nexactly as shown.');
+  if (phrase !== 'CLEAR ALL') {
+    if (phrase !== null) alert('Confirmation phrase did not match. No records were deleted.');
+    return;
+  }
+  const ok = await clearAllRecordsOnServer(pass);
+  if (ok) {
+    document.getElementById('records-output').innerHTML='<div class="card mt-1"><p>All records cleared from the server.</p></div>';
+  } else {
+    alert('Clear failed. Check your password and connection.');
+  }
+}
+
+async function exportCSV(){
+  const pass=document.getElementById('admin-pass').value;
+  if(!pass){document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Enter the admin password first.</p></div>';return}
+  // Use the server's CSV endpoint so the export reflects the live database.
+  try {
+    const r = await fetch('/api/admin/export', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ password: pass })
+    });
+    if (r.status === 401) {
+      document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Incorrect password.</p></div>';
+      return;
+    }
+    if (!r.ok) throw new Error('server returned ' + r.status);
+    const blob = await r.blob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'LEAP_Results.csv';
+    a.click();
+  } catch(e) {
+    document.getElementById('records-output').innerHTML='<div class="card mt-1"><p style="color:var(--driver)">Could not export. Check your connection.</p></div>';
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -871,10 +1109,10 @@ function exportCSV(){
 // ═══════════════════════════════════════════════════════════
 function renderAbout(){
   const el=document.getElementById('about-types');if(el.innerHTML)return;
-  let h='<div class="section-head mt-2"><div class="eyebrow">Core Styles</div><h2>The Four Foundations</h2></div>';
+  let h='<div class="section-head mt-2"><div class="eyebrow">Core Expressions</div><h2>The Four Foundations</h2></div>';
   h+=TYPE_ORDER.map(key=>{const tp=TYPES[key];return `<div class="about-type" style="border-left-color:${tp.color}"><h3 style="color:${tp.color}">${tp.label}</h3><span class="tagline">${tp.tagline}</span><p>${tp.overview}</p><p><strong>Communication Style:</strong> ${tp.communication}</p><p><strong>Core Values:</strong> ${tp.values}</p>${renderMentoringHTML(tp)}${renderGrowthHTML(tp)}${renderNemesisHTML(key)}</div>`}).join('');
-  h+='<div class="section-head mt-2"><div class="eyebrow">Blended Styles</div><h2>When Two Styles Combine</h2></div>';
-  h+='<p style="font-size:.85rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">When no single style accounts for 60% or more of your total score, your top two styles blend into a unique combined profile. Here are all twelve possible blends:</p>';
+  h+='<div class="section-head mt-2"><div class="eyebrow">Blended Expressions</div><h2>When Two Expressions Combine</h2></div>';
+  h+='<p style="font-size:.85rem;line-height:1.7;color:var(--ink-light);margin-bottom:1.25rem">When no single expression accounts for 60% or more of your total score, your top two expressions blend into a unique combined profile. Here are all twelve possible blends:</p>';
   Object.entries(BLENDS).forEach(([key,bl])=>{const parts=key.split('-'),c1=TYPES[parts[0]].color;
     h+=`<div class="about-type" style="border-left-color:${c1}"><span class="blend-badge" style="background:linear-gradient(135deg,${TYPES[parts[0]].color},${TYPES[parts[1]].color});color:#fff;margin-bottom:.5rem">${TYPES[parts[0]].label.replace('The ','')} + ${TYPES[parts[1]].label.replace('The ','')}</span><h3 style="color:${c1}">${bl.label}</h3><span class="tagline">${bl.tagline}</span><p>${bl.overview}</p><p><strong>Communication Style:</strong> ${bl.communication}</p><p><strong>Core Values:</strong> ${bl.values}</p>${renderMentoringHTML(bl)}${renderGrowthHTML(bl)}</div>`});
   el.innerHTML=h;
