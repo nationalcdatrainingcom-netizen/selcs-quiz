@@ -1,7 +1,7 @@
 {
-  "name": "selcs-quiz",
-  "version": "1.0.0",
-  "description": "Social Emotional Leadership Communication Style Assessment",
+  "name": "leap-quiz",
+  "version": "2.0.0",
+  "description": "LEAP — Leadership Expression Assessment Profile · Mentor Success Academy",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
