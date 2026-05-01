@@ -1,97 +1,133 @@
-# SELCS Quiz — Mentor Success Academy
+# LEAP Quiz — Mentor Success Academy
 
-**© Mentor Success Academy. All rights reserved.**  
-**Co-Founders: Mary Wardlaw & Rebecca Munlyn**  
-The SELCS (Social Emotional Leadership Communication Style) instrument is the exclusive intellectual property of Mentor Success Academy. Unauthorized reproduction or distribution is strictly prohibited.
+**© Mentor Success Academy. All rights reserved.**
+**Co-Founders: Mary Wardlaw & Rebecca Munlyn**
+The LEAP (Leadership Expression Assessment Profile) instrument is the
+exclusive intellectual property of Mentor Success Academy. Unauthorized
+reproduction or distribution is strictly prohibited.
 
 ---
 
 ## What this is
-A Node.js/Express web app for the Social Emotional Leadership Communication Style assessment.
-Results are stored server-side in a JSON file that persists across sessions.
-All quiz takers share the same database regardless of what device or browser they use.
+A Node.js/Express web app that delivers the LEAP — Leadership Expression
+Assessment Profile — a 72-statement self-assessment that reveals an individual's
+natural leadership expression across four core types and twelve blends.
+
+Results are stored server-side in a JSON file that persists across sessions
+and devices. All quiz takers share the same database, so admins see every
+result regardless of which device or browser the participant used.
+
+The app also keeps a local-storage backup for offline resilience and migrates
+older SELCS records (from version 1) automatically the first time they load.
 
 ---
 
 ## Files
 ```
-selcs-app/
-├── server.js          ← Express backend + all API routes
-├── package.json       ← Dependencies
-├── render.yaml        ← Render deployment config
+leap-quiz/
+├── server.js           ← Express backend + all API routes
+├── package.json        ← Dependencies
+├── render.yaml         ← Render deployment config
 ├── data/
-│   └── results.json   ← Created automatically on first run
+│   └── results.json    ← Created automatically on first run
 └── public/
-    └── index.html     ← Full frontend (quiz, results, admin)
+    └── index.html      ← Full frontend (quiz, review, admin, about)
 ```
 
 ---
 
-## Deploy to Render (same as TCC Master Organizer)
+## Naming history
+
+This app was originally launched as the **SELCS Quiz** (Social Emotional
+Leadership Communication Style). In May 2026 it was renamed to **LEAP**
+(Leadership Expression Assessment Profile) to better reflect the instrument's
+focus on natural leadership expression rather than communication style alone.
+
+The four core types — Driver, Inspirer, Sustainer, Cultivator — and the twelve
+blended profiles are unchanged. Existing results from the SELCS era remain
+fully accessible and the front-end will load them seamlessly via the legacy
+localStorage key on first visit.
+
+---
+
+## Deploy to Render
 
 ### Step 1 — Push to GitHub
-1. Create a new GitHub repo: `selcs-quiz`
-2. Upload all files from this folder into the repo root
+1. Create a new GitHub repo: `leap-quiz` (or rename the existing `selcs-quiz` repo)
+2. Replace all files at the repo root with the new ones from this package
 3. Make sure `public/index.html` and `server.js` are at the root level
 
-### Step 2 — Create Render Web Service
+### Step 2 — If renaming the existing Render service
+1. Open the existing `selcs-quiz` service in Render
+2. Settings → rename to `leap-quiz`
+3. The URL changes from `selcs-quiz.onrender.com` to `leap-quiz.onrender.com`
+4. Render will redeploy automatically when you push the new code
+
+### Step 2 (alternative) — Creating a fresh service
 1. Go to https://dashboard.render.com → New → Web Service
-2. Connect your GitHub repo `selcs-quiz`
+2. Connect your GitHub repo `leap-quiz`
 3. Settings:
-   - **Name:** selcs-quiz
+   - **Name:** leap-quiz
    - **Build Command:** `npm install`
    - **Start Command:** `node server.js`
    - **Instance Type:** Free (or Starter for always-on)
 
-### Step 3 — Add a Persistent Disk (IMPORTANT)
+### Step 3 — Persistent disk (IMPORTANT)
 Without this, results.json resets every time Render restarts.
+
 1. In your Render service → Disks → Add Disk
-2. **Name:** selcs-data
+2. **Name:** leap-data
 3. **Mount Path:** `/opt/render/project/src/data`
 4. **Size:** 1 GB (free tier)
 
-### Step 4 — Set Environment Variable
-1. In your Render service → Environment
-2. Add: `ADMIN_PASSWORD` = (choose your own secure password)
+If you're renaming an existing service, the existing `selcs-data` disk can be
+kept as-is — the data inside is portable. Render will continue to mount it at
+the same path.
 
-### Step 5 — Deploy
-Hit "Deploy". Your app will be live at:
-`https://selcs-quiz.onrender.com`
+### Step 4 — Environment variable
+Set in Render → Environment:
 
-Share that URL with Rebecca and your team — anyone with the link can take the quiz.
+- `ADMIN_PASSWORD` = (your chosen secure password)
+
+The legacy variable `SELCS_ADMIN_PASSWORD` still works as a fallback for one
+release, but please update to `ADMIN_PASSWORD` at your earliest convenience.
+
+### Step 5 — Update the MSA Platform
+The MSA Platform's mentor and mentee dashboards link to the LEAP quiz.
+After the rename, update the link in:
+
+- `public/mentor-home.html` (one occurrence)
+- `public/mentee-home.html` (one occurrence)
+
+Change `https://selcs-quiz.onrender.com/` to the new URL.
 
 ---
 
 ## Admin Access
-- Go to the **All Records** tab
-- Enter your admin password (set in Render environment variables)
-- View all results grouped by organization
+- Open the **All Records** tab
+- Enter your admin password (set in Render environment variables as `ADMIN_PASSWORD`)
+- View every result, grouped by organization
 - Filter by organization
-- Export all results as a CSV spreadsheet
+- Export all results as a CSV spreadsheet (`LEAP_Results.csv`)
 - Delete individual records if needed
-
----
-
-## Changing the Admin Password
-1. Go to Render dashboard → Your service → Environment
-2. Update `ADMIN_PASSWORD`
-3. Redeploy
-
----
-
-## Future: Multi-School Admin Accounts
-When you're ready to add organization-level admin accounts (so each school 
-only sees their own staff's results), let Mary know and we'll add:
-- An `admins.json` with org-specific credentials
-- A filtered view that only shows records matching the admin's org
-- Optional: a separate admin login page
 
 ---
 
 ## Local Development
 ```bash
-cd selcs-app
+cd leap-quiz
 npm install
 node server.js
 # Open http://localhost:3000
 ```
+
+---
+
+## Future enhancements (parked)
+
+- **Org-level admin accounts** so each program director only sees results for
+  staff in their own center
+- **Direct SSO from the MSA Platform** so mentors and mentees don't need to
+  re-enter their name and email when launching the quiz from their dashboard
+- **Embedded link-to-results** in the MSA Platform so mentors and mentees can
+  see their LEAP profile alongside their reflections without switching apps
