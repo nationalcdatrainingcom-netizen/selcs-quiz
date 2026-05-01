@@ -5,10 +5,11 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
 // ─────────────────────────────────────────────────────────────
-// SELCS Quiz — Mentor Success Academy
+// LEAP Quiz — Mentor Success Academy
+// Leadership Expression Assessment Profile
 // © Mentor Success Academy. All rights reserved.
 // Co-Founders: Mary Wardlaw & Rebecca Munlyn
-// The SELCS instrument is the exclusive intellectual property
+// The LEAP instrument is the exclusive intellectual property
 // of Mentor Success Academy. Unauthorized reproduction or
 // distribution is strictly prohibited.
 // ─────────────────────────────────────────────────────────────
@@ -16,7 +17,8 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'results.json');
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'selcs2025';
+// Use new env var name with fallback to legacy name so nothing breaks during the transition
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || process.env.SELCS_ADMIN_PASSWORD || 'leap2026';
 
 // ── Middleware ──────────────────────────────────
 app.use(cors());
@@ -52,7 +54,7 @@ function writeData(data) {
 
 // Submit a quiz result
 app.post('/api/results', (req, res) => {
-  const { name, email, org, role, scores, ranked } = req.body;
+  const { name, email, org, role, scores, ranked, pcts, primary, profileKey, profileLabel, isBlend } = req.body;
   if (!name || !email || !scores || !ranked) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
@@ -68,12 +70,23 @@ app.post('/api/results', (req, res) => {
     role: role || '',
     date: new Date().toISOString(),
     scores,
-    ranked
+    ranked,
+    pcts: pcts || null,
+    primary: primary || (ranked && ranked[0]) || null,
+    profileKey: profileKey || null,
+    profileLabel: profileLabel || null,
+    isBlend: typeof isBlend === 'boolean' ? isBlend : null
   };
 
   if (existing >= 0) {
+    record.history = data.results[existing].history || [];
+    // Preserve previous record as history entry (most recent first, max 10 kept)
+    const prev = { ...data.results[existing] };
+    delete prev.history;
+    record.history = [prev, ...record.history].slice(0, 10);
     data.results[existing] = record;
   } else {
+    record.history = [];
     data.results.push(record);
     // Track orgs
     if (org && !data.orgs.includes(org.trim())) {
@@ -121,6 +134,19 @@ app.delete('/api/admin/results/:id', (req, res) => {
   res.json({ success: true });
 });
 
+// Admin — clear ALL records (with confirmation in the request body)
+app.post('/api/admin/clear', (req, res) => {
+  const { password, confirm } = req.body;
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Incorrect password.' });
+  }
+  if (confirm !== 'CLEAR_ALL_RECORDS') {
+    return res.status(400).json({ error: 'Confirmation phrase missing.' });
+  }
+  writeData({ results: [], orgs: [] });
+  res.json({ success: true });
+});
+
 // Admin — export CSV
 app.post('/api/admin/export', (req, res) => {
   const { password } = req.body;
@@ -129,22 +155,32 @@ app.post('/api/admin/export', (req, res) => {
   }
   const data = readData();
   const rows = [
-    ['Name', 'Email', 'Organization', 'Role', 'Date', 'Primary', 'Secondary', 'Third', 'Fourth', 'D Score', 'I Score', 'S Score', 'C Score'],
+    ['Name', 'Email', 'Organization', 'Role', 'Date', 'Profile', 'Type',
+     'Primary', 'Secondary', 'Third', 'Fourth',
+     'Driver %', 'Inspirer %', 'Sustainer %', 'Cultivator %',
+     'Driver Score', 'Inspirer Score', 'Sustainer Score', 'Cultivator Score'],
     ...data.results.map(r => [
       r.name, r.email, r.org, r.role,
       new Date(r.date).toLocaleDateString(),
+      r.profileLabel || '',
+      r.isBlend === true ? 'Blend' : (r.isBlend === false ? 'Pure' : ''),
       r.ranked[0], r.ranked[1], r.ranked[2], r.ranked[3],
+      r.pcts ? r.pcts.D : '', r.pcts ? r.pcts.I : '', r.pcts ? r.pcts.S : '', r.pcts ? r.pcts.C : '',
       r.scores.D, r.scores.I, r.scores.S, r.scores.C
     ])
   ];
   const csv = rows.map(r => r.map(v => `"${String(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');
   res.setHeader('Content-Type', 'text/csv');
-  res.setHeader('Content-Disposition', 'attachment; filename="SELCS_Results.csv"');
+  res.setHeader('Content-Disposition', 'attachment; filename="LEAP_Results.csv"');
   res.send(csv);
 });
 
 // Health check
-app.get('/api/health', (req, res) => res.json({ status: 'ok', version: '1.0.0' }));
+app.get('/api/health', (req, res) => res.json({
+  status: 'ok',
+  app: 'LEAP Quiz',
+  version: '2.0.0'
+}));
 
 // Serve frontend for all other routes
 app.get('*', (req, res) => {
@@ -152,6 +188,7 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ SELCS Quiz running on http://localhost:${PORT}`);
-  console.log(`   Admin password: ${ADMIN_PASSWORD}`);
+  console.log(`✅ LEAP Quiz running on http://localhost:${PORT}`);
+  console.log(`   Leadership Expression Assessment Profile`);
+  console.log(`   Mentor Success Academy`);
 });
