@@ -108,6 +108,62 @@ app.get('/api/results/:email', (req, res) => {
   res.json(record);
 });
 
+// ─────────────────────────────────────────────────────────────
+// LEAP Profile Lookup (used by MSA QIF / Mentoring Platform)
+// Returns just the profile name + primary type for a given email.
+// No auth required — returns null gracefully if not found so
+// caller can render "Not yet taken".
+// ─────────────────────────────────────────────────────────────
+app.get('/api/lookup/:email', (req, res) => {
+  const data = readData();
+  const record = data.results.find(
+    r => r.email.toLowerCase() === req.params.email.toLowerCase()
+  );
+  if (!record) {
+    return res.json({ found: false, email: req.params.email.toLowerCase() });
+  }
+  res.json({
+    found: true,
+    email: record.email,
+    name: record.name,
+    profileLabel: record.profileLabel || null,
+    profileKey: record.profileKey || null,
+    primary: record.primary || (record.ranked && record.ranked[0]) || null,
+    isBlend: record.isBlend,
+    date: record.date
+  });
+});
+
+// Bulk lookup — POST a list of emails, get back a map of email → profile
+// Lets the MSA director view fetch all profiles for a center in one call.
+app.post('/api/lookup', (req, res) => {
+  const { emails } = req.body;
+  if (!Array.isArray(emails)) {
+    return res.status(400).json({ error: 'emails array required' });
+  }
+  const data = readData();
+  const lookup = {};
+  emails.forEach(em => {
+    const key = String(em || '').toLowerCase().trim();
+    if (!key) return;
+    const record = data.results.find(r => r.email.toLowerCase() === key);
+    if (record) {
+      lookup[key] = {
+        found: true,
+        name: record.name,
+        profileLabel: record.profileLabel || null,
+        profileKey: record.profileKey || null,
+        primary: record.primary || (record.ranked && record.ranked[0]) || null,
+        isBlend: record.isBlend,
+        date: record.date
+      };
+    } else {
+      lookup[key] = { found: false };
+    }
+  });
+  res.json({ lookup });
+});
+
 // Admin — get all results (password protected)
 app.post('/api/admin/results', (req, res) => {
   const { password, org } = req.body;
