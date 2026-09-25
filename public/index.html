@@ -957,7 +957,7 @@ function renderResults(r, syncStatus){
   h+=`<div class="flex-gap mt-2"><button class="btn btn-gold btn-sm" onclick="window.print()">Print Results</button><button class="btn btn-outline btn-sm" onclick="retakeQuiz()">Retake Assessment</button></div>`;
   document.getElementById('step-quiz').style.display='none';document.getElementById('step-results').style.display='block';document.getElementById('step-results').innerHTML=h;
 }
-function retakeQuiz(){document.getElementById('step-results').style.display='none';document.getElementById('step-register').style.display='block'}
+function retakeQuiz(){document.getElementById('step-results').style.display='none';document.getElementById('step-register').style.display='block';const e=document.getElementById('reg-error');if(e){e.style.cssText='';e.style.display='none'}window.scrollTo(0,0)}
 
 // ═══════════════════════════════════════════════════════════
 // REVIEW
@@ -1117,6 +1117,67 @@ function renderAbout(){
     h+=`<div class="about-type" style="border-left-color:${c1}"><span class="blend-badge" style="background:linear-gradient(135deg,${TYPES[parts[0]].color},${TYPES[parts[1]].color});color:#fff;margin-bottom:.5rem">${TYPES[parts[0]].label.replace('The ','')} + ${TYPES[parts[1]].label.replace('The ','')}</span><h3 style="color:${c1}">${bl.label}</h3><span class="tagline">${bl.tagline}</span><p>${bl.overview}</p><p><strong>Communication Style:</strong> ${bl.communication}</p><p><strong>Core Values:</strong> ${bl.values}</p>${renderMentoringHTML(bl)}${renderGrowthHTML(bl)}</div>`});
   el.innerHTML=h;
 }
+
+// ═══════════════════════════════════════════════════════════
+// AUTO SIGN-IN FROM MSA PLATFORM
+// The MSA mentor/mentee home pages link here with ?email=&name=&org=&role=
+// for the logged-in person. If they've already taken the LEAP, show their
+// results right away. If not, fill in the form so they can just begin.
+// ═══════════════════════════════════════════════════════════
+(async function autoLoadFromMSA(){
+  const params = new URLSearchParams(window.location.search);
+  const email = (params.get('email') || '').trim().toLowerCase();
+  if (!email) return;
+  const name = (params.get('name') || '').trim();
+  const org  = (params.get('org')  || '').trim();
+  const role = (params.get('role') || '').trim();
+
+  // Fill in the registration form so nobody has to type it again
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el && v) el.value = v; };
+  setVal('reg-name', name);
+  setVal('reg-email', email);
+  setVal('reg-org', org);
+  const roleSel = document.getElementById('reg-role');
+  if (roleSel && role && [...roleSel.options].some(o => o.text === role)) roleSel.value = role;
+
+  const reg = document.getElementById('step-register');
+  const res = document.getElementById('step-results');
+  reg.style.display = 'none';
+  res.style.display = 'block';
+  res.innerHTML = '<div class="card"><p style="color:var(--ink-light)">Loading your LEAP profile…</p></div>';
+
+  // Server first, then this device's saved copy as a fallback
+  let record = await fetchRecordByEmail(email);
+  if (!record) {
+    const local = getLocalRecords()
+      .filter(r => (r.email || '').toLowerCase() === email)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (local.length) record = local[0];
+  }
+
+  if (record && record.scores) record = fixPcts(record);
+  if (record && record.ranked && record.pcts) {
+    currentUser = { name: record.name || name, email, org: record.org || org, role: record.role || role };
+    renderResults(record);
+    reg.style.display = 'none';
+    const d = record.date ? new Date(record.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+    if (d) {
+      const hdr = res.querySelector('.results-header .eyebrow');
+      if (hdr) hdr.textContent = 'Assessment Completed ' + d;
+    }
+  } else {
+    // Not taken yet — show the form, already filled in
+    res.style.display = 'none';
+    res.innerHTML = '';
+    reg.style.display = 'block';
+    const err = document.getElementById('reg-error');
+    if (err && name) {
+      err.textContent = 'Welcome, ' + name.split(' ')[0] + '! Your details are filled in — click Begin to start.';
+      err.style.cssText = 'display:block;color:var(--green-deep);background:#eef6f0;border:1px solid #cfe5d6;border-radius:8px;padding:.6rem .8rem';
+    }
+  }
+})();
+
 </script>
 </body>
 </html>
